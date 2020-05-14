@@ -1,9 +1,7 @@
 package academy.pocu.comp2500.lab2;
 
 public class ComplexNumber {
-    public double real;
-    public double imaginary;
-    private final int IMAGINARY_SQUARED = -1;
+    public double real, imaginary;
 
     public ComplexNumber() {
         this.real = 0.0;
@@ -51,7 +49,7 @@ public class ComplexNumber {
 
     public ComplexNumber divide(ComplexNumber complexNumber) {
         if (complexNumber.imaginary == 0) {
-            return new ComplexNumber(this.real / complexNumber.real, this.imaginary /complexNumber.imaginary);
+            return new ComplexNumber(this.real / complexNumber.real, this.imaginary / complexNumber.imaginary);
         }
 
         if (Math.abs(complexNumber.real) < Math.abs(complexNumber.imaginary)) {
@@ -66,5 +64,4 @@ public class ComplexNumber {
             return new ComplexNumber((this.real + this.imaginary * t1) / t2, (this.imaginary - this.real * t1) / t2);
         }
     }
-
 }
