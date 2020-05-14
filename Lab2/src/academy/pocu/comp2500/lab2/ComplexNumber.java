@@ -21,11 +21,11 @@ public class ComplexNumber {
     }
 
     public boolean isReal() {
-        return this.real != 0.0 && this.imaginary == 0.0;
+        return this.imaginary == 0.0;
     }
 
     public boolean isImaginary() {
-        return real == 0.0 && this.imaginary != 0.0;
+        return real == 0.0;
     }
 
     public ComplexNumber getConjugate() {
@@ -33,12 +33,11 @@ public class ComplexNumber {
     }
 
     public ComplexNumber add(ComplexNumber complexNumber) {
-        return new ComplexNumber(this.real + complexNumber.real,this.imaginary + complexNumber.imaginary);
+        return new ComplexNumber(this.real + complexNumber.real, this.imaginary + complexNumber.imaginary);
     }
 
     public ComplexNumber subtract(ComplexNumber complexNumber) {
-
-        return new ComplexNumber(this.real - complexNumber.real,this.imaginary - complexNumber.imaginary);
+        return new ComplexNumber(this.real - complexNumber.real, this.imaginary - complexNumber.imaginary);
     }
 
     public ComplexNumber multiply(ComplexNumber complexNumber) {
@@ -47,15 +46,15 @@ public class ComplexNumber {
         }
         double real = this.real * complexNumber.real - this.imaginary * complexNumber.imaginary;
         double imaginary = this.real * complexNumber.imaginary + this.imaginary * complexNumber.real;
-        return new ComplexNumber(real,imaginary);
+        return new ComplexNumber(real, imaginary);
     }
 
     public ComplexNumber divide(ComplexNumber complexNumber) {
         if (complexNumber.real == 0 && complexNumber.imaginary == 0) {
-            return new ComplexNumber(0,0);
+            return new ComplexNumber(0, 0);
         }
 
-        return new ComplexNumber(0,0);
+        return new ComplexNumber(0, 0);
     }
 
 }
