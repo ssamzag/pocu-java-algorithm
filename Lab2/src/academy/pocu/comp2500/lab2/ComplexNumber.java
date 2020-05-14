@@ -27,7 +27,7 @@ public class ComplexNumber {
     }
 
     public ComplexNumber getConjugate() {
-        return new ComplexNumber(this.real, this.imaginary * -1);
+        return new ComplexNumber(this.real, Math.abs(this.imaginary));
     }
 
     public ComplexNumber add(ComplexNumber complexNumber) {
