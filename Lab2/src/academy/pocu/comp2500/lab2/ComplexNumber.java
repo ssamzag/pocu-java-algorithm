@@ -50,11 +50,21 @@ public class ComplexNumber {
     }
 
     public ComplexNumber divide(ComplexNumber complexNumber) {
-        if (complexNumber.real == 0 && complexNumber.imaginary == 0) {
-            return new ComplexNumber(0, 0);
+        if (complexNumber.imaginary == 0) {
+            return new ComplexNumber(this.real / complexNumber.real, this.imaginary /complexNumber.imaginary);
         }
 
-        return new ComplexNumber(0, 0);
+        if (Math.abs(complexNumber.real) < Math.abs(complexNumber.imaginary)) {
+            double t1 = complexNumber.real / complexNumber.imaginary;
+            double t2 = complexNumber.real * t1 + complexNumber.imaginary;
+
+            return new ComplexNumber((this.real * t1 + this.imaginary) / t2, (this.imaginary * t1 - this.real) / t2);
+        } else {
+            double t1 = complexNumber.imaginary / complexNumber.real;
+            double t2 = complexNumber.imaginary * t1 + complexNumber.real;
+
+            return new ComplexNumber((this.real + this.imaginary * t1) / t2, (this.imaginary - this.real * t1) / t2);
+        }
     }
 
 }
