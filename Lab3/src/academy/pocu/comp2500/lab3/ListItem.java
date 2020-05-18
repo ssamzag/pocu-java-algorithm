@@ -29,7 +29,7 @@ public class ListItem {
     }
 
     public char getBulletStyle() {
-        return bulletStyle;
+        return this.bulletStyle;
     }
 
     public ListItem addSublistItem(ListItem listItem) {
