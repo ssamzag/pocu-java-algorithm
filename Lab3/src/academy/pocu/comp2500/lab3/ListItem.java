@@ -46,7 +46,6 @@ public class ListItem {
 
     public void setDepth() {
         this.depth = this.depth == 2 ? this.depth : ++this.depth;
-
     }
 
     private String getSpacingBullet() {
