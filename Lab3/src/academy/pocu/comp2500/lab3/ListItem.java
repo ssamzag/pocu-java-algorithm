@@ -36,6 +36,7 @@ public class ListItem {
         this.bulletStyle = bulletStyle;
         return this;
     }
+
     public ListItem addSublistItem(ListItem listItem) {
         this.listItem.add(listItem);
         listItem.setDepth();
@@ -57,6 +58,11 @@ public class ListItem {
 
     private String getSpacingBullet() {
         return " ".repeat(this.depth * 4) + this.bulletStyle + " ";
+    }
+
+    public ListItem removeSublistItem(int index) {
+        this.listItem.remove(index);
+        return this;
     }
 
     @Override
