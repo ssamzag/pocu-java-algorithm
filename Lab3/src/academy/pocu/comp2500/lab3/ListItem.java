@@ -9,7 +9,7 @@ public class ListItem {
     private int depth;
 
     public ListItem(String text) {
-        this(text, '*');/
+        this(text, '*');
     }
 
     public ListItem(String text, char bulletStyle) {
