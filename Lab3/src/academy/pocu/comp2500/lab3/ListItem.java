@@ -59,7 +59,7 @@ public class ListItem {
 
     @Override
     public String toString() {
-        return getSpacingBullet() + this.text;
+        return String.format(getSpacingBullet() + this.text, System.lineSeparator());
     }
 
 }
