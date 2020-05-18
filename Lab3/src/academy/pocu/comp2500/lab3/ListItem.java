@@ -47,10 +47,6 @@ public class ListItem {
         return this.listItem.get(index);
     }
 
-    public ListItem removeSublistItem() {
-        return this;
-    }
-
     public ListItem setDepth() {
         this.depth = this.depth == 2 ? this.depth : ++this.depth;
         return this;
