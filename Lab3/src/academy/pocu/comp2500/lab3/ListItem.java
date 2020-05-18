@@ -20,7 +20,7 @@ public class ListItem {
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     public ListItem setText(String text) {
