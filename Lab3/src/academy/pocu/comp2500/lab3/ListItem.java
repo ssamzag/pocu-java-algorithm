@@ -23,9 +23,8 @@ public class ListItem {
         return this.text;
     }
 
-    public ListItem setText(String text) {
+    public void setText(String text) {
         this.text = text;
-        return this;
     }
 
     public char getBulletStyle() {
