@@ -31,33 +31,30 @@ public class ListItem {
         return this.bulletStyle;
     }
 
-    public ListItem setBulletStyle(char bulletStyle) {
+    public void setBulletStyle(char bulletStyle) {
         this.bulletStyle = bulletStyle;
-        return this;
     }
 
-    public ListItem addSublistItem(ListItem listItem) {
+    public void addSublistItem(ListItem listItem) {
         this.listItem.add(listItem);
         listItem.setDepth();
-        return this;
     }
 
     public ListItem getSublistItem(int index) {
         return this.listItem.get(index);
     }
 
-    public ListItem setDepth() {
+    public void setDepth() {
         this.depth = this.depth == 2 ? this.depth : ++this.depth;
-        return this;
+
     }
 
     private String getSpacingBullet() {
         return " ".repeat(this.depth * 4) + this.bulletStyle + " ";
     }
 
-    public ListItem removeSublistItem(int index) {
+    public void removeSublistItem(int index) {
         this.listItem.remove(index);
-        return this;
     }
 
     @Override
