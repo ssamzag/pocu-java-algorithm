@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class ListItem {
     private String text;
-    private final ArrayList<ListItem> listItem;
     private char bulletStyle;
     private int depth;
+    private final ArrayList<ListItem> listItem;
 
     public ListItem(String text) {
         this(text, '*');
@@ -31,10 +31,6 @@ public class ListItem {
         return this.bulletStyle;
     }
 
-    public void setBulletStyle(char bulletStyle) {
-        this.bulletStyle = bulletStyle;
-    }
-
     public void addSublistItem(ListItem listItem) {
         this.listItem.add(listItem);
         listItem.setDepth();
@@ -44,7 +40,11 @@ public class ListItem {
         return this.listItem.get(index);
     }
 
-    public void setDepth() {
+    public void removeSublistItem(int index) {
+        this.listItem.remove(index);
+    }
+
+    private void setDepth() {
         this.depth = this.depth == 2 ? this.depth : ++this.depth;
     }
 
@@ -52,13 +52,8 @@ public class ListItem {
         return " ".repeat(this.depth * 4) + this.bulletStyle + " ";
     }
 
-    public void removeSublistItem(int index) {
-        this.listItem.remove(index);
-    }
-
     @Override
     public String toString() {
-        return String.format(getSpacingBullet() + this.text, System.lineSeparator());
+        return String.format(getSpacingBullet() + this.text + "%s", System.lineSeparator());
     }
-
 }
