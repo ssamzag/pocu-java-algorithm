@@ -33,9 +33,7 @@ public class ListItem {
 
     public void addSublistItem(ListItem listItem) {
         this.listItem.add(listItem);
-        listItem.setDepth();
     }
-
     public ListItem getSublistItem(int index) {
         return this.listItem.get(index);
     }
@@ -44,8 +42,9 @@ public class ListItem {
         this.listItem.remove(index);
     }
 
-    private void setDepth() {
-        this.depth = this.depth == 2 ? this.depth : ++this.depth;
+    private ListItem setDepth(int depth) {
+        this.depth = depth == 2 ? depth : ++depth;
+        return this;
     }
 
     private String getSpacingBullet() {
@@ -54,6 +53,11 @@ public class ListItem {
 
     @Override
     public String toString() {
-        return String.format(getSpacingBullet() + this.text + "%s", System.lineSeparator());
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(getSpacingBullet() + this.getText() + "%s", System.lineSeparator()));
+        for (var list: listItem) {
+            sb.append(list);
+        }
+        return sb.toString();
     }
 }
