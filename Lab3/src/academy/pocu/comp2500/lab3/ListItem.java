@@ -32,6 +32,10 @@ public class ListItem {
         return this.bulletStyle;
     }
 
+    public ListItem setBulletStyle(char bulletStyle) {
+        this.bulletStyle = bulletStyle;
+        return this;
+    }
     public ListItem addSublistItem(ListItem listItem) {
         this.listItem.add(listItem);
         listItem.setDepth();
