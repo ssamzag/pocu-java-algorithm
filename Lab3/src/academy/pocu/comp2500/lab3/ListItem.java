@@ -5,12 +5,9 @@ import java.util.ArrayList;
 public class ListItem {
     private String text;
     private char bulletStyle;
-    private int depth;
     private ArrayList<ListItem> listItemArrayList;
 
-    public ListItem(String text) {
-        this(text, '*');
-    }
+    public ListItem(String text) { this(text, '*'); }
 
     public ListItem(String text, char bulletStyle) {
         this.text = text;
@@ -22,9 +19,7 @@ public class ListItem {
         return this.text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    public void setText(String text) { this.text = text; }
 
     public char getBulletStyle() {
         return this.bulletStyle;
@@ -34,9 +29,7 @@ public class ListItem {
         this.bulletStyle = bullet;
     }
 
-    public void addSublistItem(ListItem listItem) {
-        this.listItemArrayList.add(listItem);
-    }
+    public void addSublistItem(ListItem listItem) { this.listItemArrayList.add(listItem); }
 
     public ListItem getSublistItem(int index) {
         return this.listItemArrayList.get(index);
@@ -48,7 +41,8 @@ public class ListItem {
 
     private String getListItemText(int depth) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(" ".repeat(4 * Math.min(depth++, 2)) + this.bulletStyle + " " + this.text + "%s", System.lineSeparator()));
+        sb.append(String.format("%s%s %s%s", " ".repeat(4 * Math.min(depth++, 2)), getBulletStyle(), getText()
+                , System.lineSeparator()));
 
         for (var listItem : this.listItemArrayList) {
             sb.append(listItem.getListItemText(depth));
