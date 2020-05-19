@@ -45,7 +45,7 @@ public class ListItem {
         this.listItemArrayList.remove(index);
     }
 
-    private String getAssembledText(int depth){
+    private String getAssembledText(int depth) {
         return " ".repeat(4 * depth) + this.bulletStyle + " " + this.text;
     }
 
