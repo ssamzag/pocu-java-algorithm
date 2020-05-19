@@ -25,7 +25,9 @@ public class ListItem {
         this.text = text;
     }
 
-    public char getBulletStyle() { return this.bulletStyle; }
+    public char getBulletStyle() {
+        return this.bulletStyle;
+    }
 
     public void setBulletStyle(char bullet) {
         this.bulletStyle = bullet;
@@ -45,7 +47,7 @@ public class ListItem {
 
     private String getListItemText(int depth) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%s%s %s%s", " ".repeat(4 * depth++), getBulletStyle(), getText(), System.lineSeparator()));
+        sb.append(String.format("%s%s %s%s", " ".repeat(4 * depth++), this.bulletStyle, this.text, System.lineSeparator()));
 
         for (var listItem : this.listItemArrayList) {
             sb.append(listItem.getListItemText(depth));
