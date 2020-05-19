@@ -47,6 +47,7 @@ public class ListItem {
     private String getAssembledText(int depth){
         return " ".repeat(4 * depth) + this.bulletStyle + " " + this.text;
     }
+    
     private String getListItemText(int depth) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s%s", getAssembledText(depth++), System.lineSeparator()));
