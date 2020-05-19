@@ -47,7 +47,11 @@ public class ListItem {
     }
 
     private void setDepth(int depth) {
-        this.depth = depth > 2 ? 2 : depth;
+        this.depth = Math.min(depth + 1, 2);
+    }
+
+    private int getDepth() {
+        return this.depth;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class ListItem {
         sb.append(String.format(" ".repeat(4 * this.depth) + this.bulletStyle + " " + this.getText() + "%s", System.lineSeparator()));
 
         for (var listItem : listItemArrayList) {
-            listItem.setDepth(this.depth + 1);
+            listItem.setDepth(this.depth);
             sb.append(listItem);
         }
         return sb.toString();
