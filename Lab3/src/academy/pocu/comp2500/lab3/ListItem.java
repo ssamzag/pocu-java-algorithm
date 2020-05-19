@@ -7,7 +7,9 @@ public class ListItem {
     private char bulletStyle;
     private ArrayList<ListItem> listItemArrayList;
 
-    public ListItem(String text) { this(text, '*'); }
+    public ListItem(String text) {
+        this(text, '*');
+    }
 
     public ListItem(String text, char bulletStyle) {
         this.text = text;
@@ -19,7 +21,9 @@ public class ListItem {
         return this.text;
     }
 
-    public void setText(String text) { this.text = text; }
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public char getBulletStyle() { return this.bulletStyle; }
 
@@ -27,7 +31,9 @@ public class ListItem {
         this.bulletStyle = bullet;
     }
 
-    public void addSublistItem(ListItem listItem) { this.listItemArrayList.add(listItem); }
+    public void addSublistItem(ListItem listItem) {
+        this.listItemArrayList.add(listItem);
+    }
 
     public ListItem getSublistItem(int index) {
         return this.listItemArrayList.get(index);
