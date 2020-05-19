@@ -36,7 +36,6 @@ public class ListItem {
 
     public void addSublistItem(ListItem listItem) {
         this.listItemArrayList.add(listItem);
-        listItem.setDepth(this.depth);
     }
 
     public ListItem getSublistItem(int index) {
@@ -61,7 +60,7 @@ public class ListItem {
         sb.append(String.format(" ".repeat(4 * this.depth) + this.bulletStyle + " " + this.getText() + "%s", System.lineSeparator()));
 
         for (var listItem : listItemArrayList) {
-            //listItem.setDepth(this.depth);
+            listItem.setDepth(this.depth);
             sb.append(listItem);
         }
         return sb.toString();
