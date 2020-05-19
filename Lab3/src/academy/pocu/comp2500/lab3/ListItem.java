@@ -44,10 +44,12 @@ public class ListItem {
     public void removeSublistItem(int index) {
         this.listItemArrayList.remove(index);
     }
-
+    private String getAssembledText(int depth){
+        return " ".repeat(4 * depth) + this.bulletStyle + " " + this.text;
+    }
     private String getListItemText(int depth) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%s%s %s%s", " ".repeat(4 * depth++), this.bulletStyle, this.text, System.lineSeparator()));
+        sb.append(String.format("%s%s", getAssembledText(depth++), System.lineSeparator()));
 
         for (var listItem : this.listItemArrayList) {
             sb.append(listItem.getListItemText(depth));
