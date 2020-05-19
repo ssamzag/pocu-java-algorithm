@@ -54,15 +54,19 @@ public class ListItem {
         return this.depth;
     }
 
-    @Override
-    public String toString() {
+    private String aa(int depth) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(" ".repeat(4 * this.depth) + this.bulletStyle + " " + this.getText() + "%s", System.lineSeparator()));
+        depth = Math.min(depth, 2);
+        sb.append(String.format(" ".repeat(4 * depth) + this.bulletStyle + " " + this.text + "%s", System.lineSeparator()));
 
-        for (var listItem : listItemArrayList) {
-            listItem.setDepth(this.depth);
-            sb.append(listItem);
+        for (var listItem : this.listItemArrayList) {
+            sb.append(listItem.aa(depth + 1));
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return aa(0);
     }
 }
