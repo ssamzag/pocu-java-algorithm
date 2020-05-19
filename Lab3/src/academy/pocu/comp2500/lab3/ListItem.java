@@ -15,7 +15,6 @@ public class ListItem {
     public ListItem(String text, char bulletStyle) {
         this.text = text;
         this.bulletStyle = bulletStyle;
-        this.depth = 0;
         this.listItemArrayList = new ArrayList<ListItem>();
     }
 
