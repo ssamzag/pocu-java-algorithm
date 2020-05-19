@@ -46,26 +46,18 @@ public class ListItem {
         this.listItemArrayList.remove(index);
     }
 
-    private void setDepth(int depth) {
-        this.depth = Math.min(depth + 1, 2);
-    }
-
-    private int getDepth() {
-        return this.depth;
-    }
-
-    private String aa(int depth) {
+    private String getListItemText(int depth) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(" ".repeat(4 * Math.min(depth, 2)) + this.bulletStyle + " " + this.text + "%s", System.lineSeparator()));
+        sb.append(String.format(" ".repeat(4 * Math.min(depth++, 2)) + this.bulletStyle + " " + this.text + "%s", System.lineSeparator()));
 
         for (var listItem : this.listItemArrayList) {
-            sb.append(listItem.aa(depth + 1));
+            sb.append(listItem.getListItemText(depth));
         }
         return sb.toString();
     }
 
     @Override
     public String toString() {
-        return aa(0);
+        return getListItemText(0);
     }
 }
