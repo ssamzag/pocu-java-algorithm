@@ -56,8 +56,7 @@ public class ListItem {
 
     private String aa(int depth) {
         StringBuilder sb = new StringBuilder();
-        depth = Math.min(depth, 2);
-        sb.append(String.format(" ".repeat(4 * depth) + this.bulletStyle + " " + this.text + "%s", System.lineSeparator()));
+        sb.append(String.format(" ".repeat(4 * Math.min(depth, 2)) + this.bulletStyle + " " + this.text + "%s", System.lineSeparator()));
 
         for (var listItem : this.listItemArrayList) {
             sb.append(listItem.aa(depth + 1));
