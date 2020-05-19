@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class ListItem {
     private String text;
-    private final char bulletStyle;
+    private char bulletStyle;
     private int depth;
-    private final ArrayList<ListItem> listItemArrayList;
+    private ArrayList<ListItem> listItemArrayList;
 
     public ListItem(String text) {
         this(text, '*');
@@ -28,6 +28,10 @@ public class ListItem {
 
     public char getBulletStyle() {
         return this.bulletStyle;
+    }
+    
+    public void setBulletStyle(char bullet) {
+        this.bulletStyle = bullet;
     }
 
     public void addSublistItem(ListItem listItem) {
