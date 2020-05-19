@@ -21,9 +21,7 @@ public class ListItem {
 
     public void setText(String text) { this.text = text; }
 
-    public char getBulletStyle() {
-        return this.bulletStyle;
-    }
+    public char getBulletStyle() { return this.bulletStyle; }
 
     public void setBulletStyle(char bullet) {
         this.bulletStyle = bullet;
