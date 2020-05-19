@@ -3,7 +3,6 @@ package academy.pocu.comp2500.lab3;
 import java.util.ArrayList;
 
 public class Program {
-
     public static void main(String[] args) {
         ArrayList<ListItem> list = new ArrayList<>();
 
@@ -21,14 +20,8 @@ public class Program {
 
         ListItem sublistItem3 = new ListItem("This is sublist item3", '>');
         ListItem subSublistItem1 = new ListItem("This is sub-sublist item1", '-');
-        ListItem subSublistItem2 = new ListItem("This is sub-sublist item2", '_');
-        sublistItem3.addSublistItem(subSublistItem1);
-        sublistItem3.addSublistItem(subSublistItem1);
-        sublistItem3.addSublistItem(subSublistItem1);
-        sublistItem3.addSublistItem(subSublistItem1);
-        sublistItem3.addSublistItem(subSublistItem1);
 
-
+        sublistItem3.addSublistItem(subSublistItem1);
         listItem3.addSublistItem(sublistItem3);
 
         list.add(listItem1);
@@ -36,7 +29,7 @@ public class Program {
         list.add(listItem3);
 
         String actual = toString(list);
-        System.out.print(actual);
+
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("* My first item%s", System.lineSeparator()));
         sb.append(String.format("    > This is sublist item1%s", System.lineSeparator()));
