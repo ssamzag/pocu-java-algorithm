@@ -29,7 +29,7 @@ public class ListItem {
     public char getBulletStyle() {
         return this.bulletStyle;
     }
-    
+
     public void setBulletStyle(char bullet) {
         this.bulletStyle = bullet;
     }
@@ -55,7 +55,7 @@ public class ListItem {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(" ".repeat(4 * this.depth) + this.bulletStyle + " " + this.getText() + "%s", System.lineSeparator()));
 
-        for (var listItem: listItemArrayList) {
+        for (var listItem : listItemArrayList) {
             listItem.setDepth(this.depth + 1);
             sb.append(listItem);
         }
