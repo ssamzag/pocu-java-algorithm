@@ -51,4 +51,8 @@ public class Comment {
     public void addSubComment(Comment comment) {
         this.subComments.add(comment);
     }
+    public void modifyContent(String text) {
+
+    }
+
 }

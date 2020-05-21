@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
@@ -13,6 +14,7 @@ public class Post {
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashSet<HashMap<ReactionType, User>> reactions;
+    private ArrayList<String> tagList;
 
     public Post(String title, String body, User user) {
         this.postId = UUID.randomUUID();
@@ -36,6 +38,9 @@ public class Post {
             this.modifiedDateTime = OffsetDateTime.now();
         }
     }
+    public void addTag(String tag) {
+        tagList.add(tag);
+    }
 
     public String getTitle() {
         return this.title;
@@ -53,9 +58,27 @@ public class Post {
         return this.modifiedDateTime;
     }
 
+    public String getPostList() {
+        return "";
+    }
+
     public void addReaction(ReactionType type, User user) {
         var a = new HashMap<ReactionType, User>().put(type, user);
-        //this.reactions.add(a);
+     //   this.reactions.add(a);
+    }
+    public void removeReaction() {
+
+    }
+    public void addComment() {
+
+    }
+
+    public void getCommentList() {
+
+    }
+
+    public void getSubCommentList() {
+
     }
 
 

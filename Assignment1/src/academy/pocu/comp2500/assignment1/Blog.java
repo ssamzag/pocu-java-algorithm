@@ -20,4 +20,18 @@ public class Blog {
         postList.add(post);
     }
 
+    public void getPostList() {
+
+    }
+
+    public void setSortOrder() {
+
+    }
+
+    public void setTagFilter() {
+
+    }
+    public void setAuthorFilter() {
+
+    }
 }

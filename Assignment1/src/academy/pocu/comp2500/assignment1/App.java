@@ -6,24 +6,24 @@ import academy.pocu.comp2500.assignment1.registry.Registry;
 public class App {
     public App(Registry registry) {
         registry.registerBlogCreator("Blog");
-        registry.registerTagFilterSetter("POst", "setTagFilter");
-        registry.registerAuthorFilterSetter("Post", "setAuthorFilter");
-        registry.registerPostOrderSetter("Post", "setSortOrder");
-        registry.registerPostListGetter("Post", "getPostList");
+        registry.registerTagFilterSetter("Blog", "setTagFilter");
+        registry.registerAuthorFilterSetter("Blog", "setAuthorFilter");
+        registry.registerPostOrderSetter("Blog", "setSortOrder");
+        registry.registerPostListGetter("Blog", "getPostList");
         registry.registerPostAdder("Blog", "addPost");
         registry.registerPostTitleUpdater("Post", "modifyPostTitle");
         registry.registerPostBodyUpdater("Post", "modifyPostBody");
         registry.registerPostTagAdder("Post", "addTag");
         registry.registerCommentAdder("Post", "addComment");
-        registry.registerSubcommentAdder("Comment", "addComment");
-        registry.registerCommentUpdater("Comment", "modifyComment");
-        registry.registerSubcommentUpdater("Comment", "modifyComment");
+        registry.registerSubcommentAdder("Comment", "addSubComment");
+        registry.registerCommentUpdater("Comment", "modifyContent");
+        registry.registerSubcommentUpdater("Comment", "modifyContent");
         registry.registerReactionAdder("Post", "addReaction");
         registry.registerReactionRemover("Post", "removeReaction");
         registry.registerCommentUpvoter("Comment", "setUpVote");
         registry.registerCommentDownvoter("Comment", "setDownVote");
-        registry.registerCommentListGetter("Comment", "getCommentList");
-        registry.registerSubCommentListGetter("Comment", "getSubCommentList");
+        registry.registerCommentListGetter("Post", "getCommentList");
+        registry.registerSubCommentListGetter("Post", "getSubCommentList");
         registry.registerSubcommentUpvoter("Comment", "setUpVote");
         registry.registerSubcommentDownvoter("Comment", "setDownVote");
     }
