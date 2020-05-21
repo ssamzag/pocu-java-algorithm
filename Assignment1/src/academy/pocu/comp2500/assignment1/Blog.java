@@ -16,5 +16,5 @@ public class Blog {
     public void AddPost(Post post) {
         postList.add(post);
     }
-    
+
 }
