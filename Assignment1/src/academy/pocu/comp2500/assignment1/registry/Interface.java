@@ -4,8 +4,8 @@ package academy.pocu.comp2500.assignment1.registry;
  * DO NOT MODIFY. YOU DON'T HAVE TO!
  */
 public final class Interface {
-    private String className;
-    private String methodName;
+    private final String className;
+    private final String methodName;
 
     public Interface(final String className) {
         this(className, null);
