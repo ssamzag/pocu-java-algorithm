@@ -1,10 +1,10 @@
 package academy.pocu.comp2500.assignment1;
 
 public class User {
-    private String userId;
-    private String userName;
-    private String nickName;
-    private String displayName;
+    private final String userId;
+    private final String userName;
+    private final String nickName;
+    private final String displayName;
     private String emailAddress;
 
     public User(String userId, String userName, String nickName) {

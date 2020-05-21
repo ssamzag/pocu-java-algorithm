@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
-public enum Emoji {
+public enum ReactionType {
     GREAT,
     SAD,
     ANGRY,
