@@ -9,14 +9,11 @@ public class Blog {
     private final UUID blogId;
     private final String userId;
     private ArrayList<Post> postList;
-    private String[] tag;
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
         this.userId = user.getUserId();
     }
-
-
 
     public void addPost(Post post) {
         postList.add(post);

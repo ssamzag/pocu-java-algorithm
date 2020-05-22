@@ -14,7 +14,7 @@ public class Post {
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashSet<HashMap<ReactionType, User>> reactions;
-    private ArrayList<String> tagList;
+    private HashSet<String> tagList;
 
     public Post(String title, String body, User user) {
         this.postId = UUID.randomUUID();
@@ -38,7 +38,11 @@ public class Post {
             this.modifiedDateTime = OffsetDateTime.now();
         }
     }
+
     public void addTag(String tag) {
+        if (this.tagList == null) {
+            this.tagList = new HashSet<String>();
+        }
         tagList.add(tag);
     }
 
@@ -63,6 +67,9 @@ public class Post {
     }
 
     public void addReaction(ReactionType type, User user) {
+        if (this.reactions == null) {
+            this.reactions = new HashSet<HashMap<ReactionType, User>>();
+        }
         var a = new HashMap<ReactionType, User>().put(type, user);
      //   this.reactions.add(a);
     }
@@ -77,7 +84,7 @@ public class Post {
 
     }
 
-    public void getSubCommentList() {
+    public void getSubcommentList() {
 
     }
 

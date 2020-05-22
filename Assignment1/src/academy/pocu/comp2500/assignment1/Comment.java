@@ -12,12 +12,13 @@ public class Comment {
     private ArrayList<Comment> subcomments;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-
+    private HashMap<User, String> votes;
 
     public Comment(String content, User user) {
         if (user == null) {
             return;
         }
+        this.commentId = UUID.randomUUID();
         this.content = content;
         this.user = user;
         this.createdDateTime = OffsetDateTime.now();
@@ -35,20 +36,26 @@ public class Comment {
         return this.content;
     }
 
-
     public void setUpVote(User user) {
-        vote('U', user);
+        vote("U", user);
     }
 
     public void setDownVote(User user) {
-        vote('D', user);
+        vote("D", user);
     }
 
-    private void vote(char voteType, User user) {
-
+    private void vote(String voteType, User user) {
+        if (this.votes.get(user) == voteType) {
+            votes.put(user, null);
+        } else {
+            votes.put(user, voteType);
+        }
     }
 
     public void addSubcomment(Comment comment) {
+        if (this.subcomments == null) {
+            this.subcomments = new ArrayList<Comment>();
+        }
         this.subcomments.add(comment);
     }
 
