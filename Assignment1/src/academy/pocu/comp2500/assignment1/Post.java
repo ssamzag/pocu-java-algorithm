@@ -97,7 +97,6 @@ public class Post {
     }
 
     public void getSubcommentList() {
-
     }
 
 
