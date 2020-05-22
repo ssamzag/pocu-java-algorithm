@@ -93,7 +93,7 @@ public class Post {
     }
 
     public void getCommentList() {
-
+        var a = Sort.CREATED_DATE_ASC;
     }
 
     public void getSubcommentList() {
