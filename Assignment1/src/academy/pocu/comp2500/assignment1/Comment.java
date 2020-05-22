@@ -37,14 +37,14 @@ public class Comment {
     }
 
     public void setUpVote(User user) {
-        vote("U", user);
+        vote(user, "U");
     }
 
     public void setDownVote(User user) {
-        vote("D", user);
+        vote(user, "D");
     }
 
-    private void vote(String voteType, User user) {
+    private void vote(User user, String voteType) {
         if (this.votes.get(user) == voteType) {
             votes.put(user, null);
         } else {

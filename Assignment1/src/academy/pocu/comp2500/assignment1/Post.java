@@ -72,13 +72,12 @@ public class Post {
         }
 
         var reaction = new HashMap<User, ReactionType>().put(user, type);
-        //if ()
-
 
     }
     public void removeReaction() {
 
     }
+
     public void addComment() {
 
     }

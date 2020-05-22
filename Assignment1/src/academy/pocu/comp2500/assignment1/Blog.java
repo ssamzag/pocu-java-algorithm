@@ -16,6 +16,9 @@ public class Blog {
     }
 
     public void addPost(Post post) {
+        if (this.postList == null) {
+            this.postList = new ArrayList<Post>();
+        }
         postList.add(post);
     }
 
