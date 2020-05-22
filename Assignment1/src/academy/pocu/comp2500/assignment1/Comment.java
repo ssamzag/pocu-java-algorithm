@@ -9,7 +9,7 @@ public class Comment {
     private UUID commentId;
     private User user;
     private String content;
-    private ArrayList<Comment> subcomments;
+    private ArrayList<Comment> subcommentList;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashMap<User, String> votes;
@@ -45,18 +45,34 @@ public class Comment {
     }
 
     private void vote(User user, String voteType) {
-        if (this.votes.get(user) == voteType) {
-            votes.put(user, null);
-        } else {
-            votes.put(user, voteType);
+        if (votes == null) {
+            votes = new HashMap<User, String>();
         }
+        String userVote = votes.get(user);
+        if (userVote == null) {
+            votes.put(user, voteType);
+            return;
+        }
+        votes.remove(user);
+        if (userVote.equals(voteType)) {
+            return;
+        }
+        votes.put(user, voteType);
+    }
+
+    public long getUpVoteCount() {
+        return this.votes.entrySet().stream().filter(map -> "U".equals(map.getValue())).count();
+    }
+
+    public long getDownVoteCount() {
+        return this.votes.entrySet().stream().filter(map -> "D".equals(map.getValue())).count();
     }
 
     public void addSubcomment(Comment comment) {
-        if (this.subcomments == null) {
-            this.subcomments = new ArrayList<Comment>();
+        if (this.subcommentList == null) {
+            this.subcommentList = new ArrayList<Comment>();
         }
-        this.subcomments.add(comment);
+        this.subcommentList.add(comment);
     }
 
 }

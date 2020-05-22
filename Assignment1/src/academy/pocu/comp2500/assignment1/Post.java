@@ -14,7 +14,8 @@ public class Post {
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashSet<HashMap<User, ReactionType>> reactions;
-    private HashSet<String> tagList;
+    private HashSet<String> tags;
+    private ArrayList<Comment> commentList;
 
     public Post(String title, String body, User user) {
         this.postId = UUID.randomUUID();
@@ -25,25 +26,22 @@ public class Post {
         this.body = body;
     }
 
-    public void updateTitle(String title, User user) {
-        if (this.authorId.equals(user.getUserId())) {
-            this.title = title;
-            this.modifiedDateTime = OffsetDateTime.now();
-        }
+    public void updateTitle(String title) {
+        this.title = title;
+        this.modifiedDateTime = OffsetDateTime.now();
+
     }
 
-    public void updateBody(String body, User user) {
-        if (this.authorId.equals(user.getUserId())) {
-            this.body = body;
-            this.modifiedDateTime = OffsetDateTime.now();
-        }
+    public void updateBody(String body) {
+        this.body = body;
+        this.modifiedDateTime = OffsetDateTime.now();
     }
 
     public void addTag(String tag) {
-        if (this.tagList == null) {
-            this.tagList = new HashSet<String>();
+        if (this.tags == null) {
+            this.tags = new HashSet<String>();
         }
-        tagList.add(tag);
+        tags.add(tag);
     }
 
     public String getTitle() {
@@ -70,16 +68,28 @@ public class Post {
         if (this.reactions == null) {
             this.reactions = new HashSet<HashMap<User, ReactionType>>();
         }
-
-        var reaction = new HashMap<User, ReactionType>().put(user, type);
+        if (!removeReaction(type, user)) {
+            var reaction = new HashMap<User, ReactionType>();
+            reaction.put(user, type);
+            this.reactions.add(reaction);
+        }
 
     }
-    public void removeReaction() {
-
+    public boolean removeReaction(ReactionType type, User user) {
+        var reaction = new HashMap<User, ReactionType>();
+        reaction.put(user, type);
+        if (reactions.contains(reaction)) {
+            reactions.remove(reaction);
+            return true;
+        }
+        return false;
     }
 
-    public void addComment() {
-
+    public void addComment(Comment comment) {
+        if (this.commentList == null) {
+            this.commentList = new ArrayList<Comment>();
+        }
+        this.commentList.add(comment);
     }
 
     public void getCommentList() {

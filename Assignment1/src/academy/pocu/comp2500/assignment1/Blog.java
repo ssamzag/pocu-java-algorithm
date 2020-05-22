@@ -23,7 +23,7 @@ public class Blog {
     }
 
     public void getPostList() {
-
+        
     }
 
     public void setSortOrder() {
