@@ -2,18 +2,16 @@ package academy.pocu.comp2500.assignment1;
 
 public class User {
     private final String userId;
-    private final String nickName;
-    private final String displayName;
+    private final String nickname;
     private String emailAddress;
 
-    public User(String userId, String nickName) {
+    public User(String userId, String nickname) {
         this.userId = userId;
-        this.nickName = nickName;
-        this.displayName = nickName;
+        this.nickname = nickname;
     }
 
-    public User(String userId, String nickName, String emailAddress) {
-        this(userId, nickName);
+    public User(String userId, String nickname, String emailAddress) {
+        this(userId, nickname);
         this.emailAddress = emailAddress;
     }
 
@@ -21,12 +19,8 @@ public class User {
         return this.userId;
     }
 
-    public String getNickName() {
-        return this.nickName;
-    }
-
-    public String getDisplayName() {
-        return this.displayName;
+    public String getNickname() {
+        return this.nickname;
     }
 
     public String getEmailAddress() {
