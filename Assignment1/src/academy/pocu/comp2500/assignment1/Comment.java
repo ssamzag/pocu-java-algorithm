@@ -36,7 +36,7 @@ public class Comment {
     }
 
 
-    public void serUpVote(User user) {
+    public void setUpVote(User user) {
         vote('U', user);
     }
 
@@ -50,9 +50,6 @@ public class Comment {
 
     public void addSubComment(Comment comment) {
         this.subComments.add(comment);
-    }
-    public void modifyContent(String text) {
-
     }
 
 }

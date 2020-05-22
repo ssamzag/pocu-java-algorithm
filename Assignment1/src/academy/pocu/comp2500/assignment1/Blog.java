@@ -16,6 +16,8 @@ public class Blog {
         this.userId = user.getUserId();
     }
 
+
+
     public void addPost(Post post) {
         postList.add(post);
     }
