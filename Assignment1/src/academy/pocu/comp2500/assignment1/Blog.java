@@ -1,14 +1,14 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.UUID;
 
 public class Blog {
     private final UUID blogId;
     private final String userId;
     private ArrayList<Post> postList;
+    private SortingType sortingType;
+
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
@@ -23,11 +23,11 @@ public class Blog {
     }
 
     public void getPostList() {
-        
+
     }
 
-    public void setSortOrder() {
-
+    public void setOrder(SortingType type) {
+        this.sortingType = type;
     }
 
     public void setTagFilter() {

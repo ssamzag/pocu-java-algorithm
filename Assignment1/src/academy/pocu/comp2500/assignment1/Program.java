@@ -21,12 +21,15 @@ public class Program {
         post1.addTag("태그다 캬캬");
         post1.addReaction(ReactionType.GREAT, user2);
         post1.addReaction(ReactionType.FUN, user2);
+        post1.addReaction(ReactionType.GREAT, user2);
+        post1.addReaction(ReactionType.GREAT, user3);
+        System.out.println("리액션 : " + post1.getReaction());
         comment1.setUpVote(user2);
         subcomment1.setUpVote(user3);
         subcomment1.setUpVote(user2);
         subcomment1.setUpVote(user3);
         subcomment1.setUpVote(user3);
-
+        System.out.println(post1.getPost());
         System.out.println("좋아요 " + subcomment1.getUpVoteCount());
         System.out.println("싫어요 " + subcomment1.getDownVoteCount());
 
