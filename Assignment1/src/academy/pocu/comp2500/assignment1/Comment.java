@@ -9,7 +9,7 @@ public class Comment {
     private UUID commentId;
     private User user;
     private String content;
-    private ArrayList<Comment> subComments;
+    private ArrayList<Comment> subcomments;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
 
@@ -48,8 +48,8 @@ public class Comment {
 
     }
 
-    public void addSubComment(Comment comment) {
-        this.subComments.add(comment);
+    public void addSubcomment(Comment comment) {
+        this.subcomments.add(comment);
     }
 
 }
