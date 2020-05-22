@@ -13,7 +13,7 @@ public class Post {
     private String body;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-    private HashSet<HashMap<ReactionType, User>> reactions;
+    private HashSet<HashMap<User, ReactionType>> reactions;
     private HashSet<String> tagList;
 
     public Post(String title, String body, User user) {
@@ -68,10 +68,13 @@ public class Post {
 
     public void addReaction(ReactionType type, User user) {
         if (this.reactions == null) {
-            this.reactions = new HashSet<HashMap<ReactionType, User>>();
+            this.reactions = new HashSet<HashMap<User, ReactionType>>();
         }
-        var a = new HashMap<ReactionType, User>().put(type, user);
-     //   this.reactions.add(a);
+
+        var reaction = new HashMap<User, ReactionType>().put(user, type);
+        //if ()
+
+
     }
     public void removeReaction() {
 
