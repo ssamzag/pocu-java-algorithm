@@ -25,14 +25,14 @@ public class Post {
         this.body = body;
     }
 
-    public void modifyPostTitle(String title, User user) {
+    public void updateTitle(String title, User user) {
         if (this.authorId.equals(user.getUserId())) {
             this.title = title;
             this.modifiedDateTime = OffsetDateTime.now();
         }
     }
 
-    public void modifyPostBody(String body, User user) {
+    public void updateBody(String body, User user) {
         if (this.authorId.equals(user.getUserId())) {
             this.body = body;
             this.modifiedDateTime = OffsetDateTime.now();

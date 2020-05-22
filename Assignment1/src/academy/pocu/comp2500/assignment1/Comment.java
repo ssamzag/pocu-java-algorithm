@@ -24,7 +24,7 @@ public class Comment {
         this.modifiedDateTime = this.createdDateTime;
     }
 
-    public void modifyContent(String content, User user) {
+    public void updateContent(String content, User user) {
         if (this.user.equals(user)) {
             this.content = content;
             this.modifiedDateTime = OffsetDateTime.now();

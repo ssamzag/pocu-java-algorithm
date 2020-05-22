@@ -11,13 +11,13 @@ public class App {
         registry.registerPostOrderSetter("Blog", "setSortOrder");
         registry.registerPostListGetter("Blog", "getPostList");
         registry.registerPostAdder("Blog", "addPost");
-        registry.registerPostTitleUpdater("Post", "modifyPostTitle");
-        registry.registerPostBodyUpdater("Post", "modifyPostBody");
+        registry.registerPostTitleUpdater("Post", "updateTitle");
+        registry.registerPostBodyUpdater("Post", "updateBody");
         registry.registerPostTagAdder("Post", "addTag");
         registry.registerCommentAdder("Post", "addComment");
         registry.registerSubcommentAdder("Comment", "addSubComment");
-        registry.registerCommentUpdater("Comment", "modifyContent");
-        registry.registerSubcommentUpdater("Comment", "modifyContent");
+        registry.registerCommentUpdater("Comment", "updateContent");
+        registry.registerSubcommentUpdater("Comment", "updateContent");
         registry.registerReactionAdder("Post", "addReaction");
         registry.registerReactionRemover("Post", "removeReaction");
         registry.registerCommentUpvoter("Comment", "setUpVote");
