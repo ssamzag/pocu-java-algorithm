@@ -11,8 +11,8 @@ public class Blog {
     private final User user;
     private ArrayList<Post> postList;
     private SortingType sortingType;
-    private HashSet<String> tagFilter;
-    private HashSet<String> authorFilter;
+    private ArrayList<String> tagFilter;
+    private ArrayList<String> authorFilter;
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
@@ -39,7 +39,7 @@ public class Blog {
 
     public void setTagFilter(String... tags) {
         if (this.tagFilter == null) {
-            this.tagFilter = new HashSet<String>();
+            this.tagFilter = new ArrayList<String>();
         }
         for (String tag : tags) {
             if (!tagFilter.remove(tag)) {
@@ -87,7 +87,7 @@ public class Blog {
 
     public void setAuthorFilter(String... author) {
         if (this.authorFilter == null) {
-            this.authorFilter = new HashSet<String>();
+            this.authorFilter = new ArrayList<String>();
         }
         for (String s : author) {
             if (!this.authorFilter.remove(s)) {

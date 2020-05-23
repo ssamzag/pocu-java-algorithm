@@ -31,7 +31,7 @@ public class Post {
         this.modifiedDateTime = OffsetDateTime.now();
     }
 
-    public Post getPostByTagFilterOrNull(HashSet<String> tagFilter) {
+    public Post getPostByTagFilterOrNull(ArrayList<String> tagFilter) {
         if (tagFilter == null || tagFilter.size() == 0) {
             return this;
         }
@@ -46,7 +46,7 @@ public class Post {
         return null;
     }
 
-    public Post getPostByAuthorFilterOrNull(HashSet<String> authors) {
+    public Post getPostByAuthorFilterOrNull(ArrayList<String> authors) {
         if (authors == null || authors.size() == 0 || authors.contains(this.user.getUserId())) {
             return this;
         }
