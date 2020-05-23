@@ -8,20 +8,21 @@ import java.util.stream.Collectors;
 public class Blog {
     private final UUID blogId;
     private final User user;
-    private ArrayList<Post> postList;
     private SortingType sortingType;
+    private ArrayList<Post> postList;
     private ArrayList<String> tagFilter;
     private ArrayList<String> authorFilter;
+
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
         this.user = user;
+        this.postList = new ArrayList<Post>();
+        this.tagFilter = new ArrayList<String>();
+        this.authorFilter = new ArrayList<String>();
     }
 
     public void addPost(Post post) {
-        if (this.postList == null) {
-            this.postList = new ArrayList<Post>();
-        }
         postList.add(post);
     }
 
@@ -36,14 +37,9 @@ public class Blog {
         this.sortingType = type;
     }
 
-    public void setTagFilter(String... tags) {
-        if (this.tagFilter == null) {
-            this.tagFilter = new ArrayList<String>();
-        }
-        for (String tag : tags) {
-            if (!tagFilter.remove(tag)) {
-                this.tagFilter.add(tag);
-            }
+    public void setTagFilter(String tag) {
+        if (!this.tagFilter.remove(tag)) {
+            this.tagFilter.add(tag);
         }
     }
 
@@ -84,14 +80,10 @@ public class Blog {
         }
     }
 
-    public void setAuthorFilter(String... author) {
-        if (this.authorFilter == null) {
-            this.authorFilter = new ArrayList<String>();
-        }
-        for (String s : author) {
-            if (!this.authorFilter.remove(s)) {
-                this.authorFilter.add(s);
-            }
+    public void setAuthorFilter(String author) {
+        if (!this.authorFilter.remove(author)) {
+            this.authorFilter.add(author);
+
         }
     }
 }
