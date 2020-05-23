@@ -52,10 +52,6 @@ public class Post {
         return false;
     }
 
-    public Post getPost() {
-        return this;
-    }
-
     public boolean hasAuthors(ArrayList<String> authors) {
         if (authors == null || authors.size() == 0 || authors.contains(this.user.getUserId())) {
             return true;
