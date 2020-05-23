@@ -90,7 +90,7 @@ public class Post {
 
     public String getPost() {
         return String.format("제목 : " + this.title + "%S" + "내용 : " + this.body, System.lineSeparator());
-        
+
     }
 
     public void addReaction(ReactionType type, User user) {
@@ -133,8 +133,8 @@ public class Post {
         this.commentList.add(comment);
     }
 
-    public void getCommentList() {
-        var a = SortingType.CREATED_DATE_ASC;
+    public ArrayList<Comment> getCommentList() {
+        return commentList;
     }
 
     public void getSubcommentList() {
