@@ -64,8 +64,9 @@ public class Blog {
     }
 
     public ArrayList<Post> getSortedPost(ArrayList<Post> post) {
-        var a = Comparator.comparing(Post::getCreatedDateTime);
-
+        if (this.sortingType == null) {
+            return post;
+        }
         switch (this.sortingType) {
             case CREATED_DATE_ASC:
                 return post.stream().sorted(Comparator.comparing(Post::getCreatedDateTime))
@@ -83,14 +84,13 @@ public class Blog {
                 return post.stream().sorted(Comparator.comparing(Post::getTitle))
                         .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
             default:
-                return new ArrayList<Post>();
+                return post;
         }
     }
 
     public void setAuthorFilter(String author) {
         if (!this.authorFilter.remove(author)) {
             this.authorFilter.add(author);
-
         }
     }
 
@@ -99,7 +99,7 @@ public class Blog {
     }
 
     public ArrayList<String> getTagFilter() {
-        return this.authorFilter;
+        return this.tagFilter;
     }
 
     public SortingType getSortingType() {
