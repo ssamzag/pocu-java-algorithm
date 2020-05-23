@@ -30,6 +30,7 @@ public class Post {
         this.body = body;
         this.tags = new ArrayList<String>();
         this.commentList = new ArrayList<Comment>();
+        this.reactions = new HashSet<HashMap<User, ReactionType>>();
     }
 
     public void updateTitle(String title) {
@@ -91,24 +92,26 @@ public class Post {
         return String.format("제목 : " + this.title + "%S" + "내용 : " + this.body, System.lineSeparator());
     }
 
-    public void addReaction(ReactionType type, User user) {
-        if (this.reactions == null) {
-            this.reactions = new HashSet<HashMap<User, ReactionType>>();
-        }
-
-        var reaction = new HashMap<User, ReactionType>();
-        reaction.put(user, type);
+    public void addReaction(User user, ReactionType type) {
+        var reaction = new HashMap<User, ReactionType>() {
+            {
+                put(user, type);
+            }
+        };
         if (reactions.contains(reaction)) {
-            removeReaction(type, user);
+            removeReaction(user, type);
+            return;
         }
 
         this.reactions.add(reaction);
     }
 
-    public void removeReaction(ReactionType type, User user) {
-        var reaction = new HashMap<User, ReactionType>();
-        reaction.put(user, type);
-        reactions.remove(reaction);
+    public void removeReaction(User user, ReactionType type) {
+        reactions.remove(new HashMap<User, ReactionType>() {
+            {
+                put(user, type);
+            }
+        });
     }
 
     public String getReaction() {
@@ -117,7 +120,7 @@ public class Post {
             sb.append(set
                     .entrySet()
                     .stream()
-                    .map(map -> map.getValue().toString())
+                    .map(map -> map.getKey().getUserId() + ":" + map.getValue().toString() + ",")
                     .collect(Collectors.joining(",")));
         });
 

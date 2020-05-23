@@ -16,10 +16,10 @@ public class Program {
         var subcomment1 = new Comment("대댓글이에용", user3);
         comment1.addSubcomment(subcomment1);
         post1.setTag("태그다 캬캬");
-        post1.addReaction(ReactionType.GREAT, user2);
-        post1.addReaction(ReactionType.FUN, user2);
-        post1.addReaction(ReactionType.GREAT, user2);
-        post1.addReaction(ReactionType.GREAT, user3);
+        post1.addReaction(user2, ReactionType.GREAT);
+        post1.addReaction(user2, ReactionType.FUN);
+        post1.addReaction(user2, ReactionType.GREAT);
+        post1.addReaction(user3, ReactionType.GREAT);
         System.out.println("리액션 : " + post1.getReaction());
         comment1.setUpVote(user2);
         subcomment1.setUpVote(user3);
@@ -27,12 +27,12 @@ public class Program {
         subcomment1.setUpVote(user3);
         subcomment1.setUpVote(user3);
         System.out.println(post1.getPost());
-        System.out.println("좋아요 " + subcomment1.getUpVoteCount());
-        System.out.println("싫어요 " + subcomment1.getDownVoteCount());
+        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
+        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
 
         subcomment1.setDownVote(user3);
-        System.out.println("좋아요 " + subcomment1.getUpVoteCount());
-        System.out.println("싫어요 " + subcomment1.getDownVoteCount());
+        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
+        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
 
         System.out.println("태그 카운트 : " + blog1.getPostList().size());
 
