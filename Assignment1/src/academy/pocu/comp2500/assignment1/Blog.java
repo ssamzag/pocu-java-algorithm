@@ -1,18 +1,14 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static academy.pocu.comp2500.assignment1.SortingType.*;
 
 public class Blog {
     private final UUID blogId;
-    private final String userId;
+    private final User user;
     private ArrayList<Post> postList;
     private SortingType sortingType;
     private HashSet<String> tagFilter;
@@ -20,7 +16,7 @@ public class Blog {
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
-        this.userId = user.getUserId();
+        this.user = user;
     }
 
     public void addPost(Post post) {
@@ -31,23 +27,9 @@ public class Blog {
     }
 
     public ArrayList<Post> getPostList() {
-        // tag Filter
-        ArrayList<Post> filteredPost = postList.stream().filter(post ->
-            post.getPostByTagFilterOrNull(tagFilter) != null
-        ).collect(Collectors.toCollection(()-> new ArrayList<Post>()));
-
-        if (filteredPost == null) {
-            return new ArrayList<Post>();
-        }
-        // authorFilter
-        filteredPost = filteredPost.stream().filter(post ->
-                post.getPostByAuthorFilterOrNull(this.authorFilter) != null
-        ).collect(Collectors.toCollection(()-> new ArrayList<Post>()));
-        // sorting
-        if (filteredPost == null) {
-            return new ArrayList<Post>();
-        }
-
+        ArrayList<Post> filteredPost;
+        filteredPost = getTagFilteredPost(this.postList);
+        filteredPost = getAuthorFilteredPost(filteredPost);
         return getSortedPost(filteredPost);
     }
 
@@ -59,9 +41,23 @@ public class Blog {
         if (this.tagFilter == null) {
             this.tagFilter = new HashSet<String>();
         }
-        for (String s : tags) {
-            this.tagFilter.add(s);
+        for (String tag : tags) {
+            if (!tagFilter.remove(tag)) {
+                this.tagFilter.add(tag);
+            }
         }
+    }
+
+    public ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
+        return postList.stream().filter(p ->
+                p.getPostByTagFilterOrNull(tagFilter) != null
+        ).collect(Collectors.toCollection(() -> new ArrayList<Post>()));
+    }
+
+    public ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
+        return post.stream().filter(p ->
+                p.getPostByAuthorFilterOrNull(this.authorFilter) != null
+        ).collect(Collectors.toCollection(()-> new ArrayList<Post>()));
     }
 
     public ArrayList<Post> getSortedPost(ArrayList<Post> post) {
@@ -81,6 +77,9 @@ public class Blog {
             case MODIFIED_DATE_DESC:
                 return post.stream().sorted(Comparator.comparing(Post::getModifiedDateTime).reversed())
                         .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
+            case TITLE_ASC:
+                return post.stream().sorted(Comparator.comparing(Post::getTitle))
+                        .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
             default:
                 return new ArrayList<Post>();
         }
@@ -91,7 +90,9 @@ public class Blog {
             this.authorFilter = new HashSet<String>();
         }
         for (String s : author) {
-            this.authorFilter.add(s);
+            if (!this.authorFilter.remove(s)) {
+                this.authorFilter.add(s);
+            }
         }
     }
 }

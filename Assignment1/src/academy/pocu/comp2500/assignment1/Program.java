@@ -2,9 +2,6 @@ package academy.pocu.comp2500.assignment1;
 
 import academy.pocu.comp2500.assignment1.registry.Registry;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
 public class Program {
 
     public static void main(String[] args) throws InterruptedException {
@@ -18,7 +15,7 @@ public class Program {
         var user3 = new User("KIM", "대중");
         var subcomment1 = new Comment("대댓글이에용", user3);
         comment1.addSubcomment(subcomment1);
-        post1.addTag("태그다 캬캬");
+        post1.setTag("태그다 캬캬");
         post1.addReaction(ReactionType.GREAT, user2);
         post1.addReaction(ReactionType.FUN, user2);
         post1.addReaction(ReactionType.GREAT, user2);

@@ -1,12 +1,10 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Post {
     private final UUID postId;
@@ -60,11 +58,13 @@ public class Post {
         this.modifiedDateTime = OffsetDateTime.now();
     }
 
-    public void addTag(String tag) {
+    public void setTag(String tag) {
         if (this.tags == null) {
             this.tags = new HashSet<String>();
         }
-        tags.add(tag);
+        if (!tags.remove(tag)) {
+            tags.add(tag);
+        }
     }
 
     public String getTitle() {
@@ -90,7 +90,6 @@ public class Post {
 
     public String getPost() {
         return String.format("제목 : " + this.title + "%S" + "내용 : " + this.body, System.lineSeparator());
-
     }
 
     public void addReaction(ReactionType type, User user) {
@@ -99,10 +98,11 @@ public class Post {
         }
 
         var reaction = new HashMap<User, ReactionType>();
+        reaction.put(user, type);
         if (reactions.contains(reaction)) {
             removeReaction(type, user);
         }
-        reaction.put(user, type);
+
         this.reactions.add(reaction);
     }
 
@@ -110,7 +110,6 @@ public class Post {
         var reaction = new HashMap<User, ReactionType>();
         reaction.put(user, type);
         reactions.remove(reaction);
-
     }
 
     public String getReaction() {
@@ -120,7 +119,7 @@ public class Post {
                     .entrySet()
                     .stream()
                     .map(map -> map.getValue().toString())
-                    .collect(Collectors.joining()));
+                    .collect(Collectors.joining(",")));
         });
 
         return sb.toString();
@@ -134,7 +133,10 @@ public class Post {
     }
 
     public ArrayList<Comment> getCommentList() {
-        return commentList;
+        return this.commentList
+                .stream()
+                .sorted(Comparator.comparing(Comment::getCalculatedVoteCount))
+                .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
     }
 
     public void getSubcommentList() {

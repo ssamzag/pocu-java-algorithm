@@ -13,7 +13,7 @@ public class App {
         registry.registerPostAdder("Blog", "addPost");
         registry.registerPostTitleUpdater("Post", "updateTitle");
         registry.registerPostBodyUpdater("Post", "updateBody");
-        registry.registerPostTagAdder("Post", "addTag");
+        registry.registerPostTagAdder("Post", "setTag");
         registry.registerCommentAdder("Post", "addComment");
         registry.registerSubcommentAdder("Comment", "addSubcomment");
         registry.registerCommentUpdater("Comment", "updateContent");
