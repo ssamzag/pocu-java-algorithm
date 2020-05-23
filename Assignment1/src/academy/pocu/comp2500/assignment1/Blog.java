@@ -64,7 +64,7 @@ public class Blog {
         }
         var filteredPosts = new  ArrayList<Post>();
         for (Post p : post) {
-            if (this.authorFilter.contains(p.getUser().getUserId())) {
+            if (this.authorFilter.contains(p.getAuthorId())) {
                 filteredPosts.add(p);
             }
         }

@@ -2,6 +2,8 @@ package academy.pocu.comp2500.assignment1;
 
 import academy.pocu.comp2500.assignment1.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class Program {
@@ -112,6 +114,12 @@ public class Program {
         subcomment2.setDownVote(user1);
 
         comment2.setUpVote(user1);
+
+
+        ArrayList<Comment> bc = new ArrayList<Comment>()
+                    .stream()
+                    .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
+                    .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
 
         var a = post2_1.getCommentList();
         var b = comment1.getSubcommentList();

@@ -14,6 +14,7 @@ public class Post {
     private final User user;
     private String title;
     private String body;
+    private String authorId;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private final HashSet<HashMap<User, ReactionType>> reactions;
@@ -25,6 +26,7 @@ public class Post {
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
         this.user = user;
+        this.authorId = user.getUserId();
         this.title = title;
         this.body = body;
         this.tags = new ArrayList<String>();
@@ -99,7 +101,7 @@ public class Post {
                     .entrySet()
                     .stream()
                     .map(map -> map.getKey().getUserId() + ":" + map.getValue().toString() + ",")
-                    .collect(Collectors.joining(",")));
+                    .collect(Collectors.joining()));
         });
 
         return sb.toString();
@@ -122,6 +124,10 @@ public class Post {
 
     public UUID getPostId() {
         return postId;
+    }
+
+    public String getAuthorId() {
+        return this.authorId;
     }
 
 }
