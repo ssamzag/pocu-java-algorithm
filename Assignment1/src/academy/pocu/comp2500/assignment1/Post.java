@@ -90,6 +90,7 @@ public class Post {
 
     public String getPost() {
         return String.format("제목 : " + this.title + "%S" + "내용 : " + this.body, System.lineSeparator());
+        
     }
 
     public void addReaction(ReactionType type, User user) {
