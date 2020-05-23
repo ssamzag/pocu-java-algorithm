@@ -38,26 +38,30 @@ public class Post {
         this.modifiedDateTime = OffsetDateTime.now();
     }
 
-    public Post getPostByTagFilterOrNull(ArrayList<String> tagFilter) {
+    public boolean hasTags(ArrayList<String> tagFilter) {
         if (tagFilter == null || tagFilter.size() == 0) {
-            return this;
+            return true;
         }
 
         for (String tag : this.tags) {
             for(String tag2 : tagFilter) {
                 if (tag.equals(tag2)) {
-                    return this;
+                    return true;
                 }
             }
         }
-        return null;
+        return false;
     }
 
-    public Post getPostByAuthorFilterOrNull(ArrayList<String> authors) {
+    public Post getPost() {
+        return this;
+    }
+
+    public boolean hasAuthors(ArrayList<String> authors) {
         if (authors == null || authors.size() == 0 || authors.contains(this.user.getUserId())) {
-            return this;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public void updateBody(String body) {
@@ -66,8 +70,8 @@ public class Post {
     }
 
     public void setTag(String tag) {
-        if (!tags.remove(tag)) {
-            tags.add(tag);
+        if (!this.tags.remove(tag)) {
+            this.tags.add(tag);
         }
     }
 
@@ -79,6 +83,10 @@ public class Post {
         return this.body;
     }
 
+    public ArrayList<String> getTags() {
+        return this.tags;
+    }
+
 
     public OffsetDateTime getCreatedDateTime() {
         return this.createdDateTime;
@@ -88,7 +96,7 @@ public class Post {
         return this.modifiedDateTime;
     }
 
-    public String getPost() {
+    public String getPostString() {
         return String.format("제목 : " + this.title + "%S" + "내용 : " + this.body, System.lineSeparator());
     }
 
@@ -114,6 +122,10 @@ public class Post {
         });
     }
 
+    public HashSet<HashMap<User, ReactionType>> getReactions() {
+        return this.reactions;
+    }
+
     public String getReaction() {
         StringBuilder sb = new StringBuilder();
         reactions.forEach(set -> {
@@ -131,10 +143,19 @@ public class Post {
         this.commentList.add(comment);
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
     public ArrayList<Comment> getCommentList() {
         return this.commentList
                 .stream()
                 .sorted(Comparator.comparing(Comment::getCalculatedVoteCount))
                 .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
     }
+
+    public UUID getPostId() {
+        return postId;
+    }
+
 }

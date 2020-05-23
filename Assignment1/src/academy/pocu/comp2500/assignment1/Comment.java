@@ -72,4 +72,23 @@ public class Comment {
         return this.subcommentList;
     }
 
+    public UUID getCommentId() {
+        return this.commentId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public OffsetDateTime getCreatedDateTime() {
+        return createdDateTime;
+    }
+
+    public OffsetDateTime getModifiedDateTime() {
+        return modifiedDateTime;
+    }
+
+    public HashMap<User, String> getVotes() {
+        return votes;
+    }
 }

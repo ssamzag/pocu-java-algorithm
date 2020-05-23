@@ -9,6 +9,8 @@ public class Program {
         var blog1 = new Blog(user1);
         var post1 = new Post("Hello, World!", "Welcome to my world!", user1);
         blog1.addPost(post1);
+
+        System.out.println(blog1.getPostList().size());
         var user2 = new User("MOON", "moon");
         var comment1 = new Comment("축하합니다!", user2);
         post1.addComment(comment1);
@@ -47,10 +49,14 @@ public class Program {
         blog1.addPost(post3);
         blog1.addPost(post4);
 
+        System.out.println("포스트 글개수 :" + blog1.getPostList().size());
+
         blog1.setOrder(SortingType.CREATED_DATE_ASC);
         var a = blog1.getPostList();
         blog1.setOrder(SortingType.CREATED_DATE_DESC);
         var b = blog1.getPostList();
+
+        System.out.println("포스트 글개수 :" + blog1.getPostList().size());
 
         Registry registry = new Registry();
         App app = new App(registry);

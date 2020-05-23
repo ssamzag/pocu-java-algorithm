@@ -1,5 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.UUID;
@@ -27,9 +28,8 @@ public class Blog {
     }
 
     public ArrayList<Post> getPostList() {
-        ArrayList<Post> filteredPost;
-        filteredPost = getTagFilteredPost(this.postList);
-        filteredPost = getAuthorFilteredPost(filteredPost);
+        ArrayList<Post> filteredPost = getFilteredPost(this.postList, this.tagFilter);
+        filteredPost = getFilteredPost(filteredPost, this.authorFilter);
         return getSortedPost(filteredPost);
     }
 
@@ -44,21 +44,28 @@ public class Blog {
     }
 
     public ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
-        return postList.stream().filter(p ->
-                p.getPostByTagFilterOrNull(tagFilter) != null
-        ).collect(Collectors.toCollection(() -> new ArrayList<Post>()));
+        var filteredPosts = new  ArrayList<Post>();
+        for (Post p : post) {
+            if (p.hasTags(this.tagFilter)) {
+                filteredPosts.add(p);
+            }
+        }
+        return filteredPosts;
     }
 
-    public ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
-        return post.stream().filter(p ->
-                p.getPostByAuthorFilterOrNull(this.authorFilter) != null
-        ).collect(Collectors.toCollection(()-> new ArrayList<Post>()));
+    public ArrayList<Post> getFilteredPost(ArrayList<Post> post, ArrayList<String> filter) {
+        var filteredPosts = new  ArrayList<Post>();
+        for (Post p : post) {
+            if (p.hasTags(filter)) {
+                filteredPosts.add(p);
+            }
+        }
+        return filteredPosts;
     }
 
     public ArrayList<Post> getSortedPost(ArrayList<Post> post) {
-        if (this.sortingType == null) {
-            return post;
-        }
+        var a = Comparator.comparing(Post::getCreatedDateTime);
+
         switch (this.sortingType) {
             case CREATED_DATE_ASC:
                 return post.stream().sorted(Comparator.comparing(Post::getCreatedDateTime))
@@ -86,4 +93,25 @@ public class Blog {
 
         }
     }
+
+    public ArrayList<String> getAuthorFilter() {
+        return this.authorFilter;
+    }
+
+    public ArrayList<String> getTagFilter() {
+        return this.authorFilter;
+    }
+
+    public SortingType getSortingType() {
+        return this.sortingType;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public UUID getBlogId() {
+        return this.blogId;
+    }
+
 }
