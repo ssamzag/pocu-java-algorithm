@@ -123,6 +123,11 @@ public class Program {
 
         var a = post2_1.getCommentList();
         var b = comment1.getSubcommentList();
+
+        post1.addReaction(user1, ReactionType.FUN);
+        post1.addReaction(user1, ReactionType.GREAT);
+        post1.addReaction(user2, ReactionType.FUN);
+
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();

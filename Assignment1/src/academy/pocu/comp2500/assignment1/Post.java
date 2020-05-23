@@ -94,6 +94,10 @@ public class Post {
         return this.reactions;
     }
 
+    public int getReactionCount() {
+        return this.reactions.size();
+    }
+
     public String getReaction() {
         StringBuilder sb = new StringBuilder();
         reactions.forEach(set -> {
