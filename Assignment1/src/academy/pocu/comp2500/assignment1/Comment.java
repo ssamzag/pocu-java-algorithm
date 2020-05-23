@@ -68,6 +68,10 @@ public class Comment {
         return this.votes.entrySet().stream().filter(map -> "D".equals(map.getValue())).count();
     }
 
+    public long getCalculatedVoteCount() {
+        return getUpVoteCount() - getDownVoteCount();
+    }
+
     public void addSubcomment(Comment comment) {
         if (this.subcommentList == null) {
             this.subcommentList = new ArrayList<Comment>();

@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Program {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         var user1 = new User("Mhchoi", "ssamzag");
         var blog1 = new Blog(user1);
         var post1 = new Post("Hello, World!", "Welcome to my world!", user1);
@@ -37,6 +37,23 @@ public class Program {
         System.out.println("좋아요 " + subcomment1.getUpVoteCount());
         System.out.println("싫어요 " + subcomment1.getDownVoteCount());
 
+        System.out.println("태그 카운트 : " + blog1.getPostList().size());
+
+        var post2 = new Post("hihi", "fuck", user2);
+        Thread.sleep(100);
+        var post3 = new Post("hihi444", "fuck", user2);
+        Thread.sleep(100);
+        var post4 = new Post("hihi555", "fuck", user2);
+        Thread.sleep(100);
+
+        blog1.addPost(post2);
+        blog1.addPost(post3);
+        blog1.addPost(post4);
+
+        blog1.setOrder(SortingType.CREATED_DATE_ASC);
+        var a = blog1.getPostList();
+        blog1.setOrder(SortingType.CREATED_DATE_DESC);
+        var b = blog1.getPostList();
 
         Registry registry = new Registry();
         App app = new App(registry);

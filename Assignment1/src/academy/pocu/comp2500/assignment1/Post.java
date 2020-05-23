@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class Post {
     private final UUID postId;
-    private final String authorId;
+    private final User user;
     private String title;
     private String body;
     private final OffsetDateTime createdDateTime;
@@ -22,7 +23,7 @@ public class Post {
         this.postId = UUID.randomUUID();
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
-        this.authorId = user.getUserId();
+        this.user = user;
         this.title = title;
         this.body = body;
     }
@@ -30,7 +31,28 @@ public class Post {
     public void updateTitle(String title) {
         this.title = title;
         this.modifiedDateTime = OffsetDateTime.now();
+    }
 
+    public Post getPostByTagFilterOrNull(HashSet<String> tagFilter) {
+        if (tagFilter == null || tagFilter.size() == 0) {
+            return this;
+        }
+
+        for (String tag : this.tags) {
+            for(String tag2 : tagFilter) {
+                if (tag.equals(tag2)) {
+                    return this;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Post getPostByAuthorFilterOrNull(HashSet<String> authors) {
+        if (authors == null || authors.size() == 0 || authors.contains(this.user.getUserId())) {
+            return this;
+        }
+        return null;
     }
 
     public void updateBody(String body) {
@@ -52,6 +74,7 @@ public class Post {
     public String getBody() {
         return this.body;
     }
+
 
     public OffsetDateTime getCreatedDateTime() {
         return this.createdDateTime;
@@ -114,6 +137,7 @@ public class Post {
     }
 
     public void getSubcommentList() {
+
     }
 
 
