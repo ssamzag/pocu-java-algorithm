@@ -32,33 +32,6 @@ public class Post {
         this.reactions = new HashSet<HashMap<User, ReactionType>>();
     }
 
-    public void updateTitle(String title) {
-        this.title = title;
-        this.modifiedDateTime = OffsetDateTime.now();
-    }
-
-    public boolean hasTags(ArrayList<String> tagFilter) {
-        if (tagFilter == null || tagFilter.size() == 0) {
-            return true;
-        }
-
-        for (String tag : this.tags) {
-            for(String tag2 : tagFilter) {
-                if (tag.equals(tag2)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean hasAuthors(ArrayList<String> authors) {
-        if (authors == null || authors.size() == 0 || authors.contains(this.user.getUserId())) {
-            return true;
-        }
-        return false;
-    }
-
     public void updateBody(String body) {
         this.body = body;
         this.modifiedDateTime = OffsetDateTime.now();
@@ -69,6 +42,14 @@ public class Post {
             this.tags.add(tag);
         }
     }
+    public ArrayList<String> getTags() {
+        return this.tags;
+    }
+
+    public void updateTitle(String title) {
+        this.title = title;
+        this.modifiedDateTime = OffsetDateTime.now();
+    }
 
     public String getTitle() {
         return this.title;
@@ -77,11 +58,6 @@ public class Post {
     public String getBody() {
         return this.body;
     }
-
-    public ArrayList<String> getTags() {
-        return this.tags;
-    }
-
 
     public OffsetDateTime getCreatedDateTime() {
         return this.createdDateTime;
@@ -92,7 +68,7 @@ public class Post {
     }
 
     public String getPostString() {
-        return String.format("제목 : " + this.title + "%S" + "내용 : " + this.body, System.lineSeparator());
+        return String.format("제목 : " + this.title + ", " + "내용 : " + this.body + "%s", System.lineSeparator());
     }
 
     public void addReaction(User user, ReactionType type) {
@@ -140,7 +116,7 @@ public class Post {
     public ArrayList<Comment> getCommentList() {
         return this.commentList
                 .stream()
-                .sorted(Comparator.comparing(Comment::getCalculatedVoteCount))
+                .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
                 .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
     }
 

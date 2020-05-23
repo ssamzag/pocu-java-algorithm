@@ -2,72 +2,91 @@ package academy.pocu.comp2500.assignment1;
 
 import academy.pocu.comp2500.assignment1.registry.Registry;
 
+import java.util.stream.Collectors;
+
 public class Program {
 
     public static void main(String[] args) throws InterruptedException {
-        var user1 = new User("Mhchoi");
+        var user1 = new User("a1");
+        var user2 = new User("a2");
+
         var blog1 = new Blog(user1);
-        var post1 = new Post("Hello, World!", "Welcome to my world!", user1);
+        var post1 = new Post("p1", "body", user1);
+        var post2 = new Post("p2", "body", user1);
+        var post3 = new Post("p3", "body", user2);
         blog1.addPost(post1);
-
-        System.out.println(blog1.getPostList().size());
-        var user2 = new User("MOON");
-        var comment1 = new Comment("축하합니다!", user2);
-        post1.addComment(comment1);
-        var user3 = new User("KIM");
-        var subcomment1 = new Comment("대댓글이에용", user3);
-        comment1.addSubcomment(subcomment1);
-        post1.setTag("태그다 캬캬");
-        post1.addReaction(user2, ReactionType.GREAT);
-        post1.addReaction(user2, ReactionType.FUN);
-        post1.addReaction(user2, ReactionType.GREAT);
-        post1.addReaction(user3, ReactionType.GREAT);
-        System.out.println("리액션 : " + post1.getReaction());
-        comment1.setUpVote(user2);
-        subcomment1.setUpVote(user3);
-        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
-        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
-        System.out.println("--------------------------------------------------");
-        subcomment1.setUpVote(user2);
-        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
-        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
-        System.out.println("--------------------------------------------------");
-        subcomment1.setUpVote(user3);
-        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
-        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
-        System.out.println("--------------------------------------------------");
-        subcomment1.setUpVote(user3);
-        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
-        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
-        System.out.println("--------------------------------------------------");
-        System.out.println(post1.getPostString());
-        System.out.println("좋아요 " + subcomment1.getVoteCount("U"));
-        System.out.println("싫어요 " + subcomment1.getVoteCount("D"));
-        System.out.println("--------------------------------------------------");
-        subcomment1.setDownVote(user3);
-
-        System.out.println("태그 카운트 : " + blog1.getPostList().size());
-
-        var post2 = new Post("hihi", "fuck", user2);
-        Thread.sleep(100);
-        var post3 = new Post("hihi444", "fuck", user2);
-        Thread.sleep(100);
-        var post4 = new Post("hihi555", "fuck", user2);
-        Thread.sleep(100);
-
         blog1.addPost(post2);
         blog1.addPost(post3);
-        blog1.addPost(post4);
 
-        System.out.println("포스트 글개수 :" + blog1.getPostList().size());
+        post1.setTag("t1");
+        post2.setTag("t2");
+        post3.setTag("t1");
+        post3.setTag("t2");
 
-        blog1.setOrder(SortingType.CREATED_DATE_ASC);
-        var a = blog1.getPostList();
-        blog1.setOrder(SortingType.CREATED_DATE_DESC);
-        var b = blog1.getPostList();
+        blog1.setTagFilter("t1");
 
-        System.out.println("포스트 글개수 :" + blog1.getPostList().size());
+        System.out.println();
+        System.out.println("t1 태그 추가 : \r\n" +
+                blog1.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
+        blog1.clearTagFilter();
+        System.out.println("--tag 초기화--");
+        blog1.setTagFilter("t2");
+        System.out.println("t2 태그 추가 : \r\n" +
+                blog1.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+
+        blog1.clearTagFilter();
+        System.out.println("--tag 초기화--");
+
+        blog1.setTagFilter("t1");
+        blog1.setTagFilter("t2");
+
+        System.out.println("t1 t2 태그 추가 : \r\n" +
+                blog1.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+
+        blog1.clearTagFilter();
+        System.out.println("--tag 초기화--");
+        System.out.println("--test case 2 시작---------");
+
+        var blog2 = new Blog(user1);
+        var post2_1 = new Post("p1", "body", user1);
+        var post2_2 = new Post("p2", "body", user1);
+        var post2_3 = new Post("p3", "body", user2);
+        var post2_4 = new Post("p4", "body", user2);
+        blog2.addPost(post2_1);
+        blog2.addPost(post2_2);
+        blog2.addPost(post2_3);
+        blog2.addPost(post2_4);
+
+        post2_1.setTag("t1");
+        post2_2.setTag("t2");
+        post2_3.setTag("t1");
+        post2_4.setTag("t2");
+
+        blog2.setTagFilter("t1");
+
+        System.out.println("t1 태그 추가 : \r\n" +
+                blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+
+        System.out.println("Start Test 2");
+        blog2.clearTagFilter();
+        blog2.setAuthorFilter("a1");
+        System.out.println("test2 : \r\n" +
+                blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+
+        System.out.println("Start Test 3");
+        blog2.clearAuthorFilter();
+        blog2.setTagFilter("t1");
+        blog2.setAuthorFilter("a2");
+        System.out.println("test 3 : \r\n" +
+                blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+        blog2.clearAuthorFilter();
+        blog2.clearTagFilter();
+        System.out.println("Start Test4");
+        blog2.setTagFilter("t2");
+        blog2.setAuthorFilter("a1");
+        System.out.println("test 4 : \r\n" +
+                blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();

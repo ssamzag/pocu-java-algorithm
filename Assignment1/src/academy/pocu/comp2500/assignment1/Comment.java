@@ -43,15 +43,15 @@ public class Comment {
 
     private void vote(User user, String voteType) {
         String userVote = votes.get(user);
-        if (userVote == null) {
-            votes.put(user, voteType);
-            return;
-        }
-        votes.remove(user);
+        this.votes.remove(user);
         if (userVote.equals(voteType)) {
             return;
         }
-        votes.put(user, voteType);
+        this.votes.put(user, voteType);
+    }
+
+    public void removeVote(User user) {
+        this.votes.remove(user);
     }
 
     public long getVoteCount(String voteType) {

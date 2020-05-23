@@ -27,8 +27,8 @@ public class Blog {
     }
 
     public ArrayList<Post> getPostList() {
-        ArrayList<Post> filteredPost = getFilteredPost(this.postList, this.tagFilter);
-        filteredPost = getFilteredPost(filteredPost, this.authorFilter);
+        ArrayList<Post> filteredPost = getTagFilteredPost(this.postList);
+        filteredPost = getAuthorFilteredPost(filteredPost);
         return getSortedPost(filteredPost);
     }
 
@@ -42,24 +42,42 @@ public class Blog {
         }
     }
 
-    public ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
+    private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
+        if (this.tagFilter.size() == 0) {
+            return post;
+        }
         var filteredPosts = new  ArrayList<Post>();
         for (Post p : post) {
-            if (p.hasTags(this.tagFilter)) {
+            for (var filter : this.tagFilter) {
+                if (p.getTags().contains(filter)) {
+                    filteredPosts.add(p);
+                    break;
+                }
+            }
+
+        }
+        return filteredPosts;
+    }
+
+    private ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
+        if (this.authorFilter.size() == 0) {
+            return post;
+        }
+        var filteredPosts = new  ArrayList<Post>();
+        for (Post p : post) {
+            if (this.authorFilter.contains(p.getUser().getUserId())) {
                 filteredPosts.add(p);
             }
         }
         return filteredPosts;
     }
 
-    public ArrayList<Post> getFilteredPost(ArrayList<Post> post, ArrayList<String> filter) {
-        var filteredPosts = new  ArrayList<Post>();
-        for (Post p : post) {
-            if (p.hasTags(filter)) {
-                filteredPosts.add(p);
-            }
-        }
-        return filteredPosts;
+    public void clearTagFilter() {
+        this.tagFilter.clear();
+    }
+
+    public void clearAuthorFilter() {
+        this.authorFilter.clear();
     }
 
     public ArrayList<Post> getSortedPost(ArrayList<Post> post) {
@@ -103,14 +121,6 @@ public class Blog {
 
     public SortingType getSortingType() {
         return this.sortingType;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public UUID getBlogId() {
-        return this.blogId;
     }
 
 }
