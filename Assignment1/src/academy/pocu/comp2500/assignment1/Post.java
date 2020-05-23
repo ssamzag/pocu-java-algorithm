@@ -15,10 +15,10 @@ public class Post {
     private final User user;
     private String title;
     private String body;
-    private final OffsetDateTime createdDateTime;
+    private OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashSet<HashMap<User, ReactionType>> reactions;
-    private HashSet<String> tags;
+    private ArrayList<String> tags;
     private ArrayList<Comment> commentList;
 
     public Post(String title, String body, User user) {
@@ -64,7 +64,7 @@ public class Post {
 
     public void setTag(String tag) {
         if (this.tags == null) {
-            this.tags = new HashSet<String>();
+            this.tags = new ArrayList<String>();
         }
         if (!tags.remove(tag)) {
             tags.add(tag);
