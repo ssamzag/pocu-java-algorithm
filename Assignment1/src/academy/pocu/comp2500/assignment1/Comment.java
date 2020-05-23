@@ -56,16 +56,12 @@ public class Comment {
         votes.put(user, voteType);
     }
 
-    public long getUpVoteCount() {
-        return this.votes.entrySet().stream().filter(map -> "U".equals(map.getValue())).count();
-    }
-
-    public long getDownVoteCount() {
-        return this.votes.entrySet().stream().filter(map -> "D".equals(map.getValue())).count();
+    public long getVoteCount(String voteType) {
+        return this.votes.entrySet().stream().filter(map -> voteType.equals(map.getValue())).count();
     }
 
     public long getCalculatedVoteCount() {
-        return getUpVoteCount() - getDownVoteCount();
+        return getVoteCount("U") - getVoteCount("D");
     }
 
     public void addSubcomment(Comment comment) {
