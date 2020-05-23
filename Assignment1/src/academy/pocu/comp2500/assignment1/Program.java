@@ -87,6 +87,34 @@ public class Program {
         blog2.setAuthorFilter("a1");
         System.out.println("test 4 : \r\n" +
                 blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+
+        var comment1 = new Comment("c1", user1);
+        var comment2 = new Comment("c2", user1);
+        var comment3 = new Comment("c3", user2);
+        var comment4 = new Comment("c4", user2);
+        var subcomment1 = new Comment("s1", user2);
+        var subcomment2 = new Comment("s2", user2);
+        var subcomment3 = new Comment("s3", user2);
+        var subcomment4 = new Comment("s4", user2);
+
+        comment1.addSubcomment(subcomment1);
+        comment1.addSubcomment(subcomment2);
+        comment1.addSubcomment(subcomment3);
+        subcomment3.addSubcomment(subcomment4);
+
+        post2_1.addComment(comment1);
+        post2_1.addComment(comment2);
+        post2_1.addComment(comment3);
+        post2_1.addComment(comment4);
+
+        subcomment1.setUpVote(user1);
+        subcomment1.setUpVote(user2);
+        subcomment2.setDownVote(user1);
+
+        comment2.setUpVote(user1);
+
+        var a = post2_1.getCommentList();
+        var b = comment1.getSubcommentList();
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();

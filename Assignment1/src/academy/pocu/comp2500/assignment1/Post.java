@@ -14,11 +14,11 @@ public class Post {
     private final User user;
     private String title;
     private String body;
-    private OffsetDateTime createdDateTime;
+    private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-    private HashSet<HashMap<User, ReactionType>> reactions;
-    private ArrayList<String> tags;
-    private ArrayList<Comment> commentList;
+    private final HashSet<HashMap<User, ReactionType>> reactions;
+    private final ArrayList<String> tags;
+    private final ArrayList<Comment> commentList;
 
     public Post(String title, String body, User user) {
         this.postId = UUID.randomUUID();

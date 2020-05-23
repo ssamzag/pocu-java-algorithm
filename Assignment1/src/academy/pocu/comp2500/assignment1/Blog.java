@@ -10,9 +10,9 @@ public class Blog {
     private final UUID blogId;
     private final User user;
     private SortingType sortingType;
-    private ArrayList<Post> postList;
-    private ArrayList<String> tagFilter;
-    private ArrayList<String> authorFilter;
+    private final ArrayList<Post> postList;
+    private final ArrayList<String> tagFilter;
+    private final ArrayList<String> authorFilter;
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
@@ -118,9 +118,4 @@ public class Blog {
     public ArrayList<String> getTagFilter() {
         return this.tagFilter;
     }
-
-    public SortingType getSortingType() {
-        return this.sortingType;
-    }
-
 }

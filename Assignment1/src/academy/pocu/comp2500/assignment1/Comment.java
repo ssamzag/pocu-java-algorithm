@@ -2,17 +2,19 @@ package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Comment {
-    private UUID commentId;
-    private User user;
+    private final UUID commentId;
+    private final User user;
     private String content;
-    private ArrayList<Comment> subcommentList;
-    private OffsetDateTime createdDateTime;
+    private final ArrayList<Comment> subcommentList;
+    private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-    private HashMap<User, String> votes;
+    private final HashMap<User, String> votes;
 
     public Comment(String content, User user) {
         this.commentId = UUID.randomUUID();
@@ -43,6 +45,10 @@ public class Comment {
 
     private void vote(User user, String voteType) {
         String userVote = votes.get(user);
+        if (userVote == null) {
+            this.votes.put(user, voteType);
+            return;
+        }
         this.votes.remove(user);
         if (userVote.equals(voteType)) {
             return;
@@ -67,7 +73,9 @@ public class Comment {
     }
 
     public ArrayList<Comment> getSubcommentList() {
-        return this.subcommentList;
+        return this.subcommentList.stream()
+                .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
+                .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
     }
 
     public UUID getCommentId() {
