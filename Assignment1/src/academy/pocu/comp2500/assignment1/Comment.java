@@ -25,10 +25,8 @@ public class Comment {
     }
 
     public void updateContent(String content, User user) {
-        if (this.user.equals(user)) {
-            this.content = content;
-            this.modifiedDateTime = OffsetDateTime.now();
-        }
+        this.content = content;
+        this.modifiedDateTime = OffsetDateTime.now();
     }
 
     public String getContent() {

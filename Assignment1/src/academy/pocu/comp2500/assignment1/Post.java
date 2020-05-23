@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-
 public class Post {
     private final UUID postId;
     private final User user;
@@ -101,11 +100,8 @@ public class Post {
     }
 
     public void addReaction(User user, ReactionType type) {
-        var reaction = new HashMap<User, ReactionType>() {
-            {
-                put(user, type);
-            }
-        };
+        var reaction = new HashMap<User, ReactionType>();
+        reaction.put(user, type);
         if (reactions.contains(reaction)) {
             removeReaction(user, type);
             return;
@@ -115,11 +111,9 @@ public class Post {
     }
 
     public void removeReaction(User user, ReactionType type) {
-        reactions.remove(new HashMap<User, ReactionType>() {
-            {
-                put(user, type);
-            }
-        });
+        var reaction = new HashMap<User, ReactionType>();
+        reaction.put(user, type);
+        reactions.remove(reaction);
     }
 
     public HashSet<HashMap<User, ReactionType>> getReactions() {

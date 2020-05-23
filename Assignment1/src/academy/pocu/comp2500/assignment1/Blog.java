@@ -14,7 +14,6 @@ public class Blog {
     private ArrayList<String> tagFilter;
     private ArrayList<String> authorFilter;
 
-
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
         this.user = user;
