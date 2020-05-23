@@ -28,6 +28,8 @@ public class Post {
         this.user = user;
         this.title = title;
         this.body = body;
+        this.tags = new ArrayList<String>();
+        this.commentList = new ArrayList<Comment>();
     }
 
     public void updateTitle(String title) {
@@ -63,9 +65,6 @@ public class Post {
     }
 
     public void setTag(String tag) {
-        if (this.tags == null) {
-            this.tags = new ArrayList<String>();
-        }
         if (!tags.remove(tag)) {
             tags.add(tag);
         }
@@ -86,10 +85,6 @@ public class Post {
 
     public OffsetDateTime getModifiedDateTime() {
         return this.modifiedDateTime;
-    }
-
-    public String getPostList() {
-        return "";
     }
 
     public String getPost() {
@@ -130,9 +125,6 @@ public class Post {
     }
 
     public void addComment(Comment comment) {
-        if (this.commentList == null) {
-            this.commentList = new ArrayList<Comment>();
-        }
         this.commentList.add(comment);
     }
 
@@ -142,10 +134,4 @@ public class Post {
                 .sorted(Comparator.comparing(Comment::getCalculatedVoteCount))
                 .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
     }
-
-    public void getSubcommentList() {
-
-    }
-
-
 }

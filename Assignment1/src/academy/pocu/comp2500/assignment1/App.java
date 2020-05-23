@@ -23,7 +23,7 @@ public class App {
         registry.registerCommentUpvoter("Comment", "setUpVote");
         registry.registerCommentDownvoter("Comment", "setDownVote");
         registry.registerCommentListGetter("Post", "getCommentList");
-        registry.registerSubCommentListGetter("Post", "getSubcommentList");
+        registry.registerSubCommentListGetter("Comment", "getSubcommentList");
         registry.registerSubcommentUpvoter("Comment", "setUpVote");
         registry.registerSubcommentDownvoter("Comment", "setDownVote");
     }

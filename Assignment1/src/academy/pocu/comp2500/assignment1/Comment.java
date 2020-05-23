@@ -15,14 +15,13 @@ public class Comment {
     private HashMap<User, String> votes;
 
     public Comment(String content, User user) {
-        if (user == null) {
-            return;
-        }
         this.commentId = UUID.randomUUID();
         this.content = content;
         this.user = user;
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
+        this.subcommentList = new ArrayList<Comment>();
+        this.votes = new HashMap<User, String>();
     }
 
     public void updateContent(String content, User user) {
@@ -45,9 +44,6 @@ public class Comment {
     }
 
     private void vote(User user, String voteType) {
-        if (votes == null) {
-            votes = new HashMap<User, String>();
-        }
         String userVote = votes.get(user);
         if (userVote == null) {
             votes.put(user, voteType);
@@ -73,10 +69,11 @@ public class Comment {
     }
 
     public void addSubcomment(Comment comment) {
-        if (this.subcommentList == null) {
-            this.subcommentList = new ArrayList<Comment>();
-        }
         this.subcommentList.add(comment);
+    }
+
+    public ArrayList<Comment> getSubcommentList() {
+        return this.subcommentList;
     }
 
 }
