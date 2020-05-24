@@ -121,6 +121,7 @@ public class Program {
                     .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
                     .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
 
+        comment1.updateContent("뭐임마 잘 바뀌냐?");
         var a = post2_1.getCommentList();
         var b = comment1.getSubcommentList();
 

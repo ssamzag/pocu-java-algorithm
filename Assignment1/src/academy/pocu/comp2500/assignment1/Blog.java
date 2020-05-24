@@ -22,7 +22,7 @@ public class Blog {
     }
 
     public void addPost(Post post) {
-        postList.add(post);
+        this.postList.add(post);
     }
 
     public ArrayList<Post> getPostList() {
@@ -36,7 +36,12 @@ public class Blog {
     }
 
     public void setTagFilter(String tag) {
-        this.tagFilter.add(tag);
+        if (tag.equals("") || tag == null){
+            return;
+        }
+        if (!this.tagFilter.remove(tag)) {
+            this.tagFilter.add(tag);
+        }
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
@@ -103,7 +108,12 @@ public class Blog {
     }
 
     public void setAuthorFilter(String author) {
-        this.authorFilter.add(author);
+        if (author.equals("") || author == null) {
+            return;
+        }
+        if (!this.authorFilter.remove(author)) {
+            this.authorFilter.add(author);
+        }
     }
 
     public ArrayList<String> getAuthorFilter() {
