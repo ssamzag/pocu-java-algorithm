@@ -43,29 +43,29 @@ public class Comment {
         vote(user, VoteType.DOWN);
     }
 
-    private void vote(User user, VoteType voteType) {
+    private void vote(User user, VoteType type) {
         VoteType userVote = votes.get(user);
         if (userVote == null) {
-            this.votes.put(user, voteType);
+            this.votes.put(user, type);
             return;
         }
         this.votes.remove(user);
-        if (userVote.equals(voteType)) {
+        if (userVote.equals(type)) {
             return;
         }
-        this.votes.put(user, voteType);
+        this.votes.put(user, type);
     }
 
     public void removeVote(User user) {
         this.votes.remove(user);
     }
 
-    public long getVoteCount(String voteType) {
+    public long getVoteCount(VoteType voteType) {
         return this.votes.entrySet().stream().filter(map -> voteType.equals(map.getValue())).count();
     }
 
     public long getCalculatedVoteCount() {
-        return getVoteCount("U") - getVoteCount("D");
+        return getVoteCount(VoteType.UP) - getVoteCount(VoteType.DOWN);
     }
 
     public void addSubcomment(Comment comment) {
