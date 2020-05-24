@@ -26,14 +26,10 @@ public class Comment {
         this.votes = new HashMap<String, VoteType>();
     }
 
-    private void updateContent(String content) {
-        this.content = content;
-        this.modifiedDateTime = OffsetDateTime.now();
-    }
-
     public void updateContent(String content, User user) {
         if (this.user.getUserId() == user.getUserId()) {
-            updateContent(content);
+            this.content = content;
+            this.modifiedDateTime = OffsetDateTime.now();
         }
     }
 

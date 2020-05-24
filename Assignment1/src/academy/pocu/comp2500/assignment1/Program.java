@@ -41,13 +41,13 @@ public class Program {
         System.out.println("t1 태그 추가 : \r\n" +
                 blog1.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
-        blog1.clearTagFilter();
+        blog1.setTagFilter(null);
         System.out.println("--tag 초기화--");
         blog1.setTagFilter("t2");
         System.out.println("t2 태그 추가 : \r\n" +
                 blog1.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
-        blog1.clearTagFilter();
+        blog1.setTagFilter(null);
         System.out.println("--tag 초기화--");
 
         blog1.setTagFilter("t1");
@@ -56,7 +56,7 @@ public class Program {
         System.out.println("t1 t2 태그 추가 : \r\n" +
                 blog1.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
-        blog1.clearTagFilter();
+        blog1.setTagFilter(null);
         System.out.println("--tag 초기화--");
         System.out.println("--test case 2 시작---------");
 
@@ -81,17 +81,17 @@ public class Program {
                 blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
         System.out.println("Start Test 2");
-        blog2.clearTagFilter();
+        blog2.setTagFilter(null);
         blog2.setAuthorFilter("a1");
         System.out.println(blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
         System.out.println("Start Test 3");
-        blog2.clearAuthorFilter();
+        blog2.setAuthorFilter(null);
         blog2.setTagFilter("t1");
         blog2.setAuthorFilter("a2");
         System.out.println(blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
-        blog2.clearAuthorFilter();
-        blog2.clearTagFilter();
+        blog2.setAuthorFilter(null);
+        blog2.setTagFilter(null);
         System.out.println("Start Test4");
         blog2.setTagFilter("t2");
         blog2.setAuthorFilter("a1");
@@ -144,7 +144,7 @@ public class Program {
                     .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
                     .collect(Collectors.toCollection(() -> new ArrayList<Comment>()));
 
-        comment1.updateContent("뭐임마 잘 바뀌냐?");
+        comment1.updateContent("뭐임마 잘 바뀌냐?", user1);
         var a = post2_1.getCommentList();
         var b = comment1.getSubcommentList();
 
