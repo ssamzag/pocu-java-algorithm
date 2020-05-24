@@ -40,9 +40,9 @@ public class Post {
     }
 
     public void setTag(String tag) {
-        if (!this.tags.remove(tag)) {
+        //if (!this.tags.remove(tag)) {
             this.tags.add(tag);
-        }
+        //}
     }
     public ArrayList<String> getTags() {
         return this.tags;
@@ -76,10 +76,10 @@ public class Post {
     public void addReaction(User user, ReactionType type) {
         var reaction = new HashMap<User, ReactionType>();
         reaction.put(user, type);
-        if (reactions.contains(reaction)) {
-            removeReaction(user, type);
-            return;
-        }
+        //if (reactions.contains(reaction)) {
+          //  removeReaction(user, type);
+            //return;
+        //}
 
         this.reactions.add(reaction);
     }
