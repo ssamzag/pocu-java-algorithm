@@ -40,7 +40,7 @@ public class Blog {
             return;
         }
         if (tag == null){
-            this.tagFilter = null;
+            this.tagFilter.clear();
         }
         if (this.tagFilter.contains(tag)) {
             return;
@@ -120,7 +120,7 @@ public class Blog {
             return;
         }
         if (author == null) {
-            this.authorFilter = null;
+            this.authorFilter.clear();
         }
         if (this.authorFilter.contains(author)) {
             return;
