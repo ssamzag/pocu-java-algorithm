@@ -77,7 +77,6 @@ public class Post {
         var reaction = new HashMap<User, ReactionType>();
         reaction.put(user, type);
         if (reactions.contains(reaction)) {
-            removeReaction(user, type);
             return;
         }
 
