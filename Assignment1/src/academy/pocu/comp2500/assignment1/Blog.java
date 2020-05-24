@@ -40,6 +40,7 @@ public class Blog {
             this.tagFilter.clear();
             return;
         }
+        
         this.tagFilter.add(tag);
     }
 
@@ -56,14 +57,14 @@ public class Blog {
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
-        if (this.tagFilter.size() == 0) {
+        if (this.tagFilter.size() == 0 || this.tagFilter == null) {
             return post;
         }
 
         var filteredPosts = new ArrayList<Post>();
         for (Post p : post) {
-            for (String tag : this.tagFilter) {
-                if (p.getTags().contains(tag)) {
+            for (var filter : this.tagFilter) {
+                if (p.getTags().contains(filter)) {
                     filteredPosts.add(p);
                     break;
                 }
@@ -73,13 +74,21 @@ public class Blog {
     }
 
     private ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
-        if (this.authorFilter.equals("")) {
+        if (this.authorFilter == null || this.authorFilter.equals("")) {
             return post;
         }
         return post
                 .stream()
                 .filter(p -> this.authorFilter.equals(p.getAuthorId()))
                 .collect(Collectors.toCollection(() -> new ArrayList<Post>()));
+    }
+
+    public void clearTagFilter() {
+        this.tagFilter.clear();
+    }
+
+    public void clearAuthorFilter() {
+        this.authorFilter = "";
     }
 
     public ArrayList<Post> getSortedPost(ArrayList<Post> post) {
