@@ -40,7 +40,7 @@ public class Blog {
             this.tagFilter.clear();
             return;
         }
-        
+
         this.tagFilter.add(tag);
     }
 
@@ -57,7 +57,7 @@ public class Blog {
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
-        if (this.tagFilter.size() == 0 || this.tagFilter == null) {
+        if (this.tagFilter == null || this.tagFilter.size() == 0) {
             return post;
         }
 
