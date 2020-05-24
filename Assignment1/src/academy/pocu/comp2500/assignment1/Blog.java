@@ -36,9 +36,7 @@ public class Blog {
     }
 
     public void setTagFilter(String tag) {
-        if (!this.tagFilter.remove(tag)) {
-            this.tagFilter.add(tag);
-        }
+        this.tagFilter.add(tag);
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
@@ -105,9 +103,7 @@ public class Blog {
     }
 
     public void setAuthorFilter(String author) {
-        if (!this.authorFilter.remove(author)) {
-            this.authorFilter.add(author);
-        }
+        this.authorFilter.add(author);
     }
 
     public ArrayList<String> getAuthorFilter() {
