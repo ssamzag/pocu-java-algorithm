@@ -1,6 +1,5 @@
 package academy.pocu.comp2500.assignment1;
 
-
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class Post {
     private final User user;
     private String title;
     private String body;
-    private String authorId;
+
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private final HashSet<HashMap<String, ReactionType>> reactions;
@@ -26,7 +25,6 @@ public class Post {
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
         this.user = user;
-        this.authorId = user.getUserId();
         this.title = title;
         this.body = body;
         this.tags = new ArrayList<String>();
@@ -127,7 +125,7 @@ public class Post {
     }
 
     public String getAuthorId() {
-        return this.authorId;
+        return this.user.getUserId();
     }
 
 }

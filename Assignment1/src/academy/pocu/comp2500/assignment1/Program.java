@@ -83,15 +83,13 @@ public class Program {
         System.out.println("Start Test 2");
         blog2.clearTagFilter();
         blog2.setAuthorFilter("a1");
-        System.out.println("test2 : \r\n" +
-                blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+        System.out.println(blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
 
         System.out.println("Start Test 3");
         blog2.clearAuthorFilter();
         blog2.setTagFilter("t1");
         blog2.setAuthorFilter("a2");
-        System.out.println("test 3 : \r\n" +
-                blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
+        System.out.println(blog2.getPostList().stream().map(m -> m.getPostString()).collect(Collectors.joining()));
         blog2.clearAuthorFilter();
         blog2.clearTagFilter();
         System.out.println("Start Test4");

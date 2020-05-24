@@ -12,14 +12,13 @@ public class Blog {
     private SortingType sortingType;
     private ArrayList<Post> postList;
     private HashSet<String> tagFilter;
-    private HashSet<String> authorFilter;
+    private String authorFilter;
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
         this.user = user;
         this.postList = new ArrayList<Post>();
         this.tagFilter = new HashSet<String>();
-        this.authorFilter = new HashSet<String>();
     }
 
     public void addPost(Post post) {
@@ -51,6 +50,14 @@ public class Blog {
         this.tagFilter.remove(tag);
     }
 
+    public void setAuthorFilter(String author) {
+        if (author == null || author.equals("")) {
+            this.authorFilter = "";
+            return;
+        }
+        this.authorFilter = author;
+    }
+
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
         if (this.tagFilter.size() == 0 || this.tagFilter == null) {
             return post;
@@ -69,7 +76,7 @@ public class Blog {
     }
 
     private ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
-        if (this.authorFilter.size() == 0 || this.authorFilter == null) {
+        if (this.authorFilter == null || this.authorFilter.equals("")) {
             return post;
         }
         return post
@@ -83,7 +90,7 @@ public class Blog {
     }
 
     public void clearAuthorFilter() {
-        this.authorFilter.clear();
+        this.authorFilter = "";
     }
 
     public ArrayList<Post> getSortedPost(ArrayList<Post> post) {
@@ -111,18 +118,8 @@ public class Blog {
         }
     }
 
-    public void setAuthorFilter(String author) {
-        if (author == null || author.equals("")) {
-            this.authorFilter.clear();
-            return;
-        }
-        if (this.authorFilter.contains(author)) {
-            return;
-        }
-        this.authorFilter.add(author);
-    }
 
-    public HashSet<String> getAuthorFilter() {
+    public String getAuthorFilter() {
         return this.authorFilter;
     }
 
