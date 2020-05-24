@@ -17,7 +17,7 @@ public class Post {
     private String authorId;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-    private final HashSet<HashMap<User, ReactionType>> reactions;
+    private final HashSet<HashMap<String, ReactionType>> reactions;
     private final ArrayList<String> tags;
     private final ArrayList<Comment> commentList;
 
@@ -31,7 +31,7 @@ public class Post {
         this.body = body;
         this.tags = new ArrayList<String>();
         this.commentList = new ArrayList<Comment>();
-        this.reactions = new HashSet<HashMap<User, ReactionType>>();
+        this.reactions = new HashSet<HashMap<String, ReactionType>>();
     }
 
     public void updateBody(String body) {
@@ -74,33 +74,33 @@ public class Post {
     }
 
     public void addReaction(User user, ReactionType type) {
-        var reaction = new HashMap<User, ReactionType>();
-        reaction.put(user, type);
-      
+        var reaction = new HashMap<String, ReactionType>();
+        reaction.put(user.getUserId(), type);
+
         this.reactions.add(reaction);
     }
 
     public void removeReaction(User user, ReactionType type) {
-        var reaction = new HashMap<User, ReactionType>();
-        reaction.put(user, type);
+        var reaction = new HashMap<String, ReactionType>();
+        reaction.put(user.getUserId(), type);
         reactions.remove(reaction);
     }
 
-    public HashSet<HashMap<User, ReactionType>> getReactions() {
+    public HashSet<HashMap<String, ReactionType>> getReactions() {
         return this.reactions;
     }
 
-    public int getReactionCount() {
+    public int getCountReaction() {
         return this.reactions.size();
     }
 
-    public String getReaction() {
+    public String getStringReaction() {
         StringBuilder sb = new StringBuilder();
         reactions.forEach(set -> {
             sb.append(set
                     .entrySet()
                     .stream()
-                    .map(map -> map.getKey().getUserId() + ":" + map.getValue().toString() + ",")
+                    .map(map -> map.getKey() + ":" + map.getValue().toString() + ", ")
                     .collect(Collectors.joining()));
         });
 

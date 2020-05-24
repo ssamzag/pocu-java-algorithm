@@ -124,8 +124,21 @@ public class Program {
         subcomment2.setDownVote(user1);
 
         comment2.setUpVote(user1);
-
-
+        var user3 = new User("a1");
+        comment1.setUpVote(user1);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 " + comment1.getVoteCount(VoteType.DOWN));
+        comment1.setUpVote(user1);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 " +comment1.getVoteCount(VoteType.DOWN));
+        comment1.setUpVote(user1);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
+        comment1.setUpVote(user2);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 " +comment1.getVoteCount(VoteType.DOWN));
+        comment1.setDownVote(user2);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
+        comment1.setDownVote(user2);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
+        comment1.setUpVote(user3);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
         ArrayList<Comment> bc = new ArrayList<Comment>()
                     .stream()
                     .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
@@ -135,14 +148,15 @@ public class Program {
         var a = post2_1.getCommentList();
         var b = comment1.getSubcommentList();
 
+
         post1.addReaction(user1, ReactionType.FUN);
         post1.addReaction(user1, ReactionType.GREAT);
         post1.addReaction(user1, ReactionType.FUN);
         post1.addReaction(user2, ReactionType.GREAT);
-        System.out.println(post1.getReaction());
-        post1.removeReaction(user1, ReactionType.GREAT);
-        System.out.println(post1.getReaction());
-        post1.removeReaction(user1, ReactionType.GREAT);
+        System.out.println(post1.getStringReaction());
+
+        post1.addReaction(user3, ReactionType.GREAT);
+        System.out.println(post1.getStringReaction());
 
         Registry registry = new Registry();
         App app = new App(registry);

@@ -14,7 +14,7 @@ public class Comment {
     private final ArrayList<Comment> subcommentList;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-    private final HashMap<User, VoteType> votes;
+    private final HashMap<String, VoteType> votes;
 
     public Comment(String content, User user) {
         this.commentId = UUID.randomUUID();
@@ -23,7 +23,7 @@ public class Comment {
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
         this.subcommentList = new ArrayList<Comment>();
-        this.votes = new HashMap<User, VoteType>();
+        this.votes = new HashMap<String, VoteType>();
     }
 
     public void updateContent(String content) {
@@ -44,15 +44,15 @@ public class Comment {
     }
 
     private void vote(User user, VoteType type) {
-        if (type == null || this.votes.get(user) == type) {
-            this.votes.remove(user);
+        if (type == null || this.votes.get(user.getUserId()) == type) {
+            this.votes.remove(user.getUserId());
         } else {
-            this.votes.put(user, type);
+            this.votes.put(user.getUserId(), type);
         }
     }
 
     public void removeVote(User user) {
-        this.votes.remove(user);
+        this.votes.remove(user.getUserId());
     }
 
     public long getVoteCount(VoteType voteType) {
@@ -89,7 +89,7 @@ public class Comment {
         return modifiedDateTime;
     }
 
-    public HashMap<User, VoteType> getVotes() {
+    public HashMap<String, VoteType> getVotes() {
         return votes;
     }
 }
