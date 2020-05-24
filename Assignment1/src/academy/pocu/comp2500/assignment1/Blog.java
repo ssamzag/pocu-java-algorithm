@@ -49,11 +49,7 @@ public class Blog {
     }
 
     public void setAuthorFilter(String author) {
-        if (author == null) {
-            this.authorFilter = "";
-            return;
-        }
-        this.authorFilter = author;
+        this.authorFilter = author == null ? "" : author;
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
