@@ -2,6 +2,7 @@ package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -10,15 +11,15 @@ public class Blog {
     private final User user;
     private SortingType sortingType;
     private ArrayList<Post> postList;
-    private ArrayList<String> tagFilter;
-    private ArrayList<String> authorFilter;
+    private HashSet<String> tagFilter;
+    private HashSet<String> authorFilter;
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
         this.user = user;
         this.postList = new ArrayList<Post>();
-        this.tagFilter = new ArrayList<String>();
-        this.authorFilter = new ArrayList<String>();
+        this.tagFilter = new HashSet<String>();
+        this.authorFilter = new HashSet<String>();
     }
 
     public void addPost(Post post) {
@@ -36,10 +37,7 @@ public class Blog {
     }
 
     public void setTagFilter(String tag) {
-        if (tag.equals("")) {
-            return;
-        }
-        if (tag == null){
+        if (tag == null || tag.equals("")) {
             this.tagFilter.clear();
             return;
         }
@@ -54,10 +52,11 @@ public class Blog {
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
-        if (this.tagFilter.size() == 0) {
+        if (this.tagFilter.size() == 0 || this.tagFilter == null) {
             return post;
         }
-        var filteredPosts = new  ArrayList<Post>();
+
+        var filteredPosts = new ArrayList<Post>();
         for (Post p : post) {
             for (var filter : this.tagFilter) {
                 if (p.getTags().contains(filter)) {
@@ -65,22 +64,18 @@ public class Blog {
                     break;
                 }
             }
-
         }
         return filteredPosts;
     }
 
     private ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
-        if (this.authorFilter.size() == 0) {
+        if (this.authorFilter.size() == 0 || this.authorFilter == null) {
             return post;
         }
-        var filteredPosts = new  ArrayList<Post>();
-        for (Post p : post) {
-            if (this.authorFilter.contains(p.getAuthorId())) {
-                filteredPosts.add(p);
-            }
-        }
-        return filteredPosts;
+        return post
+                .stream()
+                .filter(p -> this.authorFilter.contains(p.getAuthorId()))
+                .collect(Collectors.toCollection(() -> new ArrayList<Post>()));
     }
 
     public void clearTagFilter() {
@@ -117,10 +112,7 @@ public class Blog {
     }
 
     public void setAuthorFilter(String author) {
-        if (author.equals("")) {
-            return;
-        }
-        if (author == null) {
+        if (author == null || author.equals("")) {
             this.authorFilter.clear();
             return;
         }
@@ -130,11 +122,11 @@ public class Blog {
         this.authorFilter.add(author);
     }
 
-    public ArrayList<String> getAuthorFilter() {
+    public HashSet<String> getAuthorFilter() {
         return this.authorFilter;
     }
 
-    public ArrayList<String> getTagFilter() {
+    public HashSet<String> getTagFilter() {
         return this.tagFilter;
     }
 }

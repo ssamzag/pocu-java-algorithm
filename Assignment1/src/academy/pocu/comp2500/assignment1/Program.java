@@ -139,6 +139,8 @@ public class Program {
         System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
         comment1.setUpVote(user3);
         System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
+        comment1.setUpVote(user3);
+        System.out.println("좋 " + comment1.getVoteCount(VoteType.UP)   + ", 싫 "+ comment1.getVoteCount(VoteType.DOWN));
         ArrayList<Comment> bc = new ArrayList<Comment>()
                     .stream()
                     .sorted(Comparator.comparing(Comment::getCalculatedVoteCount).reversed())
@@ -158,6 +160,10 @@ public class Program {
         post1.addReaction(user3, ReactionType.GREAT);
         System.out.println(post1.getStringReaction());
 
+        post1.addReaction(user3, ReactionType.GREAT);
+        System.out.println(post1.getStringReaction());
+        post1.removeReaction(user3, ReactionType.GREAT);
+        System.out.println(post1.getStringReaction());
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();
