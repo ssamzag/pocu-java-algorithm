@@ -44,15 +44,11 @@ public class Comment {
     }
 
     private void vote(User user, VoteType type) {
-        VoteType userVote = votes.get(user);
-        if (userVote == null) {
-            this.votes.put(user, type);
+        if (type == null || this.votes.get(user) == type) {
+            this.votes.remove(user);
             return;
         }
-        this.votes.remove(user);
-        if (userVote.equals(type)) {
-            return;
-        }
+
         this.votes.put(user, type);
     }
 

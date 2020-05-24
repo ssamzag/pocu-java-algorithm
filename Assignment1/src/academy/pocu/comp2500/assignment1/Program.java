@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 public class Program {
 
     public static void main(String[] args) throws InterruptedException {
+        var vote1 = VoteType.UP;
+        var vote2 = VoteType.UP;
+        System.out.println(vote1 == vote2);
         var user1 = new User("a1");
         var user2 = new User("a2");
 
