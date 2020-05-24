@@ -39,9 +39,14 @@ public class Blog {
         if (tag.equals("") || tag == null){
             return;
         }
-        if (!this.tagFilter.remove(tag)) {
-            this.tagFilter.add(tag);
+        if (this.tagFilter.contains(tag)) {
+            return;
         }
+        this.tagFilter.add(tag);
+    }
+
+    public void removeTagFilter(String tag) {
+        this.tagFilter.remove(tag);
     }
 
     private ArrayList<Post> getTagFilteredPost(ArrayList<Post> post) {
@@ -111,9 +116,10 @@ public class Blog {
         if (author.equals("") || author == null) {
             return;
         }
-        if (!this.authorFilter.remove(author)) {
-            this.authorFilter.add(author);
+        if (this.authorFilter.contains(author)) {
+            return;
         }
+        this.authorFilter.add(author);
     }
 
     public ArrayList<String> getAuthorFilter() {
