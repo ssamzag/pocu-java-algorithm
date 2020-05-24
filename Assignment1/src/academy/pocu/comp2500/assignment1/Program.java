@@ -4,6 +4,7 @@ import academy.pocu.comp2500.assignment1.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class Program {
@@ -14,6 +15,12 @@ public class Program {
         System.out.println(vote1 == vote2);
         var user1 = new User("a1");
         var user2 = new User("a2");
+
+        var reaction1 = new HashMap<User, ReactionType>();
+        reaction1.put(user1, ReactionType.FUN);
+        var reaction2 = new HashMap<User, ReactionType>();
+        reaction2.put(user2, ReactionType.FUN);
+
 
         var blog1 = new Blog(user1);
         var post1 = new Post("p1", "body", user1);

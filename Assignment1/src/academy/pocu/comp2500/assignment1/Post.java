@@ -76,10 +76,7 @@ public class Post {
     public void addReaction(User user, ReactionType type) {
         var reaction = new HashMap<User, ReactionType>();
         reaction.put(user, type);
-        if (reactions.contains(reaction)) {
-            return;
-        }
-
+      
         this.reactions.add(reaction);
     }
 

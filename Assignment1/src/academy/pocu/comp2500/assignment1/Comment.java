@@ -46,10 +46,9 @@ public class Comment {
     private void vote(User user, VoteType type) {
         if (type == null || this.votes.get(user) == type) {
             this.votes.remove(user);
-            return;
+        } else {
+            this.votes.put(user, type);
         }
-
-        this.votes.put(user, type);
     }
 
     public void removeVote(User user) {
