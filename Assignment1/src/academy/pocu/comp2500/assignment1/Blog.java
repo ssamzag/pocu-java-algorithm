@@ -51,7 +51,7 @@ public class Blog {
     }
 
     public void setAuthorFilter(String author) {
-        if (author == null || author.equals("")) {
+        if (author == null) {
             this.authorFilter = "";
             return;
         }
@@ -81,7 +81,7 @@ public class Blog {
         }
         return post
                 .stream()
-                .filter(p -> this.authorFilter.contains(p.getAuthorId()))
+                .filter(p -> this.authorFilter.equals(p.getAuthorId()))
                 .collect(Collectors.toCollection(() -> new ArrayList<Post>()));
     }
 
@@ -116,11 +116,6 @@ public class Blog {
             default:
                 return post;
         }
-    }
-
-
-    public String getAuthorFilter() {
-        return this.authorFilter;
     }
 
     public HashSet<String> getTagFilter() {
