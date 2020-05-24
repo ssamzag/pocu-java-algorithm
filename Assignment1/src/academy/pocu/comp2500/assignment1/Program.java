@@ -137,7 +137,12 @@ public class Program {
 
         post1.addReaction(user1, ReactionType.FUN);
         post1.addReaction(user1, ReactionType.GREAT);
-        post1.addReaction(user2, ReactionType.FUN);
+        post1.addReaction(user1, ReactionType.FUN);
+        post1.addReaction(user2, ReactionType.GREAT);
+        System.out.println(post1.getReaction());
+        post1.removeReaction(user1, ReactionType.GREAT);
+        System.out.println(post1.getReaction());
+        post1.removeReaction(user1, ReactionType.GREAT);
 
         Registry registry = new Registry();
         App app = new App(registry);

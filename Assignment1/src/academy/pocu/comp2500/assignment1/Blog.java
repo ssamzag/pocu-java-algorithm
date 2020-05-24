@@ -41,6 +41,7 @@ public class Blog {
         }
         if (tag == null){
             this.tagFilter.clear();
+            return;
         }
         if (this.tagFilter.contains(tag)) {
             return;
@@ -121,6 +122,7 @@ public class Blog {
         }
         if (author == null) {
             this.authorFilter.clear();
+            return;
         }
         if (this.authorFilter.contains(author)) {
             return;
