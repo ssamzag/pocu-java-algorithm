@@ -9,9 +9,9 @@ public class Blog {
     private final UUID blogId;
     private final User user;
     private SortingType sortingType;
-    private final ArrayList<Post> postList;
-    private final ArrayList<String> tagFilter;
-    private final ArrayList<String> authorFilter;
+    private ArrayList<Post> postList;
+    private ArrayList<String> tagFilter;
+    private ArrayList<String> authorFilter;
 
     public Blog(User user) {
         this.blogId = UUID.randomUUID();
@@ -36,8 +36,11 @@ public class Blog {
     }
 
     public void setTagFilter(String tag) {
-        if (tag.equals("") || tag == null){
+        if (tag.equals("")) {
             return;
+        }
+        if (tag == null){
+            this.tagFilter = null;
         }
         if (this.tagFilter.contains(tag)) {
             return;
@@ -113,8 +116,11 @@ public class Blog {
     }
 
     public void setAuthorFilter(String author) {
-        if (author.equals("") || author == null) {
+        if (author.equals("")) {
             return;
+        }
+        if (author == null) {
+            this.authorFilter = null;
         }
         if (this.authorFilter.contains(author)) {
             return;
