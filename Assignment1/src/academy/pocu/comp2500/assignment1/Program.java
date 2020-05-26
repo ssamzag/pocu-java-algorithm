@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Program {
 
     public static void main(String[] args) throws InterruptedException {
+
         var vote1 = VoteType.UP;
         var vote2 = VoteType.UP;
         System.out.println(vote1 == vote2);
@@ -26,6 +27,20 @@ public class Program {
         var post1 = new Post("p1", "body", user1);
         var post2 = new Post("p2", "body", user1);
         var post3 = new Post("p3", "body", user2);
+
+        var aaa = new ArrayList<String>();
+        var bbb = new ArrayList<String>();
+
+        aaa.add("abc");
+        aaa.add("def");
+        aaa.add("abcd");
+
+        bbb.add("abcd");
+
+
+        System.out.println("존재하냐?" + aaa.retainAll(bbb));
+
+        System.out.println("존재하냐?" + aaa.retainAll(bbb));
         blog1.addPost(post1);
         blog1.addPost(post2);
         blog1.addPost(post3);

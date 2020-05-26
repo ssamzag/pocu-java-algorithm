@@ -57,16 +57,28 @@ public class Blog {
             return post;
         }
 
-        var filteredPosts = new ArrayList<Post>();
-        for (Post p : post) {
-            for (var filter : this.tagFilter) {
-                if (p.getTags().contains(filter)) {
-                    filteredPosts.add(p);
-                    break;
-                }
-            }
-        }
-        return filteredPosts;
+        return post
+                .stream()
+                .filter(p -> {
+                    for (var filter : this.tagFilter) {
+                        if (p.getTags().contains(filter)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .collect(Collectors.toCollection(() -> new ArrayList<Post>()));
+
+//        var filteredPosts = new ArrayList<Post>();
+//        for (Post p : post) {
+//            for (var filter : this.tagFilter) {
+//                if (p.getTags().contains(filter)) {
+//                    filteredPosts.add(p);
+//                    break;
+//                }
+//            }
+//        }
+//        return filteredPosts;
     }
 
     private ArrayList<Post> getAuthorFilteredPost(ArrayList<Post> post) {
@@ -93,11 +105,14 @@ public class Blog {
         }
         switch (this.sortingType) {
             case CREATED_DATE_ASC:
-                return post.stream().sorted(Comparator.comparing(Post::getCreatedDateTime))
-                        .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
+                post.sort(Comparator.comparing(Post::getCreatedDateTime));
+                break;
+//                return post.stream().sorted(Comparator.comparing(Post::getCreatedDateTime))
+//                        .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
             case CREATED_DATE_DESC:
-                return post.stream().sorted(Comparator.comparing(Post::getCreatedDateTime).reversed())
-                        .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
+                post.sort(Comparator.comparing(Post::getCreatedDateTime).reversed());
+//                return post.stream().sorted(Comparator.comparing(Post::getCreatedDateTime).reversed())
+//                        .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
             case MODIFIED_DATE_ASC:
                 return post.stream().sorted(Comparator.comparing(Post::getModifiedDateTime))
                         .collect(Collectors.toCollection(()-> new ArrayList<Post>()));
@@ -110,6 +125,8 @@ public class Blog {
             default:
                 return post;
         }
+
+        return post;
     }
 
     public HashSet<String> getTagFilter() {

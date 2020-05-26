@@ -74,7 +74,6 @@ public class Post {
     public void addReaction(User user, ReactionType type) {
         var reaction = new HashMap<String, ReactionType>();
         reaction.put(user.getUserId(), type);
-
         this.reactions.add(reaction);
     }
 
