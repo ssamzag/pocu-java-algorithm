@@ -12,7 +12,7 @@ public class MemoryCache {
     private int maxEntryCount;
     private String data;
     private LinkedHashMap<String, String> entry;
-    private EvictionPolicy entryEvictionPolicy;
+    private static EvictionPolicy entryEvictionPolicy;
     private LinkedHashSet<String> entryMetaData;
 
     private MemoryCache(String data) {
@@ -26,7 +26,9 @@ public class MemoryCache {
     public static MemoryCache getInstance(String data) {
         if (memoryCache == null) {
             memoryCache = new ArrayList<MemoryCache>();
-            maxMemoryCacheCount = maxMemoryCacheCount == 0 ? Integer.MAX_VALUE : maxMemoryCacheCount;
+        }
+        if (maxMemoryCacheCount == 0) {
+            maxMemoryCacheCount = Integer.MAX_VALUE;
         }
         for (MemoryCache cache : memoryCache) {
             if (cache.data.equals(data)) {
@@ -55,19 +57,15 @@ public class MemoryCache {
         }
     }
 
-    public void setEvictionPolicy(EvictionPolicy policy) {
-        this.entryEvictionPolicy = policy;
+    public static void setEvictionPolicy(EvictionPolicy policy) {
+        entryEvictionPolicy = policy;
     }
 
     public void setMaxEntryCount(int maxEntryCount) {
-        if (this.entry.size() > maxEntryCount) {
-            var size = entry.size() - maxEntryCount;
-            for (int i = 0; i < size; ++i){
-                runEntryEvictionPolicy();
-            }
-
-        }
         this.maxEntryCount = maxEntryCount;
+        if (this.entry.size() > maxEntryCount) {
+            IntStream.range(0, entry.size() - maxEntryCount).forEach((i) -> runEntryEvictionPolicy());
+        }
     }
 
     public void addEntry(String key, String value) {
@@ -93,7 +91,6 @@ public class MemoryCache {
         memoryCache.remove(this);
         memoryCache.add(this);
     }
-
 
     private void runEntryEvictionPolicy() {
         var metaIterator = this.entryMetaData.iterator();
