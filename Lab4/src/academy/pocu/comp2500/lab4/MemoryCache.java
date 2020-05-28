@@ -12,7 +12,7 @@ public class MemoryCache {
     private int maxEntryCount;
     private String data;
     private LinkedHashMap<String, String> entry;
-    private static EvictionPolicy entryEvictionPolicy;
+    private EvictionPolicy entryEvictionPolicy;
     private LinkedHashSet<String> entryMetaData;
 
     private MemoryCache(String data) {
@@ -20,7 +20,7 @@ public class MemoryCache {
         this.entry = new LinkedHashMap<String, String>(16, 0.75f, true);
         this.entryMetaData = new LinkedHashSet<String>();
         this.maxEntryCount = Integer.MAX_VALUE;
-        entryEvictionPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
+        this.entryEvictionPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
     }
 
     public static MemoryCache getInstance(String data) {
@@ -46,10 +46,6 @@ public class MemoryCache {
         return cache;
     }
 
-    public void clear() {
-        memoryCache.clear();
-    }
-
     public static void setMaxInstanceCount(int count) {
         maxMemoryCacheCount = count;
         if (count < memoryCache.size()) {
@@ -57,7 +53,13 @@ public class MemoryCache {
         }
     }
 
-    public static void setEvictionPolicy(EvictionPolicy policy) {
+    public static void clear() {
+        memoryCache.clear();
+    }
+
+
+
+    public void setEvictionPolicy(EvictionPolicy policy) {
         entryEvictionPolicy = policy;
     }
 
