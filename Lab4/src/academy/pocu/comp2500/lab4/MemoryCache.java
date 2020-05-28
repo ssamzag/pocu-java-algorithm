@@ -20,7 +20,7 @@ public class MemoryCache {
         this.entry = new LinkedHashMap<String, String>(16, 0.75f, true);
         this.entryMetaData = new LinkedHashSet<String>();
         this.maxEntryCount = Integer.MAX_VALUE;
-        this.entryEvictionPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
+        entryEvictionPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
     }
 
     public static MemoryCache getInstance(String data) {
@@ -94,7 +94,7 @@ public class MemoryCache {
 
     private void runEntryEvictionPolicy() {
         var metaIterator = this.entryMetaData.iterator();
-        switch (this.entryEvictionPolicy) {
+        switch (entryEvictionPolicy) {
             case FIRST_IN_FIRST_OUT:
                 if (metaIterator.hasNext()) {
                     this.entry.remove(metaIterator.next());
