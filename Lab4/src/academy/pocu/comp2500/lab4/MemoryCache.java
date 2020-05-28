@@ -15,7 +15,7 @@ public class MemoryCache {
     private EvictionPolicy entryEvictionPolicy;
     private LinkedHashSet<String> entryMetaData;
 
-    public MemoryCache(String data) {
+    private MemoryCache(String data) {
         this.data = data;
         this.entry = new LinkedHashMap<String, String>(16, 0.75f, true);
         this.entryMetaData = new LinkedHashSet<String>();
@@ -94,7 +94,7 @@ public class MemoryCache {
         memoryCache.add(this);
     }
 
-    
+
     private void runEntryEvictionPolicy() {
         var metaIterator = this.entryMetaData.iterator();
         switch (this.entryEvictionPolicy) {
