@@ -6,22 +6,28 @@ public class Program {
 
     public static void main(String[] args) {
         MemoryCache memCacheA = MemoryCache.getInstance("A");
-
         MemoryCache memCacheB = MemoryCache.getInstance("B");
         MemoryCache memCacheC = MemoryCache.getInstance("C");
+        MemoryCache memCacheD = MemoryCache.getInstance("C");
+        MemoryCache memCacheE = MemoryCache.getInstance("E");
+        MemoryCache memCacheF = MemoryCache.getInstance("F");
+        MemoryCache memCacheG = MemoryCache.getInstance("G");
 
         assert memCacheA == MemoryCache.getInstance("A");
         assert memCacheB == MemoryCache.getInstance("B");
         assert memCacheC == MemoryCache.getInstance("C");
-
+        assert memCacheD == MemoryCache.getInstance("C");
+        assert memCacheE == MemoryCache.getInstance("E");
+        assert memCacheF == MemoryCache.getInstance("F");
         MemoryCache.setMaxInstanceCount(3);
 
-        MemoryCache memCacheD = MemoryCache.getInstance("D");
-
         assert memCacheA != MemoryCache.getInstance("A");
-        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheC != MemoryCache.getInstance("C");
         assert memCacheB != MemoryCache.getInstance("B");
         assert memCacheD != MemoryCache.getInstance("D");
+
+        assert memCacheE != MemoryCache.getInstance("E");
+        assert memCacheF != MemoryCache.getInstance("F");
 
 
 

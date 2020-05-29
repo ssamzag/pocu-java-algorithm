@@ -49,7 +49,11 @@ public class MemoryCache {
     public static void setMaxInstanceCount(int count) {
         maxMemoryCacheCount = count;
         if (count < memoryCache.size()) {
-            IntStream.range(0,  memoryCache.size() - count).forEach(i -> memoryCache.remove(i));
+            int removeCount = memoryCache.size() - count;
+            for (int i = 0; i < removeCount; ++i) {
+                memoryCache.remove(0);
+            }
+            //IntStream.range(0,  ).forEach(i -> memoryCache.remove(i));
         }
     }
 
