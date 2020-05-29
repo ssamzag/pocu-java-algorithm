@@ -48,6 +48,10 @@ public class MemoryCache {
 
     public static void setMaxInstanceCount(int count) {
         maxMemoryCacheCount = count;
+        if (memoryCache == null) {
+            return;
+        }
+
         if (count < memoryCache.size()) {
             int removeCount = memoryCache.size() - count;
             for (int i = 0; i < removeCount; ++i) {
@@ -58,6 +62,9 @@ public class MemoryCache {
     }
 
     public static void clear() {
+        if (memoryCache == null) {
+            return;
+        }
         memoryCache.clear();
     }
 

@@ -5,11 +5,32 @@ import java.util.LinkedHashMap;
 public class Program {
 
     public static void main(String[] args) {
+
+        MemoryCache.clear();
+        MemoryCache.setMaxInstanceCount(5);
+
         MemoryCache memCacheA = MemoryCache.getInstance("A");
         MemoryCache memCacheB = MemoryCache.getInstance("B");
         MemoryCache memCacheC = MemoryCache.getInstance("C");
-        MemoryCache memCacheD = MemoryCache.getInstance("C");
+        MemoryCache memCacheD = MemoryCache.getInstance("D");
         MemoryCache memCacheE = MemoryCache.getInstance("E");
+
+        assert memCacheA == MemoryCache.getInstance("A");
+        assert memCacheB == MemoryCache.getInstance("B");
+        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheD == MemoryCache.getInstance("D");
+        assert memCacheE == MemoryCache.getInstance("E");
+
+        MemoryCache.setMaxInstanceCount(3);
+
+        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheD == MemoryCache.getInstance("D");
+        assert memCacheE == MemoryCache.getInstance("E");
+        assert memCacheA != MemoryCache.getInstance("A");
+        assert memCacheB != MemoryCache.getInstance("B");
+
+        MemoryCache.clear();
+
         MemoryCache memCacheF = MemoryCache.getInstance("F");
         MemoryCache memCacheG = MemoryCache.getInstance("G");
 
