@@ -1,10 +1,12 @@
 package academy.pocu.comp2500.lab4;
 
 import java.util.LinkedHashMap;
+import java.util.stream.IntStream;
 
 public class Program {
 
     public static void main(String[] args) {
+        IntStream.range(0,4).forEach(i->System.out.println("dd"));
 
         MemoryCache.clear();
         MemoryCache.setMaxInstanceCount(5);
