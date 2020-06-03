@@ -1,10 +1,10 @@
 package academy.pocu.comp2500.lab5;
 
 public class Move {
-    private String skillName;
-    private int skillDamage;
+    private final String skillName;
+    private final int skillDamage;
     private int skillCount;
-    private int maxSkillCount;
+    private final int maxSkillCount;
 
     public Move(String skillName, int skillDamage, int skillCount) {
         this.skillName = skillName;

@@ -3,7 +3,7 @@ package academy.pocu.comp2500.lab5;
 public class Knight extends Gladiator {
     private Pet pet;
 
-    public Knight (String name, int hp, int attackDamage, int defense) {
+    public Knight(String name, int hp, int attackDamage, int defense) {
         super(name, hp, attackDamage, defense);
     }
 
@@ -19,8 +19,7 @@ public class Knight extends Gladiator {
             return;
         }
 
-        int damage = (int)((double)(super.getAttackDamage() + pet.getAttackDamage() - enemy.getDefense()) / 2.0);
+        int damage = (int) ((double) (super.getAttackDamage() + pet.getAttackDamage() - enemy.getDefense()) / 2.0);
         enemy.setHp(Math.max(damage, 1) * -1);
     }
-
 }

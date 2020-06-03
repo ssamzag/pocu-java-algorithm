@@ -3,7 +3,7 @@ package academy.pocu.comp2500.lab5;
 import java.util.ArrayList;
 
 public class Gladiator extends Barbarian {
-    private ArrayList<Move> moveSet = new ArrayList<Move>();
+    private final ArrayList<Move> moveSet = new ArrayList<Move>();
     private final int REST_HP = 10;
 
     public Gladiator(String name, int hp, int attackDamage, int defense) {
@@ -36,7 +36,7 @@ public class Gladiator extends Barbarian {
             return;
         }
 
-        int damage = (int)(((double)super.getAttackDamage() / (double)enemy.getDefense() * (double)move.getSkillDamage()) / 2.0);
+        int damage = (int) (((double) super.getAttackDamage() / (double) enemy.getDefense() * (double) move.getSkillDamage()) / 2.0);
         enemy.setHp(Math.max(damage, 1) * -1);
         move.addSkillCount(-1);
     }
@@ -55,6 +55,7 @@ public class Gladiator extends Barbarian {
                 return move;
             }
         }
+
         return null;
     }
 }
