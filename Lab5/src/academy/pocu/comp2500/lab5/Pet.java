@@ -10,6 +10,6 @@ public class Pet {
     }
 
     protected int getAttackDamage() {
-        return attackDamage;
+        return this.attackDamage;
     }
 }

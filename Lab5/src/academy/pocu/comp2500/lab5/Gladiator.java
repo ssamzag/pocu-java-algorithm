@@ -1,9 +1,10 @@
 package academy.pocu.comp2500.lab5;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Gladiator extends Barbarian {
-    private final ArrayList<Move> moveSet = new ArrayList<Move>();
+    private final HashMap<String, Move> moveSet = new HashMap<>();
     private final int REST_HP = 10;
 
     public Gladiator(String name, int hp, int attackDamage, int defense) {
@@ -11,51 +12,36 @@ public class Gladiator extends Barbarian {
     }
 
     public boolean addMove(Move skill) {
-        if (moveSet.size() < 4 && null == getMoveBySkillNameOrNull(skill.getSkillName())) {
-            return this.moveSet.add(skill);
+        if (moveSet.size() < 4 && !this.moveSet.containsKey(skill.getSkillName())) {
+            return this.moveSet.put(skill.getSkillName(), skill) == null;
         }
 
         return false;
     }
 
     public boolean removeMove(String skillName) {
-        for (var move : this.moveSet) {
-            if (move.getSkillName().equals(skillName)) {
-                return this.moveSet.remove(move);
-            }
-        }
-        return false;
+        return this.moveSet.remove(skillName) != null;
     }
 
     public void attack(String skillName, Barbarian enemy) {
         if (this == enemy) {
             return;
         }
-        Move move = getMoveBySkillNameOrNull(skillName);
-        if (move == null || move.getSkillCount() == 0) {
+        Move move = moveSet.get(skillName);
+        if (null == move || move.getSkillCount() == 0) {
             return;
         }
 
-        int damage = (int) (((double) super.getAttackDamage() / (double) enemy.getDefense() * (double) move.getSkillDamage()) / 2.0);
+        int damage = (int) (((double) super.getAttackDamage() / enemy.getDefense() * move.getSkillDamage()) / 2.0);
         enemy.setHp(Math.max(damage, 1) * -1);
         move.addSkillCount(-1);
     }
 
     public void rest() {
-        for (var move : moveSet) {
+        moveSet.forEach((key, move) -> {
             move.addSkillCount(1);
-        }
+        });
 
         super.setHp(REST_HP);
-    }
-
-    private Move getMoveBySkillNameOrNull(String skillName) {
-        for (Move move : moveSet) {
-            if (move.getSkillName().equals(skillName)) {
-                return move;
-            }
-        }
-
-        return null;
     }
 }

@@ -32,11 +32,11 @@ public class Barbarian {
     }
 
     protected void setHp(int hp) {
-        this.hp = Math.min(Math.max(this.hp + hp, 0), maxHp);
+        this.hp = Math.min(Math.max(this.hp + hp, 0), this.maxHp);
     }
 
     protected int getAttackDamage() {
-        return attackDamage;
+        return this.attackDamage;
     }
 
     protected int getDefense() {

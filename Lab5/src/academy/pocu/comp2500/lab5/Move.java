@@ -22,7 +22,7 @@ public class Move {
     }
 
     protected void addSkillCount(int count) {
-        this.skillCount = Math.min(Math.max(this.skillCount + count, 0), maxSkillCount);
+        this.skillCount = Math.min(Math.max(this.skillCount + count, 0), this.maxSkillCount);
     }
 
     protected int getSkillDamage() {

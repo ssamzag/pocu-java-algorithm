@@ -8,18 +8,15 @@ public class Knight extends Gladiator {
     }
 
     public void setPet(Pet pet) {
-        if (null == pet) {
-            this.pet = null;
-        }
         this.pet = pet;
     }
 
     public void attackTogether(Barbarian enemy) {
-        if (this == enemy || null == pet) {
+        if (this == enemy || null == this.pet) {
             return;
         }
 
-        int damage = (int) ((double) (super.getAttackDamage() + pet.getAttackDamage() - enemy.getDefense()) / 2.0);
+        int damage = (int) ((super.getAttackDamage() + this.pet.getAttackDamage() - enemy.getDefense()) / 2.0);
         enemy.setHp(Math.max(damage, 1) * -1);
     }
 }
