@@ -6,38 +6,46 @@ import academy.pocu.comp2500.assignment2.registry.Registry;
 
 public class App {
     public App(Registry registry) {
-        registry.registerRedStampCreator("");
-        registry.registerRedStampCreator("", "");
-        registry.registerBlueStampCreator("");
-        registry.registerBlueStampCreator("", "");
-        registry.registerGreenStampCreator("");
-        registry.registerGreenStampCreator("", "");
+        //스탬프
+        registry.registerRedStampCreator("Stamp", "SetRedStamp");
+        registry.registerBlueStampCreator("Stamp", "SetBedStamp");
+        registry.registerGreenStampCreator("Stamp", "SetGreenStamp");
+
+        //달력
         registry.registerWallCalendarCreator("");
         registry.registerWallCalendarCreator("", "");
         registry.registerMagnetCalendarCreator("");
         registry.registerMagnetCalendarCreator("", "");
         registry.registerDeskCalendarCreator("");
         registry.registerDeskCalendarCreator("", "");
+
+
+        ///명함 출력 방향
         registry.registerLandscapeBannerCreator("");
         registry.registerLandscapeBannerCreator("", "");
         registry.registerPortraitBannerCreator("");
         registry.registerPortraitBannerCreator("", "");
+
+        //명함
         registry.registerGlossBannerCreator("");
         registry.registerGlossBannerCreator("", "");
         registry.registerScrimBannerCreator("");
         registry.registerScrimBannerCreator("", "");
         registry.registerMeshBannerCreator("");
         registry.registerMeshBannerCreator("", "");
+        //명함 출력 방향
         registry.registerLandscapeBusinessCardCreator("");
         registry.registerLandscapeBusinessCardCreator("", "");
         registry.registerPortraitBusinessCardCreator("");
         registry.registerPortraitBusinessCardCreator("", "");
+        //명함 종이색
         registry.registerIvoryBusinessCardCreator("");
         registry.registerIvoryBusinessCardCreator("", "");
         registry.registerGrayBusinessCardCreator("");
         registry.registerGrayBusinessCardCreator("", "");
         registry.registerWhiteBusinessCardCreator("");
         registry.registerWhiteBusinessCardCreator("", "");
+        //명함
         registry.registerLaidBusinessCardCreator("");
         registry.registerLaidBusinessCardCreator("", "");
         registry.registerLinenBusinessCardCreator("");
@@ -48,7 +56,9 @@ public class App {
         registry.registerSingleSidedBusinessCardCreator("", "");
         registry.registerDoubleSidedBusinessCardCreator("");
         registry.registerDoubleSidedBusinessCardCreator("", "");
-        registry.registerCartCreator("");
+
+        //장바구니
+        registry.registerCartCreator("Cart");
         registry.registerProductAdder("", "");
         registry.registerProductRemover("", "");
         registry.registerTotalPriceGetter("", "");
