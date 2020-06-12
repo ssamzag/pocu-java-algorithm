@@ -5,11 +5,7 @@ import java.util.ArrayList;
 public class ThreeCourseMeal extends SetMenu{
 
     public ThreeCourseMeal() {
-        super();
         super.price = 25;
-        super.mainCourses = new ArrayList<MainCourse>();
-        super.appetizers = new ArrayList<Appetizer>();
-        super.desserts = new ArrayList<Dessert>();
     }
 
     private void setValid() {
