@@ -2,16 +2,14 @@ package academy.pocu.comp2500.lab6;
 
 import java.util.ArrayList;
 
-public class Pizza extends Restaurant {
+public class Pizza extends Menu {
     protected static int MAX_MEAT_COUNT;
     protected static int MAX_VEGGIE_COUNT;
     protected static int MAX_CHEESE_COUNT;
-
     protected int cheeseCount;
     protected int veggieCount;
     protected int meatCount;
     protected boolean isCheeseAdded;
-    protected boolean isVeggieAdded;
     protected ArrayList<Topping> toppings = new ArrayList<>();
 
     public Pizza(int price) {
@@ -41,19 +39,5 @@ public class Pizza extends Restaurant {
     public ArrayList<Topping> getToppings() {
         return this.toppings;
     }
-
-    public int getCheeseCount() {
-        return this.cheeseCount;
-    }
-
-    public int getVeggieCount() {
-        return this.veggieCount;
-    }
-
-    public int getMeatCount() {
-        return this.meatCount;
-    }
-
-
 
 }

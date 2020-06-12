@@ -1,9 +1,10 @@
 package academy.pocu.comp2500.lab6;
 
-public class Restaurant {
+public class Menu {
     private int price;
+    protected boolean isValid;
 
-    public Restaurant(int price) {
+    public Menu(int price) {
         this.price = price;
     }
 
@@ -11,4 +12,7 @@ public class Restaurant {
         return price;
     }
 
+    public boolean isValid() {
+        return this.isValid;
+    }
 }

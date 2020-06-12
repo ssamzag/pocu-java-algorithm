@@ -13,17 +13,13 @@ public class MeatLoverPizza extends Pizza {
         this.toppings.add(Topping.CHEDDAR_CHEESE);
     }
 
-    public boolean isValid() {
-        return this.isVeggieAdded;
-    }
-
     public boolean addBlackOlives() {
         if (isValid()) {
             return false;
         }
 
         this.toppings.add(Topping.BLACK_OLIVES);
-        this.isVeggieAdded = true;
+        this.isValid = true;
         return true;
     }
 
@@ -31,7 +27,7 @@ public class MeatLoverPizza extends Pizza {
         boolean isRemoved = this.toppings.remove(Topping.BLACK_OLIVES);
 
         if (isRemoved) {
-            this.isVeggieAdded = false;
+            this.isValid = false;
         }
 
         return isRemoved;
@@ -43,7 +39,7 @@ public class MeatLoverPizza extends Pizza {
         }
 
         this.toppings.add(Topping.RED_ONIONS);
-        this.isVeggieAdded = true;
+        this.isValid = true;
         return true;
     }
 
@@ -51,7 +47,7 @@ public class MeatLoverPizza extends Pizza {
         boolean isRemoved = this.toppings.remove(Topping.RED_ONIONS);
 
         if (isRemoved) {
-            this.isVeggieAdded = false;
+            this.isValid = false;
         }
 
         return isRemoved;
@@ -63,7 +59,7 @@ public class MeatLoverPizza extends Pizza {
         }
 
         this.toppings.add(Topping.GREEN_PEPPERS);
-        this.isVeggieAdded = true;
+        this.isValid = true;
         return true;
     }
 
@@ -71,7 +67,7 @@ public class MeatLoverPizza extends Pizza {
         boolean isRemoved = this.toppings.remove(Topping.GREEN_PEPPERS);
 
         if (isRemoved) {
-            this.isVeggieAdded = false;
+            this.isValid = false;
         }
 
         return isRemoved;
