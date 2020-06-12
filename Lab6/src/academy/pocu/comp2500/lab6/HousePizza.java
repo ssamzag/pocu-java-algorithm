@@ -2,24 +2,16 @@ package academy.pocu.comp2500.lab6;
 
 import java.util.ArrayList;
 
-public class HousePizza {
-    private static final int PRICE = 20;
-    private static final int MAX_MEAT_COUNT = 2;
-
-    private int price = PRICE;
-    private ArrayList<Topping> toppings = new ArrayList<>();
-
+public class HousePizza extends Pizza {
     private int meatCount;
 
     public HousePizza() {
-        this.toppings.add(Topping.BLACK_OLIVES);
-        this.toppings.add(Topping.RED_ONIONS);
-        this.toppings.add(Topping.GREEN_PEPPERS);
-        this.toppings.add(Topping.MOZZARELLA_CHEESE);
-    }
-
-    public int getPrice() {
-        return this.price;
+        super(20);
+        super.MAX_MEAT_COUNT = 2;
+        super.toppings.add(Topping.BLACK_OLIVES);
+        super.toppings.add(Topping.RED_ONIONS);
+        super.toppings.add(Topping.GREEN_PEPPERS);
+        super.toppings.add(Topping.MOZZARELLA_CHEESE);
     }
 
     public boolean isValid() {
@@ -27,7 +19,7 @@ public class HousePizza {
     }
 
     public ArrayList<Topping> getToppings() {
-        return this.toppings;
+        return super.toppings;
     }
 
     public boolean addBacon() {
@@ -35,8 +27,8 @@ public class HousePizza {
             return false;
         }
 
-        this.toppings.add(Topping.BACON);
-        ++this.meatCount;
+        super.toppings.add(Topping.BACON);
+        ++super.meatCount;
         return true;
     }
 

@@ -2,16 +2,12 @@ package academy.pocu.comp2500.lab6;
 
 import java.util.ArrayList;
 
-public class NoHeavyMeal {
-    private static final int PRICE = 15;
-
-    private int price = PRICE;
+public class NoHeavyMeal extends Restaurant {
+    public NoHeavyMeal() {
+        super(15);
+    }
     private ArrayList<Appetizer> appetizers = new ArrayList<>();
     private Dessert dessert;
-
-    public int getPrice() {
-        return this.price;
-    }
 
     public boolean isValid() {
         return this.appetizers.size() == 2 && this.dessert != null;
