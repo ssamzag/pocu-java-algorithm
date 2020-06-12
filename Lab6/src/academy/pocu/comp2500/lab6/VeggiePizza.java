@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab6;
 
-import java.util.ArrayList;
-
 public class VeggiePizza extends Pizza {
     public VeggiePizza() {
         super(17, 0, 0, 2);

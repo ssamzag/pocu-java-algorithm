@@ -1,8 +1,5 @@
 package academy.pocu.comp2500.lab6;
 
-import com.sun.tools.javac.Main;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SetMenu extends Menu {

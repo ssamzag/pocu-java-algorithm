@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab6;
 
-import com.sun.tools.javac.Main;
-
 import java.util.ArrayList;
 
 public class ThreeCourseMeal extends SetMenu{
@@ -18,16 +16,19 @@ public class ThreeCourseMeal extends SetMenu{
     }
 
     public void setMainCourse(MainCourse mainCourse) {
+        super.mainCourses.clear();
         super.mainCourses.add(mainCourse);
         setValid();
     }
 
     public void setAppetizer(Appetizer appetizer) {
+        this.appetizers.clear();
         this.appetizers.add(appetizer);
         setValid();
     }
 
     public void setDessert(Dessert dessert) {
+        this.desserts.clear();
         this.desserts.add(dessert);
         setValid();
     }
