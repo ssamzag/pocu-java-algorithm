@@ -5,9 +5,7 @@ import java.util.ArrayList;
 public class FreeSoulPizza extends Pizza {
 
     public FreeSoulPizza() {
-        super(25);
-        MAX_MEAT_COUNT = 2;
-        MAX_VEGGIE_COUNT = 2;
+        super(25, 2, 2, 0);
     }
 
     public boolean addTopping(Topping topping) {

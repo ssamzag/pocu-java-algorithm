@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class MeatLoverPizza extends Pizza {
     public MeatLoverPizza() {
-        super(21);
-
+        super(21,0,0,0);
         this.toppings.add(Topping.BACON);
         this.toppings.add(Topping.PEPERONI);
         this.toppings.add(Topping.HAM);

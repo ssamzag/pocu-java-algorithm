@@ -3,11 +3,9 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class HousePizza extends Pizza {
-    private int meatCount;
 
     public HousePizza() {
-        super(20);
-        MAX_MEAT_COUNT = 2;
+        super(20, 2, 0, 0);
         super.toppings.add(Topping.BLACK_OLIVES);
         super.toppings.add(Topping.RED_ONIONS);
         super.toppings.add(Topping.GREEN_PEPPERS);

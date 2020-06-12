@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class NoHeavyMeal extends SetMenu {
     public NoHeavyMeal() {
-        super(15);
+        super.price = 15;
     }
 
     public void setValid() {

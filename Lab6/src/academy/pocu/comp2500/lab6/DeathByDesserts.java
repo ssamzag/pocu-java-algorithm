@@ -6,7 +6,7 @@ public class DeathByDesserts extends SetMenu {
     private ArrayList<Dessert> desserts = new ArrayList<>();
 
     public DeathByDesserts() {
-        super(20);
+        super.price = 20;
     }
 
     public void setDesserts(Dessert dessert1, Dessert dessert2, Dessert dessert3, Dessert dessert4) {

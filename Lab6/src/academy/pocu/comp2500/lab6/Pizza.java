@@ -3,17 +3,20 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class Pizza extends Menu {
-    protected static int MAX_MEAT_COUNT;
-    protected static int MAX_VEGGIE_COUNT;
-    protected static int MAX_CHEESE_COUNT;
+    protected final int MAX_MEAT_COUNT;
+    protected final int MAX_VEGGIE_COUNT;
+    protected final int MAX_CHEESE_COUNT;
     protected int cheeseCount;
     protected int veggieCount;
     protected int meatCount;
     protected boolean isCheeseAdded;
     protected ArrayList<Topping> toppings = new ArrayList<>();
 
-    public Pizza(int price) {
-        super(price);
+    protected Pizza(int price, int maxMeatCount, int maxVeggieCount, int maxCheeseCount) {
+        this.price = price;
+        MAX_MEAT_COUNT = maxMeatCount;
+        MAX_VEGGIE_COUNT = maxVeggieCount;
+        MAX_CHEESE_COUNT = maxCheeseCount;
     }
 
     protected static boolean isMeat(Topping topping) {
