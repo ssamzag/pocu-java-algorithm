@@ -6,6 +6,7 @@ public class Program {
 
     public static void main(String[] args) {
         {
+            var ss = new SetMenu();
             MeatLoverPizza meatLoverPizza = new MeatLoverPizza();
             boolean isAdded = meatLoverPizza.addGreenPeppers(); // true
             boolean isRemoved = meatLoverPizza.removeGreenPeppers(); // true
@@ -22,7 +23,7 @@ public class Program {
             noHeavyMeal.setAppetizers(Appetizer.CALAMARI, Appetizer.GYOZA);
 
             assert (!noHeavyMeal.isValid());
-            noHeavyMeal.getDessert();
+
             noHeavyMeal.setDessert(Dessert.APPLE_PIE);
 
             assert (noHeavyMeal.isValid());
