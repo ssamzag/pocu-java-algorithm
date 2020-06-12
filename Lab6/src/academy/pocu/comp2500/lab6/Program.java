@@ -22,7 +22,7 @@ public class Program {
             noHeavyMeal.setAppetizers(Appetizer.CALAMARI, Appetizer.GYOZA);
 
             assert (!noHeavyMeal.isValid());
-
+            noHeavyMeal.getDessert();
             noHeavyMeal.setDessert(Dessert.APPLE_PIE);
 
             assert (noHeavyMeal.isValid());

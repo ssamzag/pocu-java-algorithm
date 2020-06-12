@@ -14,6 +14,15 @@ public class SetMenu extends Menu {
     public ArrayList<Dessert> getDesserts() {
         return this.desserts;
     }
+    public Dessert getDessert() {
+        assert (this.desserts != null && this.desserts.size() > 0) : "call isValid() first!";
+        return this.desserts.get(0);
+    }
+
+    public Appetizer getAppetizer() {
+        assert (this.appetizers != null && this.appetizers.size() > 0) : "call isValid() first!";
+        return this.appetizers.get(0);
+    }
 
     public ArrayList<MainCourse> getMainCourses() {
         return this.mainCourses;
