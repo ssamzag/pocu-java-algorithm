@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class NoHeavyMeal extends SetMenu {
     public NoHeavyMeal() {
         super.price = 15;
+        super.appetizers = new ArrayList<Appetizer>();
+        super.desserts = new ArrayList<Dessert>();
     }
 
     public void setValid() {

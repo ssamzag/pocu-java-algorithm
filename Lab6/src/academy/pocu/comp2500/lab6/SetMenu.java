@@ -6,9 +6,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SetMenu extends Menu {
-    protected ArrayList<Dessert> desserts = new ArrayList<>();
-    protected ArrayList<Appetizer> appetizers = new ArrayList<>();
-    protected ArrayList<MainCourse> mainCourses = new ArrayList<>();
+    protected ArrayList<Dessert> desserts;
+    protected ArrayList<Appetizer> appetizers;
+    protected ArrayList<MainCourse> mainCourses;
 
     public ArrayList<Appetizer> getAppetizers() {
         return this.appetizers;
