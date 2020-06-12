@@ -1,27 +1,66 @@
 package academy.pocu.comp2500.lab4;
 
 import java.util.LinkedHashMap;
+import java.util.stream.IntStream;
 
 public class Program {
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         MemoryCache.setMaxInstanceCount(2);
+=======
+        IntStream.range(0,4).forEach(i->System.out.println("dd"));
+
+        MemoryCache.clear();
+        MemoryCache.setMaxInstanceCount(5);
+
+>>>>>>> 8ccd403ffe3ae5a74a4ebf6b2640e7d39372bf53
         MemoryCache memCacheA = MemoryCache.getInstance("A");
         MemoryCache memCacheB = MemoryCache.getInstance("B");
         MemoryCache memCacheC = MemoryCache.getInstance("C");
+        MemoryCache memCacheD = MemoryCache.getInstance("D");
+        MemoryCache memCacheE = MemoryCache.getInstance("E");
 
+<<<<<<< HEAD
         assert memCacheA != MemoryCache.getInstance("A");
         assert memCacheB != MemoryCache.getInstance("B");
         assert memCacheC != MemoryCache.getInstance("C");
+=======
+        assert memCacheA == MemoryCache.getInstance("A");
+        assert memCacheB == MemoryCache.getInstance("B");
+        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheD == MemoryCache.getInstance("D");
+        assert memCacheE == MemoryCache.getInstance("E");
+>>>>>>> 8ccd403ffe3ae5a74a4ebf6b2640e7d39372bf53
 
         MemoryCache.setMaxInstanceCount(3);
 
-        MemoryCache memCacheD = MemoryCache.getInstance("D");
+        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheD == MemoryCache.getInstance("D");
+        assert memCacheE == MemoryCache.getInstance("E");
+        assert memCacheA != MemoryCache.getInstance("A");
+        assert memCacheB != MemoryCache.getInstance("B");
+
+        MemoryCache.clear();
+
+        MemoryCache memCacheF = MemoryCache.getInstance("F");
+        MemoryCache memCacheG = MemoryCache.getInstance("G");
+
+        assert memCacheA == MemoryCache.getInstance("A");
+        assert memCacheB == MemoryCache.getInstance("B");
+        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheD == MemoryCache.getInstance("C");
+        assert memCacheE == MemoryCache.getInstance("E");
+        assert memCacheF == MemoryCache.getInstance("F");
+        MemoryCache.setMaxInstanceCount(3);
 
         assert memCacheA != MemoryCache.getInstance("A");
-        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheC != MemoryCache.getInstance("C");
         assert memCacheB != MemoryCache.getInstance("B");
         assert memCacheD != MemoryCache.getInstance("D");
+
+        assert memCacheE != MemoryCache.getInstance("E");
+        assert memCacheF != MemoryCache.getInstance("F");
 
 
 
