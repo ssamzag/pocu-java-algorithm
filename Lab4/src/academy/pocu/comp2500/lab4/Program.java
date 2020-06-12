@@ -5,14 +5,14 @@ import java.util.LinkedHashMap;
 public class Program {
 
     public static void main(String[] args) {
+        MemoryCache.setMaxInstanceCount(2);
         MemoryCache memCacheA = MemoryCache.getInstance("A");
-
         MemoryCache memCacheB = MemoryCache.getInstance("B");
         MemoryCache memCacheC = MemoryCache.getInstance("C");
 
-        assert memCacheA == MemoryCache.getInstance("A");
-        assert memCacheB == MemoryCache.getInstance("B");
-        assert memCacheC == MemoryCache.getInstance("C");
+        assert memCacheA != MemoryCache.getInstance("A");
+        assert memCacheB != MemoryCache.getInstance("B");
+        assert memCacheC != MemoryCache.getInstance("C");
 
         MemoryCache.setMaxInstanceCount(3);
 
