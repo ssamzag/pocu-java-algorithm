@@ -19,6 +19,7 @@ public class NoHeavyMeal extends SetMenu {
     }
 
     public void setDessert(Dessert dessert) {
+        desserts.clear();
         this.desserts.add(dessert);
         setValid();
     }

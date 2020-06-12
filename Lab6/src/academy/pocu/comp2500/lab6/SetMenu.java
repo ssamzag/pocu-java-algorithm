@@ -14,11 +14,11 @@ public class SetMenu extends Menu {
         return this.appetizers;
     }
 
-    public ArrayList<Dessert> getDessert() {
+    public ArrayList<Dessert> getDesserts() {
         return this.desserts;
     }
 
-    public ArrayList<MainCourse> getMainCourse() {
+    public ArrayList<MainCourse> getMainCourses() {
         return this.mainCourses;
     }
 
