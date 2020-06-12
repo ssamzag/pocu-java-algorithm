@@ -3,8 +3,6 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class DeathByDesserts extends SetMenu {
-    private ArrayList<Dessert> desserts = new ArrayList<>();
-
     public DeathByDesserts() {
         super.price = 20;
         super.desserts = new ArrayList<Dessert>();
