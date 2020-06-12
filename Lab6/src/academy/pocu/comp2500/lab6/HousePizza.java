@@ -12,7 +12,7 @@ public class HousePizza extends Pizza {
         super.toppings.add(Topping.MOZZARELLA_CHEESE);
     }
 
-    public void setValid() {
+    private void setValid() {
         super.isValid = super.meatCount == MAX_MEAT_COUNT;
     }
 

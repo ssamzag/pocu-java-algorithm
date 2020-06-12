@@ -5,8 +5,8 @@ public class Menu {
     protected boolean isValid;
 
     protected Menu() {
-
     }
+
     public int getPrice() {
         return price;
     }

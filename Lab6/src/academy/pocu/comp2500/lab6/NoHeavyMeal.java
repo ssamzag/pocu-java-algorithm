@@ -9,7 +9,7 @@ public class NoHeavyMeal extends SetMenu {
         super.desserts = new ArrayList<Dessert>();
     }
 
-    public void setValid() {
+    private void setValid() {
         super.isValid = this.appetizers.size() == 2 && this.desserts.size() == 1;
     }
 
