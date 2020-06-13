@@ -1,18 +1,20 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product {
-    private CalendarType type;
-    private CalendarSize size;
+    private CalendarType calendarType;
+    private CalendarSize calendarSize;
+    private CalendarColor calendarColor;
 
-    public Calendar(CalendarType type) {
-        this.type = type;
-        this.size = type == CalendarType.WALL ? CalendarSize.W40_H40_CM :  type == CalendarType.DESK ? CalendarSize.W20_H15_CM : CalendarSize.W10_H20_CM;
+    public Calendar(CalendarType calendarType) {
+        this.calendarType = calendarType;
+        this.calendarSize = calendarType == CalendarType.WALL ? CalendarSize.W40_H40_CM :  calendarType == CalendarType.DESK ? CalendarSize.W20_H15_CM : CalendarSize.W10_H20_CM;
+        this.calendarColor = CalendarColor.WHITE;
         super.price = getCalendarPrice();
-        super.color = 0xFFFFFF;
+        super.color = calendarColor.getValue();
     }
 
     private int getCalendarPrice() {
-        switch(type) {
+        switch(calendarType) {
             case WALL:
             case DESK:
                 return 1000;
@@ -25,11 +27,15 @@ public class Calendar extends Product {
         return -1;
     }
 
-    public CalendarType getType() {
-        return type;
+    public CalendarColor getCalendarColor() {
+        return calendarColor;
     }
 
-    public CalendarSize getSize() {
-        return size;
+    public CalendarType getCalendarType() {
+        return calendarType;
+    }
+
+    public CalendarSize getCalendarSize() {
+        return calendarSize;
     }
 }
