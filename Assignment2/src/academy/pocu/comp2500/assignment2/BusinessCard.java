@@ -1,50 +1,44 @@
 package academy.pocu.comp2500.assignment2;
 
-import java.util.ArrayList;
-
 public class BusinessCard extends ProductOption {
-    private BusinessCardType businessCardType;
+    private PaperMaterialType paperMaterial;
     private BusinessCardSize size = BusinessCardSize.W9_H5_CM;;
-    private BusinessCardSideType sideType;
-    private BusinessCardColor businessCardColor;
+    private CardSidesType cardSides;
+    private BusinessCardColor paperColor;
 
-    public BusinessCard(BusinessCardType businessCardType, BusinessCardSideType type, BusinessCardColor color, OrientationType orientation) {
-        this.businessCardType = businessCardType;
-        this.sideType = type;
-        this.businessCardColor = color;
-        super.color = color.getValue();
+    public BusinessCard(PaperMaterialType paperMaterial, CardSidesType cardSides, BusinessCardColor paperColor, OrientationType orientation) {
+        this.paperMaterial = paperMaterial;
+        this.cardSides = cardSides;
+        this.paperColor = paperColor;
+        super.color = paperColor.getValue();
         super.price = getBusinessCardPrice();
         super.orientation = orientation;
     }
 
-    public BusinessCardType getBusinessCardType() {
-        return businessCardType;
+    public PaperMaterialType getBusinessCardType() {
+        return paperMaterial;
     }
 
     public BusinessCardSize getSize() {
         return size;
     }
 
-    public BusinessCardSideType getSideType() {
-        return sideType;
+    public CardSidesType getCardSides() {
+        return cardSides;
     }
 
-    public ArrayList<Aperture> getApertures() {
-        return apertures;
-    }
-
-    public BusinessCardColor getBusinessCardColor() {
-        return businessCardColor;
+    public BusinessCardColor getPaperColor() {
+        return paperColor;
     }
 
     private int getBusinessCardPrice() {
-        switch (businessCardType) {
+        switch (paperMaterial) {
             case LINEN:
-                return sideType == BusinessCardSideType.SINGLE_SIDE ? 110 : 140;
+                return cardSides == CardSidesType.SINGLE_SIDE ? 110 : 140;
             case LAID:
-                return sideType == BusinessCardSideType.SINGLE_SIDE ? 120 : 150;
+                return cardSides == CardSidesType.SINGLE_SIDE ? 120 : 150;
             case SNOW:
-                return sideType == BusinessCardSideType.SINGLE_SIDE ? 100 : 130;
+                return cardSides == CardSidesType.SINGLE_SIDE ? 100 : 130;
             default:
                 assert false : "businessCardType is null";
                 return -1;
