@@ -17,6 +17,10 @@ public class Product {
         return price;
     }
 
+    public ShipmentType getShipmentType() {
+        return shipmentType;
+    }
+
     public void setShipmentType(ShipmentType shipmentType) {
         this.shipmentType = shipmentType;
     }
