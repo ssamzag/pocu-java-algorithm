@@ -20,6 +20,4 @@ public class Product {
     public void setShipmentType(ShipmentType shipmentType) {
         this.shipmentType = shipmentType;
     }
-
-
 }

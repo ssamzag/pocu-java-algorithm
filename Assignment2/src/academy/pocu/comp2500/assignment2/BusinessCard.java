@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 public class BusinessCard extends Print {
     private BusinessCardType businessCardType;
-    private BusinessCardSize cardSize = BusinessCardSize.W9_H5_CM;;
+    private BusinessCardSize size = BusinessCardSize.W9_H5_CM;;
     private BusinessCardSideType sideType;
     private ArrayList<Aperture> apertures = new ArrayList<Aperture>();
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSize cardSize, BusinessCardSideType type, BusinessCardColor cardColor) {
-        this.sideType = BusinessCardSideType.SINGLE_SIDE;
+    public BusinessCard(BusinessCardType cardType, BusinessCardSideType type, BusinessCardColor color) {
         this.businessCardType = cardType;
         this.sideType = type;
-        this.cardSize = cardSize;
-        super.color = cardColor.getValue();
+        this.size = BusinessCardSize.W9_H5_CM;
+        super.color = color.getValue();
         super.price = getBusinessCardPrice();
     }
 
@@ -30,23 +29,16 @@ public class BusinessCard extends Print {
     }
 
     private int getBusinessCardPrice() {
-        int price;
         switch (businessCardType) {
             case LINEN:
-                price = sideType == BusinessCardSideType.SINGLE_SIDE ? 110 : 140;
-                break;
+                return sideType == BusinessCardSideType.SINGLE_SIDE ? 110 : 140;
             case LAID:
-                price = sideType == BusinessCardSideType.SINGLE_SIDE ? 120 : 150;
-                break;
+                return sideType == BusinessCardSideType.SINGLE_SIDE ? 120 : 150;
             case SNOW:
-                price = sideType == BusinessCardSideType.SINGLE_SIDE ? 100 : 130;
-                break;
+                return sideType == BusinessCardSideType.SINGLE_SIDE ? 100 : 130;
             default:
                 assert false : "businessCardType is null";
-                price = -1;
-                break;
+                return -1;
         }
-
-        return price;
     }
 }
