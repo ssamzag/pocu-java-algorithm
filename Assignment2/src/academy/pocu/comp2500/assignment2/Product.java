@@ -4,11 +4,7 @@ public class Product {
     protected int color;
     protected int price;
     protected ShipmentType shipment = ShipmentType.SHIP;
-
-    protected void setColor(int color) {
-        this.color = color;
-    }
-
+    
     public int getColor() {
         return this.color;
     }
