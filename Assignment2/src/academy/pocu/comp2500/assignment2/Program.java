@@ -25,7 +25,7 @@ public class Program {
             Calendar whiteCalendar = new Calendar(CalendarType.WALL);
 
             assert whiteCalendar.price == 1000;
-            assert whiteCalendar.getSize() == CalendarSize.W40_H40_CM;
+            assert whiteCalendar.getCalendarSize() == CalendarSize.W40_H40_CM;
             assert whiteCalendar.color == 0xFFFFFF;
 
             //3.4 하얀색 40 x 40 cm 벽걸이 달력의 배송 방법 바꾸기

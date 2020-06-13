@@ -3,7 +3,7 @@ package academy.pocu.comp2500.assignment2;
 import java.util.ArrayList;
 
 public class ProductOption extends Product {
-    protected ArrayList<Aperture> apertures = new ArrayList<>();
+    private ArrayList<Aperture> apertures = new ArrayList<>();
     protected OrientationType orientation;
     protected static final int ADD_COST = 5;
 

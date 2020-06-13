@@ -24,7 +24,7 @@ public class Calendar extends Product {
                 assert (false);
         }
 
-        return -1;
+        return 0;
     }
 
     public CalendarColor getCalendarColor() {

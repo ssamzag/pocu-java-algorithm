@@ -18,8 +18,8 @@ public class App {
 
 
         ///배너 출력 방향
-        registry.registerLandscapeBannerCreator("ProductOption");
-        registry.registerPortraitBannerCreator("ProductOption");
+        registry.registerLandscapeBannerCreator("Banner");
+        registry.registerPortraitBannerCreator("Banner");
 
         //배너
         registry.registerGlossBannerCreator("Banner");
@@ -27,8 +27,8 @@ public class App {
         registry.registerMeshBannerCreator("Banner");
 
         //명함 출력 방향
-        registry.registerLandscapeBusinessCardCreator("ProductOption");
-        registry.registerPortraitBusinessCardCreator("ProductOption");
+        registry.registerLandscapeBusinessCardCreator("BusinessCard");
+        registry.registerPortraitBusinessCardCreator("BusinessCard");
         //명함 종이색
         registry.registerIvoryBusinessCardCreator("BusinessCard");
         registry.registerGrayBusinessCardCreator("BusinessCard");

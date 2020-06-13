@@ -62,6 +62,6 @@ public class Banner extends ProductOption {
                     assert (false) : "No Mesh Size";
             }
         }
-        return -1;
+        return 0;
     }
 }

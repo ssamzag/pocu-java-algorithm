@@ -35,6 +35,6 @@ public class Stamp extends Product {
             default:
                 assert (false);
         }
-        return -1;
+        return 0;
     }
 }

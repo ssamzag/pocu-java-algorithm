@@ -41,7 +41,7 @@ public class BusinessCard extends ProductOption {
                 return cardSides == CardSidesType.SINGLE_SIDE ? 100 : 130;
             default:
                 assert false : "businessCardType is null";
-                return -1;
+                return 0;
         }
     }
 }
