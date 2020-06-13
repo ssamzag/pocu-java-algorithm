@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.assignment2;
 
-import java.util.ArrayList;
-
 public class Banner extends ProductOption {
     private BannerType type;
     private BannerSize size;
@@ -13,6 +11,14 @@ public class Banner extends ProductOption {
         super.color = color;
         this.orientation = orientation;
         super.price = getBannerPrice();
+    }
+
+    public BannerType getType() {
+        return type;
+    }
+
+    public BannerSize getSize() {
+        return size;
     }
 
     private void setCustomColor(int color) {

@@ -1,8 +1,12 @@
 package academy.pocu.comp2500.assignment2;
 
+import academy.pocu.comp2500.assignment2.registry.Registry;
+
 public class Program {
     public static void main(String[] args) {
-
+        Registry registry = new Registry();
+        App app = new App(registry);
+        registry.validate();
         {
             //3.1 빨강 잉크 4 x 3 cm 스탬프 만들기
             Stamp redStamp = new Stamp(StampSize.W4_H3_CM, StampColor.RED);
@@ -33,6 +37,25 @@ public class Program {
             assert cart.getTotalPrice() == 3300 : cart.getTotalPrice();
 
             // 3.5 1 x 0.5 m 반사 배너 만들기
+            Banner glossBanner = new Banner(BannerType.GLOSS, BannerSize.W100_H50_CM, 0x34FF22, OrientationType.PORTRAIT);
+            TextAperture textAperture1 = new TextAperture(10,20, "안녕???");
+            TextAperture textAperture2 = new TextAperture(20,20, "흠냠");
+            ImageAperture imageAperture1 = new ImageAperture(2,3, "../img/gg.jpg");
+            glossBanner.addAperture(textAperture1);
+            glossBanner.addAperture(textAperture2);
+            glossBanner.addAperture(imageAperture1);
+
+            assert glossBanner.getType() == BannerType.GLOSS;
+            assert glossBanner.getSize() == BannerSize.W100_H50_CM;
+            assert glossBanner.color == 0x34FF22;
+            assert glossBanner.orientation == OrientationType.PORTRAIT;
+            assert glossBanner.getApertures().get(0) == textAperture1;
+            assert glossBanner.getApertures().get(1) == textAperture2;
+            assert glossBanner.getApertures().get(2) == imageAperture1;
+            assert glossBanner.price == 5015 : glossBanner.price;
+
+
+
 
         }
 

@@ -11,6 +11,10 @@ public class ProductOption extends Product {
         this.apertures.add(aperture);
     }
 
+    public ArrayList<Aperture> getApertures() {
+        return this.apertures;
+    }
+
     public OrientationType getOrientation() {
         return orientation;
     }
