@@ -5,12 +5,16 @@ import java.util.ArrayList;
 public class Cart {
     private ArrayList<Product> products = new ArrayList<>();
 
-    private void addProduct(Product product) {
+    public void addProduct(Product product) {
         this.products.add(product);
     }
 
-    private void removeProduct(Product product) {
+    public void removeProduct(Product product) {
         this.products.remove(product);
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
     public int getTotalPrice() {

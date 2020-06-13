@@ -3,10 +3,7 @@ package academy.pocu.comp2500.assignment2;
 public class Stamp extends Product {
     private StampSize stampSize;
 
-    public Stamp() {
-    }
-
-    public void setStamp(StampSize size, StampColor color) {
+    public Stamp(StampSize size, StampColor color) {
         this.stampSize = size;
         super.color = color.getValue();
         super.price = getProductPrice();
