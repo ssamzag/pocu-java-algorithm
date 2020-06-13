@@ -2,26 +2,40 @@ package academy.pocu.comp2500.assignment2;
 
 import java.util.ArrayList;
 
-public class BusinessCard extends Print {
+public class BusinessCard extends ProductOption {
     private BusinessCardType businessCardType;
     private BusinessCardSize size = BusinessCardSize.W9_H5_CM;;
     private BusinessCardSideType sideType;
     private ArrayList<Aperture> apertures = new ArrayList<Aperture>();
+    private BusinessCardColor businessCardColor;
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSideType type, BusinessCardColor color) {
+    public BusinessCard(BusinessCardType cardType, BusinessCardSideType type, BusinessCardColor color, OrientationType orientation) {
         this.businessCardType = cardType;
         this.sideType = type;
-        this.size = BusinessCardSize.W9_H5_CM;
+        this.businessCardColor = color;
         super.color = color.getValue();
         super.price = getBusinessCardPrice();
+        super.orientation = orientation;
     }
 
-    public void setPaperColor(BusinessCardColor color) {
-        super.color = color.getValue();
+    public BusinessCardType getBusinessCardType() {
+        return businessCardType;
     }
 
-    public void setOrientation(OrientationType orientation) {
-        this.orientation = orientation;
+    public BusinessCardSize getSize() {
+        return size;
+    }
+
+    public BusinessCardSideType getSideType() {
+        return sideType;
+    }
+
+    public ArrayList<Aperture> getApertures() {
+        return apertures;
+    }
+
+    public BusinessCardColor getBusinessCardColor() {
+        return businessCardColor;
     }
 
     public void addAperture(Aperture aperture) {

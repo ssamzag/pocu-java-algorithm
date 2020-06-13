@@ -8,4 +8,7 @@ public class ImageAperture extends Aperture {
         this.imagePath = imagePath;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
 }

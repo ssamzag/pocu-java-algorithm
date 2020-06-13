@@ -12,7 +12,4 @@ public class TextAperture extends Aperture {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
 }

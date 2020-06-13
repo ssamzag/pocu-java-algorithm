@@ -12,14 +12,14 @@ public class App {
         registry.registerGreenStampCreator("Stamp");
 
         //달력
-        registry.registerWallCalendarCreator("Calendar", "setWallCalendar");
-        registry.registerMagnetCalendarCreator("Calendar", "setMagnetCalendar");
-        registry.registerDeskCalendarCreator("Calendar", "setDeskCalendar");
+        registry.registerWallCalendarCreator("Calendar");
+        registry.registerMagnetCalendarCreator("Calendar");
+        registry.registerDeskCalendarCreator("Calendar");
 
 
         ///배너 출력 방향
-        registry.registerLandscapeBannerCreator("ProductOption", "setOrientation");
-        registry.registerPortraitBannerCreator("ProductOption", "setOrientation");
+        registry.registerLandscapeBannerCreator("ProductOption");
+        registry.registerPortraitBannerCreator("ProductOption");
 
         //배너
         registry.registerGlossBannerCreator("Banner");
@@ -27,12 +27,12 @@ public class App {
         registry.registerMeshBannerCreator("Banner");
 
         //명함 출력 방향
-        registry.registerLandscapeBusinessCardCreator("ProductOption", "setOrientation");
-        registry.registerPortraitBusinessCardCreator("ProductOption", "setOrientation");
+        registry.registerLandscapeBusinessCardCreator("ProductOption");
+        registry.registerPortraitBusinessCardCreator("ProductOption");
         //명함 종이색
-        registry.registerIvoryBusinessCardCreator("BusinessCard", "setPaperColor");
-        registry.registerGrayBusinessCardCreator("BusinessCard", "setPaperColor");
-        registry.registerWhiteBusinessCardCreator("BusinessCard", "setPaperColor");
+        registry.registerIvoryBusinessCardCreator("BusinessCard");
+        registry.registerGrayBusinessCardCreator("BusinessCard");
+        registry.registerWhiteBusinessCardCreator("BusinessCard");
 
         //명함
         registry.registerLaidBusinessCardCreator("BusinessCard");

@@ -22,8 +22,8 @@ public class Program {
             assert cart.getProducts().get(0) == redStamp;
 
             //3.3 하얀색 40 x 40 cm 벽걸이 달력 만들기
-            Calendar whiteCalendar = new Calendar();
-            whiteCalendar.setWallCalendar();
+            Calendar whiteCalendar = new Calendar(CalendarType.WALL);
+
             assert whiteCalendar.price == 1000;
             assert whiteCalendar.getSize() == CalendarSize.W40_H40_CM;
             assert whiteCalendar.color == 0xFFFFFF;

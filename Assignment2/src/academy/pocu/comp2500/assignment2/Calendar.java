@@ -4,23 +4,9 @@ public class Calendar extends Product {
     private CalendarType type;
     private CalendarSize size;
 
-    public void setWallCalendar() {
-        this.type = CalendarType.WALL;
-        this.size = CalendarSize.W40_H40_CM;
-        super.price = getCalendarPrice();
-        super.color = 0xFFFFFF;
-    }
-
-    public void setDeskCalendar() {
-        this.type = CalendarType.DESK;
-        this.size = CalendarSize.W20_H15_CM;
-        super.price = getCalendarPrice();
-        super.color = 0xFFFFFF;
-    }
-
-    public void setMagnetCalendar() {
-        this.type = CalendarType.MAGNET;
-        this.size = CalendarSize.W10_H20_CM;
+    public Calendar(CalendarType type) {
+        this.type = type;
+        this.size = type == CalendarType.WALL ? CalendarSize.W40_H40_CM :  type == CalendarType.DESK ? CalendarSize.W20_H15_CM : CalendarSize.W10_H20_CM;
         super.price = getCalendarPrice();
         super.color = 0xFFFFFF;
     }

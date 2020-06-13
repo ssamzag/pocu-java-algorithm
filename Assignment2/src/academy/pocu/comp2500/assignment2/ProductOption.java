@@ -18,8 +18,4 @@ public class ProductOption extends Product {
     public OrientationType getOrientation() {
         return orientation;
     }
-
-    public void setOrientation(OrientationType orientation) {
-        this.orientation = orientation;
-    }
 }
