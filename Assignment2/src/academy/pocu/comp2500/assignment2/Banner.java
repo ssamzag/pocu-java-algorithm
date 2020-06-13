@@ -2,50 +2,20 @@ package academy.pocu.comp2500.assignment2;
 
 import java.util.ArrayList;
 
-public class Banner extends Product {
+public class Banner extends ProductOption {
     private BannerType type;
     private BannerSize size;
-    private Orientation bannerOrientation;
 
-    protected static final int ADD_COST = 5;
-
-    private ArrayList<Position> words = new ArrayList<>();
-    private ArrayList<Position> pictures = new ArrayList<>();
-
-    public Banner() {
-        this.bannerOrientation = Orientation.LANDSCAPE;
-    }
-
-    public void setGlossBanner(BannerSize size, int color, Orientation orientation) {
-        this.type = BannerType.GLOSS;
+    public Banner(BannerType type, BannerSize size, int color, OrientationType orientation) {
+        super.orientation = OrientationType.LANDSCAPE;
+        this.type = type;
         this.size = size;
-        setColor(color);
-        this.bannerOrientation = orientation;
+        super.color = color;
+        this.orientation = orientation;
+        super.price = getBannerPrice();
     }
 
-    public void setScrimBanner(BannerSize size, int color, Orientation orientation) {
-        this.type = BannerType.SCRIM;
-        this.size = size;
-        setColor(color);
-        this.bannerOrientation = orientation;
-    }
-
-    public void setMeshBanner(BannerSize size, int color, Orientation orientation) {
-        this.type = BannerType.MESH;
-        this.size = size;
-        setColor(color);
-        this.bannerOrientation = orientation;
-    }
-
-    public void addWord(Position position) {
-        this.words.add(position);
-    }
-
-    public void addPicture(Position position) {
-        this.pictures.add(position);
-    }
-
-    protected void setColor(int color) {
+    private void setCustomColor(int color) {
         assert color >= 0 && color <= 0xFFFFFF : "Invalid RGB Color!!";
         super.color = color;
     }
@@ -54,8 +24,8 @@ public class Banner extends Product {
         return type != null && size != null;
     }
 
-    public int getPrice() {
-        return getBannerSizePrice() + pictures.size() * ADD_COST + words.size() * ADD_COST;
+    private int getBannerPrice() {
+        return super.apertures.size() * ADD_COST + getBannerSizePrice();
     }
 
     private int getBannerSizePrice() {
@@ -70,7 +40,7 @@ public class Banner extends Product {
                 case W300_H100_CM:
                     return 6000;
                 default:
-                    assert (false);
+                    assert (false) : "No Gloss Size";
             }
         } else if (type == BannerType.SCRIM) {
             switch (size) {
@@ -83,7 +53,7 @@ public class Banner extends Product {
                 case W300_H100_CM:
                     return 6100;
                 default:
-                    assert (false);
+                    assert (false) : "No Scrim Size";
             }
         } else if (type == BannerType.MESH) {
             switch (size) {
@@ -96,7 +66,7 @@ public class Banner extends Product {
                 case W300_H100_CM:
                     return 6100;
                 default:
-                    assert (false);
+                    assert (false) : "No Mesh Size";
             }
         }
         return -1;

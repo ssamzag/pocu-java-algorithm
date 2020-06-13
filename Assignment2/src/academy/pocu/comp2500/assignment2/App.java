@@ -7,9 +7,9 @@ import academy.pocu.comp2500.assignment2.registry.Registry;
 public class App {
     public App(Registry registry) {
         //스탬프
-        registry.registerRedStampCreator("Stamp", "setRedStamp");
-        registry.registerBlueStampCreator("Stamp", "setBedStamp");
-        registry.registerGreenStampCreator("Stamp", "setGreenStamp");
+        registry.registerRedStampCreator("Stamp");
+        registry.registerBlueStampCreator("Stamp");
+        registry.registerGreenStampCreator("Stamp");
 
         //달력
         registry.registerWallCalendarCreator("Calendar", "setWallCalendar");
@@ -18,79 +18,76 @@ public class App {
 
 
         ///배너 출력 방향
-        registry.registerLandscapeBannerCreator("");
-        registry.registerLandscapeBannerCreator("", "");
-        registry.registerPortraitBannerCreator("");
-        registry.registerPortraitBannerCreator("", "");
+        registry.registerLandscapeBannerCreator("Banner", "setOrientation");
+        registry.registerPortraitBannerCreator("Banner", "setOrientation");
 
         //배너
-        registry.registerGlossBannerCreator("");
-        registry.registerGlossBannerCreator("", "");
-        registry.registerScrimBannerCreator("");
-        registry.registerScrimBannerCreator("", "");
-        registry.registerMeshBannerCreator("");
-        registry.registerMeshBannerCreator("", "");
+        registry.registerGlossBannerCreator("Banner", "setGlossBanner");
+        registry.registerScrimBannerCreator("Banner", "setScrimBanner");
+        registry.registerMeshBannerCreator("Banner", "setMeshBanner");
 
         //명함 출력 방향
-        registry.registerLandscapeBusinessCardCreator("");
-        registry.registerLandscapeBusinessCardCreator("", "");
-        registry.registerPortraitBusinessCardCreator("");
-        registry.registerPortraitBusinessCardCreator("", "");
+        registry.registerLandscapeBusinessCardCreator("BusinessCard", "setOrientation");
+        registry.registerPortraitBusinessCardCreator("BusinessCard", "setOrientation");
         //명함 종이색
-        registry.registerIvoryBusinessCardCreator("");
-        registry.registerIvoryBusinessCardCreator("", "");
-        registry.registerGrayBusinessCardCreator("");
-        registry.registerGrayBusinessCardCreator("", "");
-        registry.registerWhiteBusinessCardCreator("");
-        registry.registerWhiteBusinessCardCreator("", "");
+        registry.registerIvoryBusinessCardCreator("BusinessCard", "setPaperColor");
+        registry.registerGrayBusinessCardCreator("BusinessCard", "setPaperColor");
+        registry.registerWhiteBusinessCardCreator("BusinessCard", "setPaperColor");
+
         //명함
-        registry.registerLaidBusinessCardCreator("");
-        registry.registerLaidBusinessCardCreator("", "");
-        registry.registerLinenBusinessCardCreator("");
-        registry.registerLinenBusinessCardCreator("", "");
-        registry.registerSmoothBusinessCardCreator("");
-        registry.registerSmoothBusinessCardCreator("", "");
-        registry.registerSingleSidedBusinessCardCreator("");
-        registry.registerSingleSidedBusinessCardCreator("", "");
-        registry.registerDoubleSidedBusinessCardCreator("");
-        registry.registerDoubleSidedBusinessCardCreator("", "");
+        registry.registerLaidBusinessCardCreator("BusinessCard", "");
+        registry.registerLinenBusinessCardCreator("BusinessCard", "");
+        registry.registerSmoothBusinessCardCreator("BusinessCard", "");
+
+        registry.registerSingleSidedBusinessCardCreator("BusinessCard", "setSingleSidedBusinessCard");
+        registry.registerDoubleSidedBusinessCardCreator("BusinessCard", "setDoubleSidedBusinessCard");
 
         //장바구니
         registry.registerCartCreator("Cart");
         registry.registerProductAdder("Cart", "addProduct");
         registry.registerProductRemover("Cart", "removeProduct");
-        registry.registerTotalPriceGetter("", "getTotalPrice");
+        registry.registerTotalPriceGetter("Cart", "getTotalPrice");
 
-        //ㄱㄱㄱ
-        registry.registerLandscapeBannerTextApertureAdder("", "");
-        registry.registerLandscapeBannerImageApertureAdder("", "");
-        registry.registerPortraitBannerTextApertureAdder("", "");
-        registry.registerPortraitBannerImageApertureAdder("", "");
-        registry.registerGlossBannerTextApertureAdder("", "");
-        registry.registerGlossBannerImageApertureAdder("", "");
-        registry.registerScrimBannerTextApertureAdder("", "");
-        registry.registerScrimBannerImageApertureAdder("", "");
-        registry.registerMeshBannerTextApertureAdder("", "");
-        registry.registerMeshBannerImageApertureAdder("", "");
-        registry.registerLandscapeBusinnessCardTextApertureAdder("", "");
-        registry.registerLandscapeBusinnessCardImageApertureAdder("", "");
-        registry.registerPortraitBusinnessCardTextApertureAdder("", "");
-        registry.registerPortraitBusinnessCardImageApertureAdder("", "");
-        registry.registerIvoryBusinnessCardTextApertureAdder("", "");
-        registry.registerIvoryBusinnessCardImageApertureAdder("", "");
-        registry.registerGrayBusinnessCardTextApertureAdder("", "");
-        registry.registerGrayBusinnessCardImageApertureAdder("", "");
-        registry.registerWhiteBusinnessCardTextApertureAdder("", "");
-        registry.registerWhiteBusinnessCardImageApertureAdder("", "");
-        registry.registerLaidBusinnessCardTextApertureAdder("", "");
-        registry.registerLaidBusinnessCardImageApertureAdder("", "");
-        registry.registerLinenBusinnessCardTextApertureAdder("", "");
-        registry.registerLinenBusinnessCardImageApertureAdder("", "");
-        registry.registerSmoothBusinnessCardTextApertureAdder("", "");
-        registry.registerSmoothBusinnessCardImageApertureAdder("", "");
-        registry.registerSingleSidedBusinnessCardTextApertureAdder("", "");
-        registry.registerSingleSidedBusinnessCardImageApertureAdder("", "");
-        registry.registerDoubleSidedBusinnessCardTextApertureAdder("", "");
-        registry.registerDoubleSidedBusinnessCardImageApertureAdder("", "");
+        //가로세로 배너 텍스트 이미지 추가
+        registry.registerLandscapeBannerTextApertureAdder("Banner", "addAperture");
+        registry.registerLandscapeBannerImageApertureAdder("Banner", "addAperture");
+        registry.registerPortraitBannerTextApertureAdder("Banner", "addAperture");
+        registry.registerPortraitBannerImageApertureAdder("Banner", "addAperture");
+
+        // 각배너 텍스트 이미지 추가
+        registry.registerGlossBannerTextApertureAdder("Banner", "addAperture");
+        registry.registerGlossBannerImageApertureAdder("Banner", "addAperture");
+        registry.registerScrimBannerTextApertureAdder("Banner", "addAperture");
+        registry.registerScrimBannerImageApertureAdder("Banner", "addAperture");
+        registry.registerMeshBannerTextApertureAdder("Banner", "addAperture");
+        registry.registerMeshBannerImageApertureAdder("Banner", "addAperture");
+
+        // 가로새로 명함 텍스트 이미지 추가
+        registry.registerLandscapeBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerLandscapeBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+        registry.registerPortraitBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerPortraitBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+
+        // 색상지정 명함 텍스트 이미지 추가
+        registry.registerIvoryBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerIvoryBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+        registry.registerGrayBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerGrayBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+        registry.registerWhiteBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerWhiteBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+
+        // 각 명함에 텍스트 이미지 추가
+        registry.registerLaidBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerLaidBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+        registry.registerLinenBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerLinenBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+        registry.registerSmoothBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerSmoothBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+
+        // 단/양면 명함에 이미지 텍스트 추가
+        registry.registerSingleSidedBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerSingleSidedBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
+        registry.registerDoubleSidedBusinnessCardTextApertureAdder("BusinessCard", "addAperture");
+        registry.registerDoubleSidedBusinnessCardImageApertureAdder("BusinessCard", "addAperture");
     }
 }
