@@ -22,9 +22,9 @@ public class App {
         registry.registerPortraitBannerCreator("Banner", "setOrientation");
 
         //배너
-        registry.registerGlossBannerCreator("Banner", "setGlossBanner");
-        registry.registerScrimBannerCreator("Banner", "setScrimBanner");
-        registry.registerMeshBannerCreator("Banner", "setMeshBanner");
+        registry.registerGlossBannerCreator("Banner");
+        registry.registerScrimBannerCreator("Banner");
+        registry.registerMeshBannerCreator("Banner");
 
         //명함 출력 방향
         registry.registerLandscapeBusinessCardCreator("BusinessCard", "setOrientation");
@@ -35,9 +35,9 @@ public class App {
         registry.registerWhiteBusinessCardCreator("BusinessCard", "setPaperColor");
 
         //명함
-        registry.registerLaidBusinessCardCreator("BusinessCard", "");
-        registry.registerLinenBusinessCardCreator("BusinessCard", "");
-        registry.registerSmoothBusinessCardCreator("BusinessCard", "");
+        registry.registerLaidBusinessCardCreator("BusinessCard");
+        registry.registerLinenBusinessCardCreator("BusinessCard");
+        registry.registerSmoothBusinessCardCreator("BusinessCard");
 
         registry.registerSingleSidedBusinessCardCreator("BusinessCard", "setSingleSidedBusinessCard");
         registry.registerDoubleSidedBusinessCardCreator("BusinessCard", "setDoubleSidedBusinessCard");
