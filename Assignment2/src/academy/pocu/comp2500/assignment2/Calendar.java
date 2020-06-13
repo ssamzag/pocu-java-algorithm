@@ -2,18 +2,33 @@ package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product {
     private CalendarType type;
+    private CalendarSize size;
 
-    public Calendar(PrintSize size, CalendarType type) {
-        super.setPrintSize(size);
-        super.setColor(CustomColor.WHITE_BOARD.getRgbColor());
+    public Calendar() {
+
+    }
+
+    public void setWallCalendar() {
+        this.type = CalendarType.WALL;
+        this.size = CalendarSize.W40_H40_CM;
+    }
+
+    public void setDeskCalendar() {
+        this.type = CalendarType.WALL;
+        this.size = CalendarSize.W20_H15_CM;
+    }
+
+    public void setMagnetCalendar() {
+        this.type = CalendarType.WALL;
+        this.size = CalendarSize.W10_H20_CM;
     }
 
     public int getPrice() {
-        switch(super.getPrintSize()) {
-            case SIZE_40X40_CM:
-            case SIZE_20X15_CM:
+        switch(type) {
+            case WALL:
+            case DESK:
                 return 1000;
-            case SIZE_10X20_CM:
+            case MAGNET:
                 return 1500;
             default:
                 assert (false);
