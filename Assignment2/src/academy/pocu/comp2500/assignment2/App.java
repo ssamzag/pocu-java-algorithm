@@ -39,8 +39,8 @@ public class App {
         registry.registerLinenBusinessCardCreator("BusinessCard");
         registry.registerSmoothBusinessCardCreator("BusinessCard");
 
-        registry.registerSingleSidedBusinessCardCreator("BusinessCard", "setSingleSidedBusinessCard");
-        registry.registerDoubleSidedBusinessCardCreator("BusinessCard", "setDoubleSidedBusinessCard");
+        registry.registerSingleSidedBusinessCardCreator("BusinessCard");
+        registry.registerDoubleSidedBusinessCardCreator("BusinessCard");
 
         //장바구니
         registry.registerCartCreator("Cart");
