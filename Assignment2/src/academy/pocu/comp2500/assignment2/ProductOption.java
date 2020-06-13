@@ -8,7 +8,12 @@ public class ProductOption extends Product {
     protected static final int ADD_COST = 5;
 
     public void addAperture(Aperture aperture) {
+        if (aperture.getX() < 0 || aperture.getY() < 0) {
+            return;
+        }
+
         this.apertures.add(aperture);
+        super.price += ADD_COST;
     }
 
     public ArrayList<Aperture> getApertures() {

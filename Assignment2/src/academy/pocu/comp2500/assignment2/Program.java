@@ -9,7 +9,7 @@ public class Program {
         registry.validate();
         {
             //3.1 빨강 잉크 4 x 3 cm 스탬프 만들기
-            Stamp redStamp = new Stamp(StampSize.W4_H3_CM, StampColor.RED);
+            Stamp redStamp = new Stamp(StampSize.W4_H3_CM, StampColor.RED, "히히");
             assert redStamp.price == 2300 : "2300 원 아님";
             assert redStamp.color == StampColor.RED.getValue() : "RED 아님";
 

@@ -6,11 +6,10 @@ public class BusinessCard extends ProductOption {
     private BusinessCardType businessCardType;
     private BusinessCardSize size = BusinessCardSize.W9_H5_CM;;
     private BusinessCardSideType sideType;
-    private ArrayList<Aperture> apertures = new ArrayList<Aperture>();
     private BusinessCardColor businessCardColor;
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSideType type, BusinessCardColor color, OrientationType orientation) {
-        this.businessCardType = cardType;
+    public BusinessCard(BusinessCardType businessCardType, BusinessCardSideType type, BusinessCardColor color, OrientationType orientation) {
+        this.businessCardType = businessCardType;
         this.sideType = type;
         this.businessCardColor = color;
         super.color = color.getValue();
@@ -36,10 +35,6 @@ public class BusinessCard extends ProductOption {
 
     public BusinessCardColor getBusinessCardColor() {
         return businessCardColor;
-    }
-
-    public void addAperture(Aperture aperture) {
-        this.apertures.add(aperture);
     }
 
     private int getBusinessCardPrice() {

@@ -10,7 +10,7 @@ public class Banner extends ProductOption {
         this.size = size;
         super.color = color;
         this.orientation = orientation;
-        super.price = getBannerPrice();
+        super.price = getBannerSizePrice();
     }
 
     public BannerType getType() {
@@ -19,19 +19,6 @@ public class Banner extends ProductOption {
 
     public BannerSize getSize() {
         return size;
-    }
-
-    private void setCustomColor(int color) {
-        assert color >= 0 && color <= 0xFFFFFF : "Invalid RGB Color!!";
-        super.color = color;
-    }
-
-    private boolean isValid() {
-        return type != null && size != null;
-    }
-
-    private int getBannerPrice() {
-        return super.apertures.size() * ADD_COST + getBannerSizePrice();
     }
 
     private int getBannerSizePrice() {
