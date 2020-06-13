@@ -20,7 +20,7 @@ public class Cart {
     public int getTotalPrice() {
         int totalPrice = 0;
         for (var product : products) {
-            totalPrice += product.price;
+            totalPrice += product.getPrice();
         }
         return totalPrice;
     }

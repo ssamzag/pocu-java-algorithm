@@ -3,7 +3,7 @@ package academy.pocu.comp2500.assignment2;
 public class Product {
     protected int color;
     protected int price;
-    protected ShipmentType shipment = ShipmentType.SHIP;
+    protected ShipmentType shippingMethod = ShipmentType.SHIP;
 
     public int getColor() {
         return this.color;
@@ -13,11 +13,11 @@ public class Product {
         return price;
     }
 
-    public ShipmentType getShipment() {
-        return shipment;
+    public ShipmentType getShippingMethod() {
+        return shippingMethod;
     }
 
-    public void setShipment(ShipmentType shipment) {
-        this.shipment = shipment;
+    public void setShippingMethod(ShipmentType shippingMethod) {
+        this.shippingMethod = shippingMethod;
     }
 }
