@@ -11,6 +11,8 @@ public class Calendar extends Product {
         this.calendarColor = CalendarColor.WHITE;
         super.price = getCalendarPrice();
         super.color = calendarColor.getValue();
+        super.width = calendarSize.getValue().width;
+        super.height = calendarSize.getValue().height;
     }
 
     private int getCalendarPrice() {

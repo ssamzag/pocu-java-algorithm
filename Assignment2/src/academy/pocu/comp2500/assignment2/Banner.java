@@ -11,8 +11,8 @@ public class Banner extends ProductOption {
         super.color = color;
         this.orientation = orientation;
         super.price = getBannerSizePrice();
-        super.width = size.getValue().x;
-        super.height = size.getValue().y;
+        super.width = size.getValue().width;
+        super.height = size.getValue().height;
     }
 
     public BannerType getType() {

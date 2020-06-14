@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class ProductOption extends Product {
     private ArrayList<Aperture> apertures = new ArrayList<>();
-    protected int width;
-    protected int height;
+
     protected OrientationType orientation;
     protected static final int ADD_COST = 5;
 
@@ -17,8 +16,8 @@ public class ProductOption extends Product {
                 && aperture.getY() >= 0
                 && aperture.getWidth() > 0
                 && aperture.getHeight() > 0
-                && aperture.getX() + aperture.getWidth() <= this.width
-                && aperture.getY() + aperture.getHeight() <= this.height) {
+                && aperture.getX() + aperture.getWidth() <= super.width
+                && aperture.getY() + aperture.getHeight() <= super.height) {
             super.price += ADD_COST;
         }
     }
@@ -29,5 +28,13 @@ public class ProductOption extends Product {
 
     public OrientationType getOrientation() {
         return orientation;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

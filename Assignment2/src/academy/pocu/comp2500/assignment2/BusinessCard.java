@@ -13,8 +13,8 @@ public class BusinessCard extends ProductOption {
         super.color = paperColor.getValue();
         super.price = getBusinessCardPrice();
         super.orientation = orientation;
-        super.width = this.size.getValue().x;
-        super.height = this.size.getValue().y;
+        super.width = this.size.getValue().width;
+        super.height = this.size.getValue().height;
     }
 
     public PaperMaterialType getBusinessCardType() {

@@ -3,6 +3,8 @@ package academy.pocu.comp2500.assignment2;
 public class Product {
     protected int color;
     protected int price;
+    protected int width;
+    protected int height;
     protected ShipmentType shippingMethod;
 
     public int getColor() {

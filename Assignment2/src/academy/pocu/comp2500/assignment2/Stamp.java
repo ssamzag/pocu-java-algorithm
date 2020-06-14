@@ -11,6 +11,8 @@ public class Stamp extends Product {
         this.text = text;
         super.color = color.getValue();
         super.price = getProductPrice();
+        super.width = size.getValue().width;
+        super.height = size.getValue().height;
     }
 
     public StampSize getStampSize() {
