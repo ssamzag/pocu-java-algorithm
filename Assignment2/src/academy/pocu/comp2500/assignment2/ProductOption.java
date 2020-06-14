@@ -8,6 +8,10 @@ public class ProductOption extends Product {
     protected OrientationType orientation;
     protected static final int ADD_COST = 5;
 
+    protected ProductOption() {
+        
+    }
+
     public void addAperture(Aperture aperture) {
         this.apertures.add(aperture);
 
