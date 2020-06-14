@@ -7,6 +7,10 @@ public class Product {
     protected int height;
     protected ShipmentType shippingMethod;
 
+    protected Product() {
+
+    }
+
     public int getColor() {
         return this.color;
     }
@@ -16,11 +20,11 @@ public class Product {
     }
 
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     public ShipmentType getShippingMethod() {

@@ -22,12 +22,12 @@ public class Aperture {
         return y;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
     public int getHeight() {
         return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public boolean isValid() {

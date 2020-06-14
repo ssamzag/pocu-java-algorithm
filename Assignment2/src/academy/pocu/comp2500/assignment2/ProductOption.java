@@ -30,11 +30,4 @@ public class ProductOption extends Product {
         return orientation;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
 }
