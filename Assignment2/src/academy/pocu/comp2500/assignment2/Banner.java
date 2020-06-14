@@ -11,6 +11,8 @@ public class Banner extends ProductOption {
         super.color = color;
         this.orientation = orientation;
         super.price = getBannerSizePrice();
+        super.width = size.getValue().x;
+        super.height = size.getValue().y;
     }
 
     public BannerType getType() {
@@ -26,9 +28,9 @@ public class Banner extends ProductOption {
             switch (size) {
                 case W100_H50_CM:
                     return 5000;
-                case W200_H50_CM:
-                    return 5200;
                 case W100_H100_CM:
+                    return 5200;
+                case W200_H50_CM:
                     return 5300;
                 case W300_H100_CM:
                     return 6000;

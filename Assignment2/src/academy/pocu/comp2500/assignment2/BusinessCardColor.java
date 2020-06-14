@@ -7,7 +7,7 @@ public enum BusinessCardColor {
 
     private final int value;
 
-    BusinessCardColor(int value) {
+    private BusinessCardColor(int value) {
         this.value = value;
     }
 

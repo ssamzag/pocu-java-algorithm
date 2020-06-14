@@ -13,6 +13,8 @@ public class BusinessCard extends ProductOption {
         super.color = paperColor.getValue();
         super.price = getBusinessCardPrice();
         super.orientation = orientation;
+        super.width = this.size.getValue().x;
+        super.height = this.size.getValue().y;
     }
 
     public PaperMaterialType getBusinessCardType() {
@@ -34,13 +36,13 @@ public class BusinessCard extends ProductOption {
     private int getBusinessCardPrice() {
         switch (paperMaterial) {
             case LINEN:
-                return cardSides == CardSidesType.SINGLE_SIDE ? 110 : 140;
+                return cardSides == CardSidesType.SINGLE_SIDE ? 110 : cardSides == CardSidesType.DOUBLE_SIDE ? 140 : 0;
             case LAID:
-                return cardSides == CardSidesType.SINGLE_SIDE ? 120 : 150;
+                return cardSides == CardSidesType.SINGLE_SIDE ? 120 : cardSides == CardSidesType.DOUBLE_SIDE ? 150 : 0;
             case SNOW:
-                return cardSides == CardSidesType.SINGLE_SIDE ? 100 : 130;
+                return cardSides == CardSidesType.SINGLE_SIDE ? 100 : cardSides == CardSidesType.DOUBLE_SIDE ? 130 : 0;
             default:
-                assert false : "businessCardType is null";
+                assert false : "cardSides is null";
                 return 0;
         }
     }

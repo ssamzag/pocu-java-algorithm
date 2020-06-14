@@ -6,7 +6,8 @@ public enum StampColor {
     GREEN(0x00800);
 
     private final int value;
-    StampColor(int value) {
+
+    private StampColor(int value) {
         this.value = value;
     }
 

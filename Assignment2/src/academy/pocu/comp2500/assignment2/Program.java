@@ -2,8 +2,11 @@ package academy.pocu.comp2500.assignment2;
 
 import academy.pocu.comp2500.assignment2.registry.Registry;
 
+import java.util.ArrayList;
+
 public class Program {
     public static void main(String[] args) {
+
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();
@@ -38,10 +41,11 @@ public class Program {
 
             // 3.5 1 x 0.5 m 반사 배너 만들기
             Banner glossBanner = new Banner(BannerType.GLOSS, BannerSize.W100_H50_CM, 0x34FF22, OrientationType.PORTRAIT);
-            TextAperture textAperture1 = new TextAperture(10,20, "안녕???");
-            TextAperture textAperture2 = new TextAperture(20,20, "흠냠");
-            ImageAperture imageAperture1 = new ImageAperture(2,3, "../img/gg.jpg");
+            TextAperture textAperture1 = new TextAperture(-9,-9, 10, 10, "안녕???");
+            TextAperture textAperture2 = new TextAperture(89,49, 10, 10, "흠냠");
+            ImageAperture imageAperture1 = new ImageAperture(0,0, 90, 50, "../img/gg.jpg");
             glossBanner.addAperture(textAperture1);
+
             glossBanner.addAperture(textAperture2);
             glossBanner.addAperture(imageAperture1);
 
