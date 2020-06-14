@@ -9,17 +9,15 @@ public class ProductOption extends Product {
     protected static final int ADD_COST = 5;
 
     protected ProductOption() {
-        
+
     }
 
     public void addAperture(Aperture aperture) {
         this.apertures.add(aperture);
 
         if (aperture.isValid()
-                && aperture.getX() >= 0
-                && aperture.getY() >= 0
-                && aperture.getWidth() > 0
-                && aperture.getHeight() > 0
+                && aperture.getX() >= 0 && aperture.getY() >= 0
+                && aperture.getWidth() > 0 && aperture.getHeight() > 0
                 && aperture.getX() + aperture.getWidth() <= super.width
                 && aperture.getY() + aperture.getHeight() <= super.height) {
             super.price += ADD_COST;
