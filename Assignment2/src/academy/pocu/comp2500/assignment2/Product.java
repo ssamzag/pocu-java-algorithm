@@ -15,6 +15,14 @@ public class Product {
         return price;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public ShipmentType getShippingMethod() {
         return shippingMethod;
     }
@@ -22,4 +30,5 @@ public class Product {
     public void setShippingMethod(ShipmentType shippingMethod) {
         this.shippingMethod = shippingMethod;
     }
+
 }
