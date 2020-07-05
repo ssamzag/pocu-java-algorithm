@@ -5,6 +5,7 @@ import java.util.HashSet;
 public class Program {
 
     public static void main(String[] args) {
+        System.out.println(Genre.ROMANCE);
         Book book7 = new Book("C# for dummies", new Author("Jason", "Bourne"), 2005, Genre.ROMANCE);
         Book book8 = new Book("C# for dummies", new Author("Jason", "Bourne"), 2005, Genre.ROMANCE);
         ReadingList readingList7 = new ReadingList("Summer Break Homework");
