@@ -28,7 +28,7 @@ public class Book {
         return this.publicationYear == book.publicationYear &&
                 this.title.equals(book.title) &&
                 this.author.equals(book.author) &&
-                this.genre.equals(book.genre);
+                this.genre == book.genre;
     }
 
     @Override
