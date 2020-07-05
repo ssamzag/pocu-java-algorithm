@@ -1,21 +1,14 @@
 package academy.pocu.comp2500.lab7;
 
 public enum Genre {
-    SCIENCE_FICTION("Science Fiction"),
+    SCIENCEFICTION("Science Fiction"),
     ROMANCE("Romance"),
     BIOGRAPHY("Biography"),
     FANTASY("Fantasy"),
     MYSTERY("Mystery"),
     SUSPENSE("Suspense");
 
-    private String value;
+    Genre(String suspense) {
 
-    Genre(String value) {
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 }
