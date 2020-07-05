@@ -1,11 +1,12 @@
 package academy.pocu.comp2500.lab7;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
 
 public class Bundle {
     private String name;
-    private ArrayList<Book> books = new ArrayList<>();
+    private HashSet<Book> books = new HashSet<>();
 
     public Bundle(String name) {
         this.name = name;
