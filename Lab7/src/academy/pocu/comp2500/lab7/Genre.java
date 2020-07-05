@@ -10,16 +10,12 @@ public enum Genre {
 
     private String value;
 
-    public String getValue() {
-        return value;
-    }
-
     Genre(String value) {
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return getValue();
+        return this.value;
     }
 }

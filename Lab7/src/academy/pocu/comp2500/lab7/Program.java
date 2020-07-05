@@ -1,9 +1,20 @@
 package academy.pocu.comp2500.lab7;
 
+import java.util.HashSet;
+
 public class Program {
 
     public static void main(String[] args) {
-
+        Book book7 = new Book("C# for dummies", new Author("Jason", "Bourne"), 2005, Genre.ROMANCE);
+        Book book8 = new Book("C# for dummies", new Author("Jason", "Bourne"), 2005, Genre.ROMANCE);
+        ReadingList readingList7 = new ReadingList("Summer Break Homework");
+        assert (readingList7.add(book7));
+        ReadingList readingList8 = new ReadingList("Summer Break Homework");
+        assert (readingList8.add(book8));
+        assert (readingList7.equals(readingList8));
+        HashSet<ReadingList> hashSet = new HashSet<>();
+        assert(hashSet.add(readingList7));
+        assert(!hashSet.add(readingList8));
         // Author test
         Author author1 = new Author("same", "author");
         Author author2 = new Author("same", "author");
