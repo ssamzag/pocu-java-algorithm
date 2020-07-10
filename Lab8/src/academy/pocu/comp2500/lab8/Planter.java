@@ -19,12 +19,13 @@ public class Planter {
     }
 
     public void installSmartDevice(SmartDevice device) {
-
+        device.planter = this;
+        devices.add(device);
     }
 
-
-
     public void tick() {
-
+        for (var device : devices) {
+            device.onTick();
+        }
     }
 }
