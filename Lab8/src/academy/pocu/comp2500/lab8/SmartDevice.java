@@ -2,10 +2,10 @@ package academy.pocu.comp2500.lab8;
 
 public abstract class SmartDevice {
     protected int currentTick;
-    protected Planter planter;
+    protected boolean isOn;
 
     public boolean isOn() {
-        return false;
+        return isOn;
     }
 
     public void onTick() {
@@ -14,6 +14,10 @@ public abstract class SmartDevice {
 
     public int getTicksSinceLastUpdate() {
         return currentTick;
+    }
+
+    public void onInstalled(Planter planter) {
+
     }
 
 }

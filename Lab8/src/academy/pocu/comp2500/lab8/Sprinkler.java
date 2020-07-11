@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Sprinkler extends SmartDevice implements ISprayable {
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private Schedule schedule;
-    private static final int SPRAYED_VOLUME = 13;
+    private static final int SPRAYED_VOLUME = 15;
 
     private int counter;
 
@@ -14,21 +14,20 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     }
 
     @Override
+    public void onInstalled(Planter planter) {
+        planter.addSprayDevices(this);
+    }
+
+    @Override
     public void spray(Planter planter) {
         if (planter == null) {
             return;
         }
-        planter.setWaterAmount(planter.getWaterAmount() + SPRAYED_VOLUME);
 
-    }
-
-    @Override
-    public boolean isOn() {
-        if (schedules.size() == 0 || currentTick == 0) {
-            return false;
+        onTick();
+        if (isOn()) {
+            planter.setWaterLevel(planter.getWaterLevel() + SPRAYED_VOLUME);
         }
-
-        return schedules.get(0).getSprinklerStartTick() < this.counter;
     }
 
     @Override
@@ -36,25 +35,32 @@ public class Sprinkler extends SmartDevice implements ISprayable {
         super.currentTick++;
         counter++;
 
-        if (isOn()) {
-            if (schedules.get(0).getTickCounter() + schedules.get(0).getSprinklerStartTick() >= counter) {
-                if (schedules.get(0).getSprinklerStartTick() + 1 == counter) {
+        if (schedules.size() == 0) {
+            return;
+        }
+
+        if (schedules.get(0).getSprinklerStartTick() < counter) {
+
+            if (!super.isOn()) {
+                super.isOn = true;
+                super.currentTick = 1;
+            }
+            if (currentTick > schedules.get(0).getTickCounter()) {
+                if (super.isOn()) {
+                    super.isOn = false;
                     super.currentTick = 1;
                 }
-                spray(super.planter);
-            } else {
                 schedules.remove(0);
-                for (var schedule : schedules) {
-                    if (schedule.getSprinklerStartTick() < counter) {
-                        schedules.remove(schedule);
+                int size = schedules.size();
+                for (int i = 0; i < size; i++) {
+                    if (schedules.get(0).getSprinklerStartTick() < counter) {
+                        schedules.remove(schedules.get(0));
                     } else {
                         break;
                     }
                 }
-                super.currentTick = 1;
             }
         }
-
     }
 
 }
