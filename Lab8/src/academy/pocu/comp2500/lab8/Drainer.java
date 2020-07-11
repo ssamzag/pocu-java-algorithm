@@ -38,11 +38,9 @@ public class Drainer extends SmartDevice implements IWaterDetectable, IDrainable
             }
 
             planter.setWaterLevel(planter.getWaterLevel() - DISPLACEMENT);
-        } else {
-            if (super.isOn()) {
-                super.isOn = false;
-                super.currentTick = 1;
-            }
+        } else if (super.isOn()) {
+            super.isOn = false;
+            super.currentTick = 1;
         }
 
     }
