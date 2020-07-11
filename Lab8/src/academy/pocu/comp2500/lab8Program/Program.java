@@ -1,4 +1,9 @@
-package academy.pocu.comp2500.lab8;
+package academy.pocu.comp2500.lab8Program;
+
+import academy.pocu.comp2500.lab8.Drainer;
+import academy.pocu.comp2500.lab8.Planter;
+import academy.pocu.comp2500.lab8.Schedule;
+import academy.pocu.comp2500.lab8.Sprinkler;
 
 public class Program {
 
