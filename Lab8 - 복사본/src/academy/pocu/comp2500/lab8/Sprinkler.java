@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Sprinkler extends SmartDevice implements ISprayable {
     private ArrayList<Schedule> schedules = new ArrayList<>();
-    private Schedule schedule;
     private static final int SPRAYED_VOLUME = 15;
 
     private int counter;
