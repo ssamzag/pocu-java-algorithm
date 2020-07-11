@@ -25,7 +25,7 @@ public class Sprinkler extends SmartDevice implements ISprayable {
 
         onTick();
         if (isOn()) {
-            planter.setWaterLevel(planter.getWaterLevel() + SPRAYED_VOLUME);
+            planter.setWaterAmount(planter.getWaterAmount() + SPRAYED_VOLUME);
         }
     }
 
