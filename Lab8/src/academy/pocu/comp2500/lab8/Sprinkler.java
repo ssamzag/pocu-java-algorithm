@@ -12,6 +12,10 @@ public class Sprinkler extends SmartDevice implements ISprayable {
         this.schedules.add(schedule);
     }
 
+    public int getCounter() {
+        return counter;
+    }
+
     @Override
     public void onInstalled(Planter planter) {
         planter.addSprayDevices(this);

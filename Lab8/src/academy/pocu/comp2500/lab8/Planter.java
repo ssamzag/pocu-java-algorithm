@@ -6,6 +6,7 @@ public class Planter {
     private int waterAmount;
     private ArrayList<Sprinkler> sprayDevices = new ArrayList<>();
     private ArrayList<Drainer> drainDevices = new ArrayList<>();
+    private int planterTick;
 
 
     public Planter(int waterAmount) {
@@ -33,17 +34,21 @@ public class Planter {
     }
 
     public void tick() {
+
         for (var drainDevice : drainDevices) {
             drainDevice.drain(this);
         }
         for (var sprayDevice : sprayDevices) {
-            sprayDevice.spray(this);
+            if (sprayDevice.getCounter() >= planterTick) {
+                sprayDevice.spray(this);
+            }
+
         }
 
         waterAmount = waterAmount - 2;
         if (waterAmount < 0) {
             waterAmount = 0;
         }
-
+        planterTick++;
     }
 }
