@@ -34,11 +34,11 @@ public class Planter {
 
     public void tick() {
         for (var drainDevice : drainDevices) {
-            drainDevice.detect(this.waterAmount);
-        }
 
-        for (var drainDevice : drainDevices) {
             drainDevice.drain(this);
+            if (waterAmount < 0) {
+                waterAmount = 0;
+            }
         }
 
         for (var sprayDevice : sprayDevices) {

@@ -42,6 +42,7 @@ public class Drainer extends SmartDevice implements IWaterDetectable, IDrainable
             super.setOff();
             super.resetCurrentTick();
         }
+
     }
 
     @Override
