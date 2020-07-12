@@ -7,98 +7,137 @@ import academy.pocu.comp2500.lab8.Sprinkler;
 
 public class Program {
     public static void main(String[] args) {
+        //made me
         {
             Sprinkler sprinkler = new Sprinkler();
+
+            sprinkler.addSchedule(new Schedule(3, 4));
+            Planter planter = new Planter(0);
+            planter.installSmartDevice(sprinkler);
+
+            int[] expectedWaterAmount = new int[]{
+                    0, 0, 0, 0, 13, 26, 39, 52, 50, 48
+            };
+
+            int[] sprinklerTicksSinceLastUpdate = new int[]{
+                    0, 1, 2, 3, 1, 2, 3, 4, 1, 2
+            };
+
+            boolean[] expectedIsOn = new boolean[]{
+                    false, false, false, false, true, true, true, true, false, false
+            };
+
+
+            for (int i = 0; i < expectedWaterAmount.length; ++i) {
+                //System.out.println(i);
+                assert (expectedWaterAmount[i] == planter.getWaterAmount());
+                assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate());
+                assert (expectedIsOn[i] == sprinkler.isOn());
+                //System.out.println(drainer.getTicksSinceLastUpdate());
+                planter.tick();
+            }
+        }
+
+
+        {
+
+            Sprinkler sprinkler = new Sprinkler();
+
             sprinkler.addSchedule(new Schedule(0, 1));
             sprinkler.addSchedule(new Schedule(1, 1));
-            boolean[] expectedIsOn = new boolean[]{false, true, true};
-            int[] sprinklerTicksSinceLastUpdate = new int[]{0, 1, 2};
-            for (int i = 0; i < expectedIsOn.length; ++i) {
-                assert (expectedIsOn[i] == sprinkler.isOn());
+            sprinkler.addSchedule(new Schedule(2, 1));
+            sprinkler.addSchedule(new Schedule(3, 1));
+            Planter planter = new Planter(0);
+            planter.installSmartDevice(sprinkler);
+
+            int[] expectedWaterAmount = new int[]{
+                    0, 13, 11, 24, 22, 20
+            };
+
+            int[] sprinklerTicksSinceLastUpdate = new int[]{
+                    0, 1, 1, 1, 1, 2
+            };
+
+            boolean[] expectedIsOn = new boolean[]{
+                    false, true, false, true, false, false
+            };
+
+            for (int i = 0; i < expectedWaterAmount.length; ++i) {
+                //System.out.println(i);
+                assert (expectedWaterAmount[i] == planter.getWaterAmount());
                 assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate());
-                sprinkler.onTick();
+                assert (expectedIsOn[i] == sprinkler.isOn());
+                //System.out.println(drainer.getTicksSinceLastUpdate());
+                planter.tick();
             }
+
         }
+
         {
             Sprinkler sprinkler = new Sprinkler();
-            sprinkler.addSchedule(new Schedule(2, 5));
-            sprinkler.addSchedule(new Schedule(4, 8));
-            sprinkler.addSchedule(new Schedule(3, 4));
-            sprinkler.addSchedule(new Schedule(12, 2));
-            boolean[] expectedIsOn = new boolean[]{false, false, false, true, true, true, true,
-                    true, false, false, false, false, false, true, true};
-            int[] sprinklerTicksSinceLastUpdate = new int[]{0, 1, 2, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2};
-            for (int i = 0; i < expectedIsOn.length; ++i) {
-                assert (expectedIsOn[i] == sprinkler.isOn());
+            sprinkler.addSchedule(new Schedule(1, 4));
+            sprinkler.addSchedule(new Schedule(4, 2));
+
+            Sprinkler sprinkler2 = new Sprinkler();
+            sprinkler2.addSchedule(new Schedule(5, 2));
+
+            Sprinkler sprinkler3 = new Sprinkler();
+            sprinkler3.addSchedule(new Schedule(5, 2));
+
+
+            Drainer drainer1 = new Drainer(40);
+            Drainer drainer2 = new Drainer(40);
+
+            Planter planter = new Planter(0);
+
+            planter.installSmartDevice(sprinkler);
+            planter.installSmartDevice(sprinkler2);
+            //planter.installSmartDevice(sprinkler3);
+            planter.installSmartDevice(drainer1);
+            planter.installSmartDevice(drainer2);
+
+            boolean[] expectedIsOn = new boolean[] {
+                    false, false, true,true,true,
+                    true,true, true, true, false,
+                    false, false, false, false};
+
+            int[] expectedWaterAmount = new int[]{
+                    0, 0, 13, 26, 39,
+                    52, 66, 80, 64, 48,
+                    32, 30, 28, 26};
+
+            int[] sprinklerTicksSinceLastUpdate = new int[]{
+                    0, 1, 1,2,3,
+                    4,1,2,3,4,
+                    5,6,7,8,9};
+            int[] sprinklerTicksSinceLastUpdate2 = new int[]{
+                    0, 1, 2,3,4,
+                    5,1,2,1,2,
+                    3,4,5,6,7};
+
+            int[] sprinklerTicksSinceLastUpdate3 = new int[]{
+                    0, 1, 2,3,4,
+                    5,1,2,1,2,
+                    3,4,5,6,7};
+
+            int[] drainerTicksSinceLastUpdate = new int[]{
+                    0,1,2,3,4,
+                    5,1,2,3,4,
+                    5,1, 2,3, 4,5,6};
+
+            for (int i = 0; i < expectedWaterAmount.length; ++i) {
+                assert (expectedWaterAmount[i] == planter.getWaterAmount());
                 assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate());
-                sprinkler.onTick();
+                assert (sprinklerTicksSinceLastUpdate2[i] == sprinkler2.getTicksSinceLastUpdate());
+                assert (drainerTicksSinceLastUpdate[i] == drainer2.getTicksSinceLastUpdate());
+                planter.tick();
+                if (i == 7) {
+                    Sprinkler sprinkler4 = new Sprinkler();
+                    sprinkler4.addSchedule(new Schedule(6, 2));
+                    planter.installSmartDevice(sprinkler4);
+                }
             }
         }
-//        {
-//            Sprinkler sprinkler = new Sprinkler();
-//            sprinkler.addSchedule(new Schedule(1, 4));
-//            sprinkler.addSchedule(new Schedule(4, 2));
-//
-//            Sprinkler sprinkler2 = new Sprinkler();
-//            sprinkler2.addSchedule(new Schedule(5, 2));
-//
-//            Sprinkler sprinkler3 = new Sprinkler();
-//            sprinkler3.addSchedule(new Schedule(5, 2));
-//
-//
-//            Drainer drainer1 = new Drainer(40);
-//            Drainer drainer2 = new Drainer(40);
-//
-//            Planter planter = new Planter(0);
-//
-//            planter.installSmartDevice(sprinkler);
-//            planter.installSmartDevice(sprinkler2);
-//            //planter.installSmartDevice(sprinkler3);
-//            planter.installSmartDevice(drainer1);
-//            planter.installSmartDevice(drainer2);
-//
-//            boolean[] expectedIsOn = new boolean[] {
-//                    false, false, true,true,true,
-//                    true,true, true, true, false,
-//                    false, false, false, false};
-//
-//            int[] expectedWaterAmount = new int[]{
-//                    0, 0, 13, 26, 39,
-//                    52, 66, 80, 64, 48,
-//                    32, 30, 28, 26};
-//
-//            int[] sprinklerTicksSinceLastUpdate = new int[]{
-//                    0, 1, 1,2,3,
-//                    4,1,2,3,4,
-//                    5,6,7,8,9};
-//            int[] sprinklerTicksSinceLastUpdate2 = new int[]{
-//                    0, 1, 2,3,4,
-//                    5,1,2,1,2,
-//                    3,4,5,6,7};
-//
-//            int[] sprinklerTicksSinceLastUpdate3 = new int[]{
-//                    0, 1, 2,3,4,
-//                    5,1,2,1,2,
-//                    3,4,5,6,7};
-//
-//            int[] drainerTicksSinceLastUpdate = new int[]{
-//                    0,1,2,3,4,
-//                    5,1,2,3,4,
-//                    5,1, 2,3, 4,5,6};
-//
-//            for (int i = 0; i < expectedWaterAmount.length; ++i) {
-//                assert (expectedWaterAmount[i] == planter.getWaterAmount());
-//                assert (sprinklerTicksSinceLastUpdate[i] == sprinkler.getTicksSinceLastUpdate());
-//                assert (sprinklerTicksSinceLastUpdate2[i] == sprinkler2.getTicksSinceLastUpdate());
-//                assert (drainerTicksSinceLastUpdate[i] == drainer2.getTicksSinceLastUpdate());
-//                planter.tick();
-//                if (i == 7) {
-//                    Sprinkler sprinkler4 = new Sprinkler();
-//                    sprinkler4.addSchedule(new Schedule(6, 2));
-//                    planter.installSmartDevice(sprinkler4);
-//                }
-//            }
-//        }
 //        {
 //            Sprinkler sprinkler = new Sprinkler();
 //            sprinkler.addSchedule(new Schedule(0, 1));
