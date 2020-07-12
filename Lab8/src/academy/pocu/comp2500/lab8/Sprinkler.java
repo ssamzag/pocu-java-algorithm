@@ -38,9 +38,7 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     @Override
     public void onTick() {
         super.addCurrentTick();
-        if (planter == null) {
-            sprinklerTick++;
-        }
+
         if (schedules.size() == 0) {
             if (super.isOn()) {
                 super.setOff();
@@ -74,7 +72,9 @@ public class Sprinkler extends SmartDevice implements ISprayable {
             super.setOff();
         }
 
-
+        if (planter == null) {
+            sprinklerTick++;
+        }
 
     }
 
