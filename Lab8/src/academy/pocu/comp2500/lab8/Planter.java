@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class Planter {
     private int waterAmount;
-    ArrayList<SmartDevice> devices = new ArrayList<>();
-    ArrayList<Sprinkler> sprayDevices = new ArrayList<>();
-    ArrayList<Drainer> drainDevices = new ArrayList<>();
-    ArrayList<IWaterDetectable> waterDetects = new ArrayList<>();
+    private ArrayList<Sprinkler> sprayDevices = new ArrayList<>();
+    private ArrayList<Drainer> drainDevices = new ArrayList<>();
+
 
     public Planter(int waterAmount) {
         this.waterAmount = waterAmount;
@@ -31,7 +30,6 @@ public class Planter {
 
     public void installSmartDevice(SmartDevice device) {
         device.onInstalled(this);
-        devices.add(device);
     }
 
     public void tick() {
@@ -47,7 +45,6 @@ public class Planter {
             sprayDevice.spray(this);
             waterAmount = waterAmount - 2;
         }
-
 
         if (waterAmount < 0) {
             waterAmount = 0;

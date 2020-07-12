@@ -1,11 +1,24 @@
 package academy.pocu.comp2500.lab8;
 
 public abstract class SmartDevice {
-    protected int currentTick;
-    protected boolean isOn;
+    private int currentTick;
+    private boolean isOn;
 
     public boolean isOn() {
         return isOn;
+    }
+
+
+    public void setCurrentTick(int currentTick) {
+        this.currentTick = currentTick;
+    }
+
+    public void setOn() {
+        this.isOn = true;
+    }
+
+    public void setOff() {
+        this.isOn = false;
     }
 
     public void onTick() {
@@ -14,6 +27,14 @@ public abstract class SmartDevice {
 
     public int getTicksSinceLastUpdate() {
         return currentTick;
+    }
+
+    public void resetCurrentTick() {
+        this.currentTick = 1;
+    }
+
+    public void addCurrentTick() {
+        this.currentTick++;
     }
 
     public void onInstalled(Planter planter) {

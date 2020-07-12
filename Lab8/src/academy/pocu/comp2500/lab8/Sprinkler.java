@@ -31,7 +31,7 @@ public class Sprinkler extends SmartDevice implements ISprayable {
 
     @Override
     public void onTick() {
-        super.currentTick++;
+        super.addCurrentTick();
         counter++;
 
         if (schedules.size() == 0) {
@@ -41,13 +41,14 @@ public class Sprinkler extends SmartDevice implements ISprayable {
         if (schedules.get(0).getSprinklerStartTick() < counter) {
 
             if (!super.isOn()) {
-                super.isOn = true;
-                super.currentTick = 1;
+                super.setOn();
+                super.setCurrentTick(1);
+                super.resetCurrentTick();
             }
-            if (currentTick > schedules.get(0).getTickCounter()) {
+            if (getTicksSinceLastUpdate() > schedules.get(0).getTickCounter()) {
                 if (super.isOn()) {
-                    super.isOn = false;
-                    super.currentTick = 1;
+                    super.setOff();
+                    super.resetCurrentTick();
                 }
                 schedules.remove(0);
                 int size = schedules.size();
