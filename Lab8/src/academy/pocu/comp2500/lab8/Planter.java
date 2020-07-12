@@ -38,7 +38,7 @@ public class Planter {
     }
 
     public void tick() {
-        planterTick++;
+
         for (var drainDevice : drainDevices) {
             drainDevice.drain(this);
         }
@@ -50,6 +50,6 @@ public class Planter {
         if (waterAmount < 0) {
             waterAmount = 0;
         }
-
+        planterTick++;
     }
 }

@@ -6,20 +6,20 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private static final int SPRAYED_VOLUME = 15;
     private Planter planter;
-    private int counter;
+    private int sprinklerTick;
 
     public void addSchedule(Schedule schedule) {
         this.schedules.add(schedule);
     }
 
-    public int getCounter() {
-        return counter;
+    public int getSprinklerTick() {
+        return sprinklerTick;
     }
 
     @Override
     public void onInstalled(Planter planter) {
         planter.addSprayDevices(this);
-        this.counter = planter.getPlanterTick();
+        this.sprinklerTick = planter.getPlanterTick();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Sprinkler extends SmartDevice implements ISprayable {
         if (planter == null) {
             return;
         }
-        counter = planter.getPlanterTick();
+        sprinklerTick = planter.getPlanterTick();
         this.planter = planter;
         onTick();
         if (isOn()) {
@@ -38,37 +38,44 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     @Override
     public void onTick() {
         super.addCurrentTick();
-        if (planter == null) {
-            counter++;
-        }
-
-
         if (schedules.size() == 0) {
+            if (super.isOn()) {
+                super.setOff();
+                super.resetCurrentTick();
+            }
+
             return;
         }
 
-        if (schedules.get(0).getSprinklerStartTick() < counter) {
-            if (!super.isOn() && counter == schedules.get(0).getSprinklerStartTick() + 1) {
+        if (schedules.get(0).getSprinklerStartTick() <= sprinklerTick) {
+            if (!super.isOn() && sprinklerTick == schedules.get(0).getSprinklerStartTick()) {
                 super.setOn();
                 super.resetCurrentTick();
             }
 
-            if (getTicksSinceLastUpdate() > schedules.get(0).getTickCounter()) {
-                if (super.isOn()) {
-                    super.setOff();
-                    super.resetCurrentTick();
-                }
+            if (getTicksSinceLastUpdate() == schedules.get(0).getTickCounter()) {
                 schedules.remove(0);
                 int size = schedules.size();
                 for (int i = 0; i < size; i++) {
-                    if (schedules.get(0).getSprinklerStartTick() < counter) {
+                    if (schedules.get(0).getSprinklerStartTick() < sprinklerTick) {
                         schedules.remove(schedules.get(0));
                     } else {
                         break;
                     }
                 }
             }
+        } else {
+            if (super.isOn()) {
+                super.resetCurrentTick();
+            }
+            super.setOff();
         }
+
+
+        if (planter == null) {
+            sprinklerTick++;
+        }
+
     }
 
 }
