@@ -18,6 +18,7 @@ public class Program {
             Sprinkler sprinkler3 = new Sprinkler();
             sprinkler3.addSchedule(new Schedule(5, 2));
 
+
             Drainer drainer1 = new Drainer(40);
             Drainer drainer2 = new Drainer(40);
 
@@ -64,6 +65,11 @@ public class Program {
                 assert (sprinklerTicksSinceLastUpdate2[i] == sprinkler2.getTicksSinceLastUpdate());
                 assert (drainerTicksSinceLastUpdate[i] == drainer2.getTicksSinceLastUpdate());
                 planter.tick();
+                if (i == 7) {
+                    Sprinkler sprinkler4 = new Sprinkler();
+                    sprinkler4.addSchedule(new Schedule(6, 2));
+                    planter.installSmartDevice(sprinkler4);
+                }
             }
         }
         {

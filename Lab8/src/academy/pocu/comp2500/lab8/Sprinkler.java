@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Sprinkler extends SmartDevice implements ISprayable {
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private static final int SPRAYED_VOLUME = 15;
-
+    private Planter planter;
     private int counter;
 
     public void addSchedule(Schedule schedule) {
@@ -19,6 +19,7 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     @Override
     public void onInstalled(Planter planter) {
         planter.addSprayDevices(this);
+        this.counter = planter.getPlanterTick();
     }
 
     @Override
@@ -26,7 +27,8 @@ public class Sprinkler extends SmartDevice implements ISprayable {
         if (planter == null) {
             return;
         }
-
+        counter = planter.getPlanterTick();
+        this.planter = planter;
         onTick();
         if (isOn()) {
             planter.setWaterAmount(planter.getWaterAmount() + SPRAYED_VOLUME);
@@ -36,18 +38,21 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     @Override
     public void onTick() {
         super.addCurrentTick();
-        counter++;
+        if (planter == null) {
+            counter++;
+        }
+
 
         if (schedules.size() == 0) {
             return;
         }
 
         if (schedules.get(0).getSprinklerStartTick() < counter) {
-
-            if (!super.isOn()) {
+            if (!super.isOn() && counter == schedules.get(0).getSprinklerStartTick() + 1) {
                 super.setOn();
                 super.resetCurrentTick();
             }
+
             if (getTicksSinceLastUpdate() > schedules.get(0).getTickCounter()) {
                 if (super.isOn()) {
                     super.setOff();

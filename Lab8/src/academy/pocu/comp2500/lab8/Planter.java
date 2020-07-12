@@ -17,6 +17,10 @@ public class Planter {
         this.waterAmount = waterAmount;
     }
 
+    public int getPlanterTick() {
+        return planterTick;
+    }
+
     public void addSprayDevices(Sprinkler sprinkler) {
         this.sprayDevices.add(sprinkler);
     }
@@ -34,21 +38,18 @@ public class Planter {
     }
 
     public void tick() {
-
+        planterTick++;
         for (var drainDevice : drainDevices) {
             drainDevice.drain(this);
         }
         for (var sprayDevice : sprayDevices) {
-            if (sprayDevice.getCounter() >= planterTick) {
-                sprayDevice.spray(this);
-            }
-
+            sprayDevice.spray(this);
         }
 
         waterAmount = waterAmount - 2;
         if (waterAmount < 0) {
             waterAmount = 0;
         }
-        planterTick++;
+
     }
 }
