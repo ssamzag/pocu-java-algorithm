@@ -7,7 +7,17 @@ import academy.pocu.comp2500.lab8.Sprinkler;
 
 public class Program {
     public static void main(String[] args) {
-	    // write your code here
+
+        {
+            Planter planter = new Planter(50);
+
+            assert (planter.getWaterAmount() == 50) : "50 아님";
+
+            planter.tick();
+            assert (planter.getWaterAmount() == 50) : "50 아님";
+            planter.tick();
+            assert (planter.getWaterAmount() == 50) : "50 아님";
+        }
         {
             Sprinkler sprinkler = new Sprinkler();
 

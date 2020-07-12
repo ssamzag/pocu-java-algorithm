@@ -43,9 +43,9 @@ public class Planter {
 
         for (var sprayDevice : sprayDevices) {
             sprayDevice.spray(this);
-            waterAmount = waterAmount - 2;
         }
 
+        waterAmount = waterAmount - 2;
         if (waterAmount < 0) {
             waterAmount = 0;
         }
