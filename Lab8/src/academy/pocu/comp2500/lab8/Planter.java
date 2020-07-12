@@ -13,7 +13,7 @@ public class Planter {
     }
 
     public void setWaterAmount(int waterAmount) {
-        this.waterAmount = Math.max(waterAmount, 0);
+        this.waterAmount = waterAmount;
     }
 
     public void addSprayDevices(Sprinkler sprinkler) {
@@ -34,13 +34,8 @@ public class Planter {
 
     public void tick() {
         for (var drainDevice : drainDevices) {
-
             drainDevice.drain(this);
-            if (waterAmount < 0) {
-                waterAmount = 0;
-            }
         }
-
         for (var sprayDevice : sprayDevices) {
             sprayDevice.spray(this);
         }

@@ -8,11 +8,6 @@ public abstract class SmartDevice {
         return isOn;
     }
 
-
-    public void setCurrentTick(int currentTick) {
-        this.currentTick = currentTick;
-    }
-
     public void setOn() {
         this.isOn = true;
     }

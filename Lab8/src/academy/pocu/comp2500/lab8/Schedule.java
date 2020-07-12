@@ -16,6 +16,4 @@ public class Schedule {
     public int getTickCounter() {
         return this.tickCounter;
     }
-
-
 }
