@@ -22,12 +22,11 @@ public class DecadeMadness implements IPricingModel {
             }
         }
         double totalPrice = 0;
-        Iterator<Integer> keys = booksByYear.keySet().iterator();
-        while (keys.hasNext()) {
-            var bookByYear = booksByYear.get(keys.next());
+        for (Integer integer : booksByYear.keySet()) {
+            var bookByYear = booksByYear.get(integer);
             if (bookByYear.size() > 1) {
                 double price = bookByYear.stream()
-                        .map(item -> item.getPrice())
+                        .map(Book::getPrice)
                         .reduce(0, Integer::sum);
                 totalPrice += price * 0.8;
             } else {
