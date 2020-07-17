@@ -21,6 +21,7 @@ public class DecadeMadness implements IPricingModel {
                 bookByYear.add(book);
             }
         }
+
         double totalPrice = 0;
         for (Integer integer : booksByYear.keySet()) {
             var bookByYear = booksByYear.get(integer);
