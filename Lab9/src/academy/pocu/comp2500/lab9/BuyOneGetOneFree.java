@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.UUID;
 
 public class BuyOneGetOneFree implements IPricingModel {
-    private HashSet<UUID> skus = new HashSet<>();
+    private final HashSet<UUID> skus = new HashSet<>();
 
     public BuyOneGetOneFree(HashSet<UUID> skus) {
         this.skus.addAll(skus);

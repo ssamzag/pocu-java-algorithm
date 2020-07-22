@@ -18,7 +18,7 @@ public class SkyIsTheLimit implements IPricingModel {
             return 0;
         }
 
-        double totalPrice = books.stream().map(item -> item.getPrice()).reduce(0, Integer::sum);
+        double totalPrice = new SimplePricing().getTotalPrice(books);
 
         if (totalPrice < minTotalPrice || books.size() < 5) {
             return (int) totalPrice;

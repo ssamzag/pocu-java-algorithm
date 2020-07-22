@@ -2,7 +2,6 @@ package academy.pocu.comp2500.lab9;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class DecadeMadness implements IPricingModel {
     @Override
