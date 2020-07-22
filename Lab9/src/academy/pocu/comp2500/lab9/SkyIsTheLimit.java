@@ -26,7 +26,7 @@ public class SkyIsTheLimit implements IPricingModel {
 
         var sortedBooks = books.stream()
                 .sorted(Comparator.comparing(Book::getPrice).reversed())
-                .collect(Collectors.toCollection(() -> new ArrayList<Book>()));
+                .collect(Collectors.toCollection(ArrayList::new));
 
         totalPrice = 0;
         for (int i = 0; i < sortedBooks.size(); i++) {

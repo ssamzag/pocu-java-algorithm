@@ -22,8 +22,8 @@ public class DecadeMadness implements IPricingModel {
         }
 
         double totalPrice = 0;
-        for (Integer integer : booksByYear.keySet()) {
-            var bookByYear = booksByYear.get(integer);
+        for (Integer year : booksByYear.keySet()) {
+            var bookByYear = booksByYear.get(year);
             if (bookByYear.size() > 1) {
                 double price = bookByYear.stream()
                         .map(Book::getPrice)
