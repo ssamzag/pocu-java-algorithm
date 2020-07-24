@@ -8,7 +8,7 @@ import academy.pocu.comp2500.lab10.pocuflix.NotFoundResult;
 import academy.pocu.comp2500.lab10.pocuflix.OkResult;
 
 public class MovieStore implements IRequestHandler {
-    private final ArrayList<Movie> movies = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
 
     public void add(Movie movie) {
         this.movies.add(movie);

@@ -10,7 +10,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Program {
     public static void main(String[] args) {
+        {
+            UnauthorizedResult result = new UnauthorizedResult();
 
+            ResultValidator validator = new ResultValidator(result);
+
+            validator.isValid(ResultCode.UNAUTHORIZED); // true
+            validator.isValid(ResultCode.OK); // false
+        }
         {
             MovieStore mvStore = new MovieStore();
             mvStore.add(new Movie("S", Rating.PG, 120));
@@ -183,7 +190,7 @@ public class Program {
         }
 
         {
-            CacheMiddleware middleware = new CacheMiddleware(store, 1);
+            CacheMiddleware middleware = new CacheMiddleware(store, 3);
 
             Request request = new Request("Harry Potter");
 
