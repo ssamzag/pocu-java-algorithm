@@ -12,6 +12,10 @@ public class ResultValidator {
         this.resultBase = resultBase;
     }
 
+    public ResultBase getResultBase() {
+        return resultBase;
+    }
+
     public Boolean isValid(ResultCode resultCode) {
         return resultBase.getCode() == resultCode &&
                 (resultBase instanceof OkResult && resultCode == ResultCode.OK
