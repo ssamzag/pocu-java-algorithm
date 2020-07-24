@@ -9,23 +9,20 @@ import java.time.ZoneOffset;
 public class MaintenanceMiddleware implements IRequestHandler {
     private final IRequestHandler requestStore;
     private final ServiceUnavailableResult service;
-    private static final long MAINTENANCE_HOURS = 1;
+    private static final long MAINTENANCE_HOUR = 1;
 
     public MaintenanceMiddleware(IRequestHandler store, OffsetDateTime startTime) {
         this.requestStore = store;
-
-        this.service = new ServiceUnavailableResult(startTime, startTime.plusHours(MAINTENANCE_HOURS));
+        this.service = new ServiceUnavailableResult(startTime, startTime.plusHours(MAINTENANCE_HOUR));
     }
 
     @Override
     public ResultBase handle(Request request) {
         ResultBase result = requestStore.handle(request);
 
-        if (result.getCode() ==ResultCode.OK) {
-            var now = OffsetDateTime.now(ZoneOffset.UTC);
-            if (service.getStartTime().isAfter(now) && service.getEndTime().isBefore(now)) {
-                return service;
-            }
+        var now = OffsetDateTime.now(ZoneOffset.UTC);
+        if (now.isAfter(service.getStartDateTime()) && now.isBefore(service.getEndDateTime())) {
+            return service;
         }
 
         return result;

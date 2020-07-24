@@ -17,4 +17,10 @@ public class Request {
     public String getMovieName() {
         return movieName;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+
 }

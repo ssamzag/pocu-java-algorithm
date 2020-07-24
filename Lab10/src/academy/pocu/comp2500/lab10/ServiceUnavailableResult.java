@@ -6,19 +6,20 @@ import academy.pocu.comp2500.lab10.pocuflix.ResultCode;
 import java.time.OffsetDateTime;
 
 public class ServiceUnavailableResult extends ResultBase {
+    private final OffsetDateTime startDateTime;
+    private final OffsetDateTime endDateTime;
 
-    private OffsetDateTime startTime;
-    private OffsetDateTime endTime;
-
-    public ServiceUnavailableResult(OffsetDateTime startTime, OffsetDateTime endTime) {
+    public ServiceUnavailableResult(OffsetDateTime startDateTime, OffsetDateTime endDateTime) {
         super(ResultCode.SERVICE_UNAVAILABLE);
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
-    public OffsetDateTime getStartTime() {
-        return startTime;
+    public OffsetDateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public OffsetDateTime getEndTime() {
-        return endTime;
+    public OffsetDateTime getEndDateTime() {
+        return endDateTime;
     }
 }
