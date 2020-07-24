@@ -183,7 +183,7 @@ public class Program {
         }
 
         {
-            CacheMiddleware middleware = new CacheMiddleware(store, 3);
+            CacheMiddleware middleware = new CacheMiddleware(store, 1);
 
             Request request = new Request("Harry Potter");
 

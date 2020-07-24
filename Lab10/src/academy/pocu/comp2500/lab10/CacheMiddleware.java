@@ -21,7 +21,7 @@ public class CacheMiddleware implements IRequestHandler {
     public ResultBase handle(Request request) {
         ResultBase result = requestStore.handle(request);
 
-        if (result.getCode() != ResultCode.OK) {
+        if (result.getCode() != ResultCode.OK || expiryCount == 0) {
             return result;
         }
 
@@ -30,29 +30,27 @@ public class CacheMiddleware implements IRequestHandler {
             if (!requestMap.getKey().getMovieName().equals(request.getMovieName())) {
                 continue;
             }
+
             User cachedUser = requestMap.getKey().getUser();
-            if (cachedUser == null && request.getUser() == null) {
-                cachedRequest = requestMap.getKey();
-                break;
-            } else if (cachedUser != null && cachedUser.equals(request.getUser())) {
+            if (cachedUser == request.getUser()
+                    || cachedUser != null && cachedUser.equals(request.getUser())) {
                 cachedRequest = requestMap.getKey();
                 break;
             }
         }
 
-        if (cachedRequest != null) {
-            int remainedCount = cachedRequests.get(cachedRequest);
-
-            if (remainedCount == 1) {
-                cachedRequests.put(cachedRequest, expiryCount);
-                return result;
-            } else {
-                cachedRequests.put(cachedRequest, --remainedCount);
-                return new CachedResult(remainedCount);
-            }
+        if (cachedRequest == null) {
+            cachedRequests.put(request, expiryCount);
+            return result;
         }
 
-        cachedRequests.put(request, expiryCount);
+        int remainedCount = cachedRequests.get(cachedRequest);
+        if (remainedCount > 1) {
+            cachedRequests.put(cachedRequest, --remainedCount);
+            return new CachedResult(remainedCount);
+        }
+
+        cachedRequests.put(cachedRequest, expiryCount);
         return result;
     }
 

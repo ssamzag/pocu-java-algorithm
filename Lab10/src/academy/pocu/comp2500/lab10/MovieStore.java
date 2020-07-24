@@ -8,20 +8,20 @@ import academy.pocu.comp2500.lab10.pocuflix.NotFoundResult;
 import academy.pocu.comp2500.lab10.pocuflix.OkResult;
 
 public class MovieStore implements IRequestHandler {
-    private ArrayList<Movie> movies = new ArrayList<>();
+    private final ArrayList<Movie> movies = new ArrayList<>();
 
     public void add(Movie movie) {
         this.movies.add(movie);
     }
 
     public boolean remove(int index) {
-        if (movies.size() > index) {
-            movies.remove(index);
-            return true;
+        if (movies.size() <= index) {
+            return false;
         }
-        return false;
-    }
 
+        movies.remove(index);
+        return true;
+    }
 
     @Override
     public ResultBase handle(Request request) {
