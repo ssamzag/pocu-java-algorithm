@@ -15,7 +15,7 @@ public class MovieStore implements IRequestHandler {
     }
 
     public boolean remove(int index) {
-        if (movies.size() == 0 || index < 0 || movies.size() <= index) {
+        if (movies.size() == 0 || index < 0 || index >= movies.size()) {
             return false;
         }
 
@@ -26,7 +26,7 @@ public class MovieStore implements IRequestHandler {
     @Override
     public ResultBase handle(Request request) {
         for (Movie movie : this.movies) {
-            if (movie.getTitle().equals(request.getMovieName())) {
+            if (movie.getTitle().equals(request.getMovieTitle())) {
                 return new OkResult(movie);
             }
         }

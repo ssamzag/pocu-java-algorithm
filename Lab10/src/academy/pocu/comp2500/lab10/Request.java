@@ -3,22 +3,22 @@ package academy.pocu.comp2500.lab10;
 import academy.pocu.comp2500.lab10.pocuflix.User;
 
 public class Request {
-    private String movieName;
+    private String movieTitle;
     private User user;
 
-    public Request(String movieName) {
-        this.movieName = movieName;
+    public Request(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public String getMovieName() {
-        return movieName;
+    protected String getMovieTitle() {
+        return movieTitle;
     }
 
-    public User getUser() {
+    protected User getUser() {
         return user;
     }
 

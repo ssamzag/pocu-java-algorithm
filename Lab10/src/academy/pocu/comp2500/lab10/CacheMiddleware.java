@@ -27,7 +27,7 @@ public class CacheMiddleware implements IRequestHandler {
 
         Request cachedRequest = null;
         for (Map.Entry<Request, Integer> requestMap : cachedRequests.entrySet()) {
-            if (!requestMap.getKey().getMovieName().equals(request.getMovieName())) {
+            if (!requestMap.getKey().getMovieTitle().equals(request.getMovieTitle())) {
                 continue;
             }
 
