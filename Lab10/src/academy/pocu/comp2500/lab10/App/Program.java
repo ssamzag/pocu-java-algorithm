@@ -94,7 +94,7 @@ public class Program {
         store.add(new Movie("The Lord of the Rings", Rating.R, 180));
 
         {
-            assert (!store.remove(2));
+            assert (!store.remove(-1));
             assert (store.remove(1));
             Request request = new Request("None");
 
