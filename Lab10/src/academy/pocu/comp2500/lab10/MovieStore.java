@@ -15,7 +15,7 @@ public class MovieStore implements IRequestHandler {
     }
 
     public boolean remove(int index) {
-        if (movies.size() <= index) {
+        if (index < 0 || movies.size() <= index) {
             return false;
         }
 

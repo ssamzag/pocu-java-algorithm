@@ -5,10 +5,11 @@ import java.util.ArrayList;
 public final class SimulationManager {
     private static SimulationManager instance;
     private ArrayList<Unit> units = new ArrayList<>();
+    private int unitNoSeq;
 
     public static SimulationManager getInstance() {
         if (instance == null) {
-           instance = new SimulationManager();
+            instance = new SimulationManager();
         }
         return instance;
     }
