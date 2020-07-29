@@ -13,11 +13,12 @@ public class ResultValidator {
     }
 
     public Boolean isValid(ResultCode resultCode) {
-        return resultBase.getCode() == resultCode &&
-                (resultBase instanceof OkResult && resultBase.getCode() == ResultCode.OK
-                        || resultBase instanceof NotFoundResult && resultBase.getCode() == ResultCode.NOT_FOUND
-                        || resultBase instanceof CachedResult && resultBase.getCode() == ResultCode.NOT_MODIFIED
-                        || resultBase instanceof ServiceUnavailableResult && resultBase.getCode() == ResultCode.SERVICE_UNAVAILABLE
-                        || resultBase instanceof UnauthorizedResult && resultBase.getCode() == ResultCode.UNAUTHORIZED);
+        ResultCode baseResultCode = resultBase.getCode();
+        return baseResultCode == resultCode
+                && (resultBase instanceof OkResult && baseResultCode == ResultCode.OK
+                || resultBase instanceof NotFoundResult && baseResultCode == ResultCode.NOT_FOUND
+                || resultBase instanceof CachedResult && baseResultCode == ResultCode.NOT_MODIFIED
+                || resultBase instanceof ServiceUnavailableResult && baseResultCode == ResultCode.SERVICE_UNAVAILABLE
+                || resultBase instanceof UnauthorizedResult && baseResultCode == ResultCode.UNAUTHORIZED);
     }
 }
