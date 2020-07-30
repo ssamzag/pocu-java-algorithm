@@ -59,7 +59,7 @@ public class App {
                 case 3:
                     try {
                         depth = 4;
-                        wallet = new SafeWallet(new User("Jane", "Many", Department.ENGINEERING));
+                        wallet = new SafeWallet(new User());
                     } catch (IllegalAccessException e) {
                         err.format("AUTH_ERROR");
                         return;
