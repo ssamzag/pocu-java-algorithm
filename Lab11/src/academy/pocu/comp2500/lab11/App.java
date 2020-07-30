@@ -65,7 +65,6 @@ public class App {
                         err.format("AUTH_ERROR");
                         return;
                     } catch (Exception e) {
-                        e.printStackTrace();
                         throw e;
                     }
                     break;
@@ -114,8 +113,6 @@ public class App {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
                     break;
                 default:
                     assert false : "없으면 안 되는뎅...";
