@@ -25,7 +25,6 @@ public class App {
         UUID selectedItem = null;
         Warehouse warehouse = null;
         Wallet wallet = null;
-        User user = new User("Jane", "Many", Department.HUMAN_RESOURCES);
 
         while(true) {
             int number = 1;
@@ -60,7 +59,7 @@ public class App {
                 case 3:
                     try {
                         depth = 4;
-                        wallet = new SafeWallet(user);
+                        wallet = new SafeWallet(new User("Jane", "Many", Department.ENGINEERING));
                     } catch (IllegalAccessException e) {
                         err.format("AUTH_ERROR");
                         return;
