@@ -8,7 +8,6 @@ import academy.pocu.comp2500.lab11.pocu.Warehouse;
 import academy.pocu.comp2500.lab11.pocu.WarehouseType;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -18,10 +17,9 @@ public class App {
     private static final String BALANCE_MESSAGE = "BALANCE: %s%s";
     private static final String PRODUCT_LIST_MESSAGE = "PRODUCT_LIST: %s%s";
 
-
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
         String s = "";
-        int depth = 1;
+        int step = 1;
         UUID selectedItem = null;
         Warehouse warehouse = null;
         Wallet wallet = null;
@@ -32,23 +30,23 @@ public class App {
                 return;
             }
 
-            switch (depth) {
+            switch (step) {
                 case 1:
                     out.format(WELCOME_MESSAGE, "선택하거라. 흑우여!", System.lineSeparator());
                     for (var warehouseType : WarehouseType.values()) {
                         out.format("%d. %s%s", number++, warehouseType, System.lineSeparator());
                     }
-                    depth = 2;
+                    step = 2;
                     break;
                 case 2:
                     try {
-                        depth = 1;
+                        step = 1;
                         s = in.readLine();
 
                         if (isNumeric(s)) {
                             int index = Integer.parseInt(s);
                             if (index >= 0 && index < WarehouseType.values().length) {
-                                depth = 3;
+                                step = 3;
                                 warehouse = new Warehouse(WarehouseType.values()[Integer.parseInt(s) - 1]);
                             }
                         }
@@ -58,36 +56,34 @@ public class App {
                     break;
                 case 3:
                     try {
-                        depth = 4;
+                        step = 4;
                         wallet = new SafeWallet(new User());
-                    } catch (IllegalAccessException e) {
+                    } catch (Exception e) {
                         err.format("AUTH_ERROR");
                         return;
-                    } catch (Exception e) {
-                        throw e;
-                    }
+                    } 
                     break;
                 case 4:
+                    step = 5;
                     out.format(String.format(BALANCE_MESSAGE, wallet.getAmount(), System.lineSeparator()));
-                    depth = 5;
                     break;
                 case 5:
+                    step = 6;
                     out.format(String.format(PRODUCT_LIST_MESSAGE, "흑우야. 골라 봐라", System.lineSeparator()));
                     for(var product : warehouse.getProducts()) {
                         out.format("%d. %-20s%4d%s", number++, product.getName(), product.getPrice(), System.lineSeparator());
                     }
-                    depth = 6;
                     break;
                 case 6:
                     try {
-                        depth = 4;
+                        step = 4;
                         s = in.readLine();
 
                         if (isNumeric(s)) {
                             int index = Integer.parseInt(s);
                             ArrayList<Product> products = warehouse.getProducts();
                             if (index >= 1 && index <= products.size()) {
-                                depth = 7;
+                                step = 7;
                                 selectedItem = products.get(index - 1).getId();
                             }
                         }
@@ -97,9 +93,8 @@ public class App {
                     break;
                 case 7:
                     try {
-                        depth = 4;
-                        ArrayList<Product> products = warehouse.getProducts();
-                        for (Product product : products) {
+                        step = 4;
+                        for (Product product :  warehouse.getProducts()) {
                             if (product.getId().equals(selectedItem)) {
                                 int price = product.getPrice();
                                 if (wallet.withdraw(price)) {

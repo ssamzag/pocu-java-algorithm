@@ -10,7 +10,7 @@ public class SafeWallet extends Wallet {
     }
 
     @Override
-    public boolean deposit(int amount) {
+    public boolean deposit(final int amount) {
         if (super.getAmount() + amount > Integer.MAX_VALUE) {
             throw new OverflowException("오버플로어 발생했다. 너 쌉부자네?");
         }
