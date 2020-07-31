@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class App {
-    private static final String WELCOME_MESSAGE = "WAREHOUSE: %s%s";
-    private static final String BALANCE_MESSAGE = "BALANCE: %s%s";
-    private static final String PRODUCT_LIST_MESSAGE = "PRODUCT_LIST: %s%s";
+    private static final String WELCOME_MESSAGE = "WAREHOUSE: %s" + System.lineSeparator();
+    private static final String BALANCE_MESSAGE = "BALANCE: %s" + System.lineSeparator();
+    private static final String PRODUCT_LIST_MESSAGE = "PRODUCT_LIST: %s" + System.lineSeparator();
 
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
         String s = "";
@@ -34,23 +34,24 @@ public class App {
 
             switch (step) {
                 case 1:
-                    out.format(WELCOME_MESSAGE, "선택하거라. 흑우여!", System.lineSeparator());
+                    step = 2;
+                    out.format(WELCOME_MESSAGE, "선택하거라. 흑우여!");
                     for (var warehouseType : WarehouseType.values()) {
                         out.format("%d. %s%s", number++, warehouseType, System.lineSeparator());
                     }
-                    step = 2;
                     break;
                 case 2:
                     try {
                         step = 1;
                         s = in.readLine();
 
-                        if (isNumeric(s)) {
-                            int index = Integer.parseInt(s);
-                            if (index >= 0 && index <= WarehouseType.values().length) {
-                                step = 3;
-                                warehouse = new Warehouse(WarehouseType.values()[index - 1]);
-                            }
+                        if (!isNumeric(s)) {
+                            return;
+                        }
+                        int index = Integer.parseInt(s);
+                        if (index >= 1 && index <= WarehouseType.values().length) {
+                            step = 3;
+                            warehouse = new Warehouse(WarehouseType.values()[index - 1]);
                         }
                     } catch (PermanentlyClosedException e) {
                         throw e;
@@ -71,12 +72,12 @@ public class App {
                     break;
                 case 4:
                     step = 5;
-                    out.format(String.format(BALANCE_MESSAGE, wallet.getAmount(), System.lineSeparator()));
+                    out.format(BALANCE_MESSAGE, wallet.getAmount());
                     break;
                 case 5:
                     step = 6;
-                    out.format(String.format(PRODUCT_LIST_MESSAGE, "흑우야. 골라 봐라", System.lineSeparator()));
-                    for (var product : warehouse.getProducts()) {
+                    out.format(PRODUCT_LIST_MESSAGE, "흑우야. 골라 봐라");
+                    for (Product product : warehouse.getProducts()) {
                         out.format("%d. %-20s%4d%s", number++, product.getName(), product.getPrice(), System.lineSeparator());
                     }
                     break;
@@ -85,13 +86,15 @@ public class App {
                         step = 4;
                         s = in.readLine();
 
-                        if (isNumeric(s)) {
-                            int index = Integer.parseInt(s);
-                            ArrayList<Product> products = warehouse.getProducts();
-                            if (index >= 1 && index <= products.size()) {
-                                step = 7;
-                                selectedItem = products.get(index - 1).getId();
-                            }
+                        if (!isNumeric(s)) {
+                            return;
+                        }
+
+                        int index = Integer.parseInt(s);
+                        ArrayList<Product> products = warehouse.getProducts();
+                        if (index >= 1 && index <= products.size()) {
+                            step = 7;
+                            selectedItem = products.get(index - 1).getId();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -99,9 +102,8 @@ public class App {
                     break;
                 case 7:
                     int price = 0;
+                    step = 4;
                     try {
-                        step = 4;
-
                         for (Product product : warehouse.getProducts()) {
                             if (product.getId().equals(selectedItem)) {
                                 price = product.getPrice();
