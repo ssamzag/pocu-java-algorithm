@@ -46,12 +46,12 @@ public class App {
                         s = in.readLine();
 
                         if (!isNumeric(s)) {
-                            return;
+                            continue;
                         }
-                        int index = Integer.parseInt(s);
-                        if (index >= 1 && index <= WarehouseType.values().length) {
+                        int index = Integer.parseInt(s) - 1;
+                        if (index >= 0 && index < WarehouseType.values().length) {
                             step = 3;
-                            warehouse = new Warehouse(WarehouseType.values()[index - 1]);
+                            warehouse = new Warehouse(WarehouseType.values()[index]);
                         }
                     } catch (PermanentlyClosedException e) {
                         throw e;
@@ -87,14 +87,14 @@ public class App {
                         s = in.readLine();
 
                         if (!isNumeric(s)) {
-                            return;
+                            continue;
                         }
 
-                        int index = Integer.parseInt(s);
+                        int index = Integer.parseInt(s) - 1;
                         ArrayList<Product> products = warehouse.getProducts();
-                        if (index >= 1 && index <= products.size()) {
+                        if (index >= 0 && index < products.size()) {
                             step = 7;
-                            selectedItem = products.get(index - 1).getId();
+                            selectedItem = products.get(index).getId();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
