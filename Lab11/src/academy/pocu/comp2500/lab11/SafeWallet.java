@@ -11,10 +11,9 @@ public class SafeWallet extends Wallet {
 
     @Override
     public boolean deposit(final int amount) {
-        try {
-            Math.addExact(super.getAmount(), amount);
+        int r = super.getAmount() + amount;
 
-        } catch (ArithmeticException e) {
+        if (((super.getAmount() ^ r) & (amount ^ r)) < 0) {
             throw new OverflowException("오버플로어 발생했다. 너 쌉부자네?");
         }
 
