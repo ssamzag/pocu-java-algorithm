@@ -21,7 +21,15 @@ public class Program {
         canvas.decreasePixel(0, 4);
         canvas.getDrawing();
 
-        System.out.println();
+        canvas.getDrawing();
+        canvas.toUpper(4, 4);
+        canvas.getDrawing();
+        canvas.toLower(4, 4);
+        canvas.getDrawing();
 
+        canvas.toUpper(4, 4);
+        canvas.getDrawing();
+        canvas.clear();
+        canvas.getDrawing();
     }
 }

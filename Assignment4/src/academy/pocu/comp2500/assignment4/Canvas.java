@@ -19,6 +19,7 @@ public class Canvas {
                 pixels.put(new Point(w, h), DEFAULT_PIXEL);
             }
         }
+
     }
 
     public void drawPixel(final int x, final int y, final char c) {
@@ -89,7 +90,9 @@ public class Canvas {
     }
 
     public void clear() {
-        pixels.clear();
+        for (var pixel : pixels.entrySet()) {
+            pixel.setValue(DEFAULT_PIXEL);
+        }
     }
 
     public void getDrawing() {
@@ -116,19 +119,8 @@ public class Canvas {
         }
     }
 
-    private boolean isAscii(char c) {
+    private boolean isAscii(final char c) {
         return c >= 32 && c <= 126;
     }
 
-    private boolean isCorrectX(int x) {
-        return width > x;
-    }
-
-    private boolean isCorrectY(int y) {
-        return height > y;
-    }
-
-    private boolean isCorrectXy(int x, int y) {
-        return isCorrectX(x) && isCorrectY(y);
-    }
 }
