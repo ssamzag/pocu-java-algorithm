@@ -1,5 +1,7 @@
 package academy.pocu.comp2500.assignment4;
 
-public enum ICommand {
-
+public interface ICommand {
+    boolean execute(Canvas canvas);
+    boolean undo();
+    boolean redo();
 }
