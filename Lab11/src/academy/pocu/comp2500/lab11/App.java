@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.lab11;
 
 import academy.pocu.comp2500.lab11.pocu.Department;
+import academy.pocu.comp2500.lab11.pocu.PermanentlyClosedException;
 import academy.pocu.comp2500.lab11.pocu.Product;
 import academy.pocu.comp2500.lab11.pocu.User;
 import academy.pocu.comp2500.lab11.pocu.Wallet;
@@ -58,10 +59,12 @@ public class App {
                     try {
                         step = 4;
                         wallet = new SafeWallet(new User());
-                    } catch (Exception e) {
+                    } catch (IllegalAccessException e) {
                         err.format("AUTH_ERROR");
                         return;
-                    } 
+                    } catch (Exception e) {
+                        throw e;
+                    }
                     break;
                 case 4:
                     step = 5;
@@ -87,6 +90,8 @@ public class App {
                                 selectedItem = products.get(index - 1).getId();
                             }
                         }
+                    } catch(PermanentlyClosedException e) {
+                        throw e;
                     } catch (Exception e) {
                       e.printStackTrace();
                     }
@@ -94,6 +99,7 @@ public class App {
                 case 7:
                     try {
                         step = 4;
+
                         for (Product product :  warehouse.getProducts()) {
                             if (product.getId().equals(selectedItem)) {
                                 int price = product.getPrice();
