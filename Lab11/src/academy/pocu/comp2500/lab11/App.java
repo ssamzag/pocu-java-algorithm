@@ -51,6 +51,8 @@ public class App {
                                 step = 3;
                                 warehouse = new Warehouse(WarehouseType.values()[index - 1]);
                             }
+                        } else {
+                            step = 2;
                         }
                     } catch (PermanentlyClosedException e) {
                         err.print(e.getMessage() + System.lineSeparator());
@@ -113,7 +115,6 @@ public class App {
                             }
                         }
                     } catch (ProductNotFoundException e) {
-                        err.print(e.getMessage() + System.lineSeparator());
                         wallet.deposit(price);
                     } catch (Exception e) {
                         e.printStackTrace();
