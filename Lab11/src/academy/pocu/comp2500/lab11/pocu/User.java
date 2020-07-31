@@ -53,6 +53,6 @@ public class User {
     private void loadUserMock() {
         this.firstName = "John";
         this.lastName = "Doe";
-        this.department = Department.HUMAN_RESOURCES;
+        this.department = Department.OPERATION;
     }
 }

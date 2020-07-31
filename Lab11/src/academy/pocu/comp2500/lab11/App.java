@@ -47,12 +47,13 @@ public class App {
 
                         if (isNumeric(s)) {
                             int index = Integer.parseInt(s);
-                            if (index >= 0 && index < WarehouseType.values().length) {
+                            if (index >= 0 && index <= WarehouseType.values().length) {
                                 step = 3;
-                                warehouse = new Warehouse(WarehouseType.values()[Integer.parseInt(s) - 1]);
+                                warehouse = new Warehouse(WarehouseType.values()[index - 1]);
                             }
                         }
                     } catch (PermanentlyClosedException e) {
+                        err.print(e.getMessage() + System.lineSeparator());
                         throw e;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -112,6 +113,7 @@ public class App {
                             }
                         }
                     } catch (ProductNotFoundException e) {
+                        err.print(e.getMessage() + System.lineSeparator());
                         wallet.deposit(price);
                     } catch (Exception e) {
                         e.printStackTrace();
