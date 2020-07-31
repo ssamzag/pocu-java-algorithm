@@ -51,6 +51,8 @@ public class App {
                                 warehouse = new Warehouse(WarehouseType.values()[Integer.parseInt(s) - 1]);
                             }
                         }
+                    } catch(PermanentlyClosedException e) {
+                        throw e;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -90,8 +92,6 @@ public class App {
                                 selectedItem = products.get(index - 1).getId();
                             }
                         }
-                    } catch(PermanentlyClosedException e) {
-                        throw e;
                     } catch (Exception e) {
                       e.printStackTrace();
                     }
