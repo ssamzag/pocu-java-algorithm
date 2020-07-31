@@ -51,11 +51,8 @@ public class App {
                                 step = 3;
                                 warehouse = new Warehouse(WarehouseType.values()[index - 1]);
                             }
-                        } else {
-                            step = 2;
                         }
                     } catch (PermanentlyClosedException e) {
-                        err.print(e.getMessage() + System.lineSeparator());
                         throw e;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -121,7 +118,7 @@ public class App {
                     }
                     break;
                 default:
-                    assert false : "없으면 안 되는뎅...";
+                    assert false : "여기 오면 안 돼.. 니가 있을 곳이 아냐";
                     break;
             }
 
