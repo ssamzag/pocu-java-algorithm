@@ -3,6 +3,7 @@ package academy.pocu.comp2500.lab11;
 import academy.pocu.comp2500.lab11.pocu.Department;
 import academy.pocu.comp2500.lab11.pocu.PermanentlyClosedException;
 import academy.pocu.comp2500.lab11.pocu.Product;
+import academy.pocu.comp2500.lab11.pocu.ProductNotFoundException;
 import academy.pocu.comp2500.lab11.pocu.User;
 import academy.pocu.comp2500.lab11.pocu.Wallet;
 import academy.pocu.comp2500.lab11.pocu.Warehouse;
@@ -25,7 +26,7 @@ public class App {
         Warehouse warehouse = null;
         Wallet wallet = null;
 
-        while(true) {
+        while (true) {
             int number = 1;
             if (s.equals("exit")) {
                 return;
@@ -51,7 +52,7 @@ public class App {
                                 warehouse = new Warehouse(WarehouseType.values()[Integer.parseInt(s) - 1]);
                             }
                         }
-                    } catch(PermanentlyClosedException e) {
+                    } catch (PermanentlyClosedException e) {
                         throw e;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -75,7 +76,7 @@ public class App {
                 case 5:
                     step = 6;
                     out.format(String.format(PRODUCT_LIST_MESSAGE, "흑우야. 골라 봐라", System.lineSeparator()));
-                    for(var product : warehouse.getProducts()) {
+                    for (var product : warehouse.getProducts()) {
                         out.format("%d. %-20s%4d%s", number++, product.getName(), product.getPrice(), System.lineSeparator());
                     }
                     break;
@@ -93,23 +94,25 @@ public class App {
                             }
                         }
                     } catch (Exception e) {
-                      e.printStackTrace();
+                        e.printStackTrace();
                     }
                     break;
                 case 7:
+                    int price = 0;
                     try {
                         step = 4;
 
-                        for (Product product :  warehouse.getProducts()) {
+                        for (Product product : warehouse.getProducts()) {
                             if (product.getId().equals(selectedItem)) {
-                                int price = product.getPrice();
+                                price = product.getPrice();
                                 if (wallet.withdraw(price)) {
                                     warehouse.removeProduct(selectedItem);
                                 }
-
                                 break;
                             }
                         }
+                    } catch (ProductNotFoundException e) {
+                        wallet.deposit(price);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
