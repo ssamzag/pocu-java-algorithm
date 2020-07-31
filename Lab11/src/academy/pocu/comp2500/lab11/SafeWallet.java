@@ -11,9 +11,13 @@ public class SafeWallet extends Wallet {
 
     @Override
     public boolean deposit(final int amount) {
-        if (super.getAmount() + amount > Integer.MAX_VALUE) {
+        try {
+            Math.addExact(super.getAmount(), amount);
+
+        } catch (ArithmeticException e) {
             throw new OverflowException("오버플로어 발생했다. 너 쌉부자네?");
         }
+
         return super.deposit(amount);
     }
 }
