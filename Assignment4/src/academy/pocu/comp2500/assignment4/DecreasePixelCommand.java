@@ -6,7 +6,7 @@ public class DecreasePixelCommand implements ICommand {
     private boolean canUndo;
     private final int x, y;
     private boolean result;
-    private String undoDraw = "", redoDraw = "";
+    private String undoDraw, redoDraw;
 
     public DecreasePixelCommand(int x, int y) {
         this.x = x;
@@ -19,7 +19,7 @@ public class DecreasePixelCommand implements ICommand {
             return false;
         }
         this.canvas = canvas;
-
+        undoDraw = canvas.getDrawing();
         result = canvas.decreasePixel(x, y);
         redoDraw = canvas.getDrawing();
         canExecute = false;
@@ -29,19 +29,18 @@ public class DecreasePixelCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || !result || !redoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || !canUndo || redoDraw.equals(undoDraw)) {
             return false;
         }
 
         canvas.increasePixel(x, y);
-        undoDraw = canvas.getDrawing();
         canUndo = false;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo || !result || !undoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || canUndo || !canvas.getDrawing().equals(undoDraw)) {
             return false;
         }
 
