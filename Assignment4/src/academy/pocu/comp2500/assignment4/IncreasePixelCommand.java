@@ -29,28 +29,22 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo) {
+        if (canExecute || !canUndo || !result) {
             return false;
         }
 
-        if (result) {
-            canvas.decreasePixel(x, y);
-        }
-
+        canvas.decreasePixel(x, y);
         canUndo = false;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo) {
+        if (canExecute || canUndo || !result) {
             return false;
         }
 
-        if (result) {
-            canvas.increasePixel(x, y);
-        }
-
+        canvas.increasePixel(x, y);
         canUndo = true;
         return true;
     }

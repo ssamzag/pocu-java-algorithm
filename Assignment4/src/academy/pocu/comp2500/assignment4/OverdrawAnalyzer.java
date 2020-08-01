@@ -23,6 +23,7 @@ public class OverdrawAnalyzer extends Canvas {
         if (bResult) {
             getPixelHistory(x, y).push(getPixel(x, y));
         }
+
         return bResult;
     }
 
@@ -32,14 +33,13 @@ public class OverdrawAnalyzer extends Canvas {
         if (bResult) {
             getPixelHistory(x, y).push(getPixel(x, y));
         }
+
         return bResult;
     }
 
     @Override
     public void drawPixel(int x, int y, char c) {
-        char pixel = getPixel(x, y);
-
-        if (pixel == c) {
+        if (getPixel(x, y) == c) {
             return;
         }
 
@@ -75,7 +75,7 @@ public class OverdrawAnalyzer extends Canvas {
     public void fillHorizontalLine(int y, char c) {
         for (int x = 0; x < getWidth(); ++x) {
             char pixel = getPixel(x, y);
-            if (pixel == Character.toLowerCase(pixel)) {
+            if (pixel != c) {
                 getPixelHistory(x, y).push(getPixel(x, y));
                 drawPixel(x, y, c);
             }
@@ -86,7 +86,7 @@ public class OverdrawAnalyzer extends Canvas {
     public void fillVerticalLine(int x, char c) {
         for (int y = 0; y < getWidth(); ++y) {
             char pixel = getPixel(x, y);
-            if (pixel == Character.toLowerCase(pixel)) {
+            if (pixel != c) {
                 getPixelHistory(x, y).push(getPixel(x, y));
                 drawPixel(x, y, c);
             }

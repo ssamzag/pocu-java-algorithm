@@ -38,7 +38,10 @@ public class Program {
             manager.redo();
             ICommand decrease = new DecreasePixelCommand(23, 17);
             manager.execute(decrease);
-            manager.undo();
+
+            assert manager.undo();
+            assert manager.undo();
+
             System.out.println(canvas.getDrawing());
         }
 //        {
