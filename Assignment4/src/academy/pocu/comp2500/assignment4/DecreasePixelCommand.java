@@ -23,8 +23,7 @@ public class DecreasePixelCommand implements ICommand {
         result = canvas.decreasePixel(x, y);
         canExecute = false;
         canUndo = true;
-        return true;
-
+        return result;
     }
 
     @Override

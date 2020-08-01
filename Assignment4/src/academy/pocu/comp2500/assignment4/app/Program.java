@@ -22,42 +22,59 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Canvas canvas = new OverdrawAnalyzer(30, 30);
-
+        Canvas canvas = new Canvas(30, 30);
         {
-
-            System.out.println(canvas.getDrawing());
             var manager = new CommandHistoryManager(canvas);
-            assert !manager.canRedo();
-            assert !manager.canUndo();
-            ICommand command = new DrawPixelCommand(0, 0, (char)126);
-            manager.execute(command);
-            System.out.println(canvas.getDrawing());
-            assert !manager.canRedo();
-            assert manager.canUndo();
-            assert manager.undo();
-            System.out.println(canvas.getDrawing());
+            manager.redo();
+            manager.redo();
 
-            ICommand command2 = new DrawPixelCommand(0, 1, (char)126);
-            assert manager.execute(command2);
-            assert !manager.execute(command2);
-            System.out.println(canvas.getDrawing());
-            ICommand command3 = new DrawPixelCommand(0, 2, (char)124);
-            assert manager.execute(command3);
-            System.out.println(canvas.getDrawing());
-            assert manager.undo();
-            System.out.println(canvas.getDrawing());
-            assert manager.undo();
-            System.out.println(canvas.getDrawing());
-            assert !manager.undo();
-            System.out.println(canvas.getDrawing());
-            assert manager.redo();
-            System.out.println(canvas.getDrawing());
-            assert manager.redo();
-            System.out.println(canvas.getDrawing());
-            assert !manager.redo();
+            ICommand upperCommand = new ToUppercaseCommand(21, 8);
+            manager.execute(upperCommand);
+            ICommand drawPixel = new DrawPixelCommand(14, 10, 'v');
+
+            manager.execute(drawPixel);
+            manager.redo();
+            manager.undo();
+            manager.redo();
+            ICommand decrease = new DecreasePixelCommand(23, 17);
+            manager.execute(decrease);
+            manager.undo();
             System.out.println(canvas.getDrawing());
         }
+//        {
+//
+//            System.out.println(canvas.getDrawing());
+//            var manager = new CommandHistoryManager(canvas);
+//            assert !manager.canRedo();
+//            assert !manager.canUndo();
+//            ICommand command = new DrawPixelCommand(0, 0, (char)126);
+//            manager.execute(command);
+//            System.out.println(canvas.getDrawing());
+//            assert !manager.canRedo();
+//            assert manager.canUndo();
+//            assert manager.undo();
+//            System.out.println(canvas.getDrawing());
+//
+//            ICommand command2 = new DrawPixelCommand(0, 1, (char)126);
+//            assert manager.execute(command2);
+//            assert !manager.execute(command2);
+//            System.out.println(canvas.getDrawing());
+//            ICommand command3 = new DrawPixelCommand(0, 2, (char)124);
+//            assert manager.execute(command3);
+//            System.out.println(canvas.getDrawing());
+//            assert manager.undo();
+//            System.out.println(canvas.getDrawing());
+//            assert manager.undo();
+//            System.out.println(canvas.getDrawing());
+//            assert !manager.undo();
+//            System.out.println(canvas.getDrawing());
+//            assert manager.redo();
+//            System.out.println(canvas.getDrawing());
+//            assert manager.redo();
+//            System.out.println(canvas.getDrawing());
+//            assert !manager.redo();
+//            System.out.println(canvas.getDrawing());
+//        }
 //        {
 //            System.out.println(canvas.getDrawing());
 //            ICommand command = new DrawPixelCommand(0, 0, (char)126);
