@@ -38,7 +38,7 @@ public class DecreasePixelCommand implements ICommand {
             return false;
         }
 
-        if (backupDraw2.equals(canvas.getDrawing())) {
+        if (!backupDraw2.equals(canvas.getDrawing())) {
             return false;
         }
 
@@ -52,7 +52,7 @@ public class DecreasePixelCommand implements ICommand {
         if (canExecute || canUndo || !result) {
             return false;
         }
-        if (backupDraw.equals(canvas.getDrawing())) {
+        if (!backupDraw.equals(canvas.getDrawing())) {
             return false;
         }
         canvas.decreasePixel(x, y);
