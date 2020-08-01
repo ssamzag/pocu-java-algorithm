@@ -25,30 +25,34 @@ public class Program {
 
         OverdrawAnalyzer canvas = new OverdrawAnalyzer(30, 30);
 
-        {
-            var manager = new CommandHistoryManager(canvas);
-            var fillHo = new FillHorizontalLineCommand(4, 'X');
-            manager.execute(fillHo);
-            var fillv = new FillHorizontalLineCommand(4, 'V');
-            manager.execute(fillv);
-
-            var tlow = new ToLowercaseCommand(0, 4);
-            manager.execute(tlow);
-            System.out.println(canvas.getPixelHistory(0, 4));
-
-        }
 //        {
-//            var fv = new FillVerticalLineCommand(21, '8');
-//            var fh = new FillHorizontalLineCommand(21, '7');
-//            fv.execute(canvas);
-//            System.out.println(canvas.getDrawing());
-//            fh.execute(canvas);
-//            System.out.println(canvas.getDrawing());
-//            fv.undo();
-//            System.out.println(canvas.getDrawing());
-//            fh.undo();
-//            System.out.println(canvas.getDrawing());
+//            var manager = new CommandHistoryManager(canvas);
+//            var fillHo = new FillHorizontalLineCommand(4, 'X');
+//            manager.execute(fillHo);
+//            var fillv = new FillHorizontalLineCommand(4, 'V');
+//            manager.execute(fillv);
+//
+//            var tlow = new ToLowercaseCommand(0, 4);
+//            manager.execute(tlow);
+//            System.out.println(canvas.getPixelHistory(0, 4));
+//
 //        }
+        {
+            var fh1 = new IncreasePixelCommand(10, 10);
+            var fh2 = new IncreasePixelCommand(10, 10);
+            fh1.execute(canvas);
+            fh2.execute(canvas);
+
+            var fv = new IncreasePixelCommand(10, 10);
+            var fh = new DecreasePixelCommand(10, 10);
+            fv.execute(canvas);
+            fh.execute(canvas);
+            System.out.println(canvas.getDrawing());
+            fv.undo();
+            System.out.println(canvas.getDrawing());
+            fh.undo();
+            System.out.println(canvas.getDrawing());
+        }
 //        {
 //            var manager = new CommandHistoryManager(canvas);
 //            var fv = new FillVerticalLineCommand(21, '8');
