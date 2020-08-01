@@ -17,22 +17,38 @@ import academy.pocu.comp2500.assignment4.ToUppercaseCommand;
 import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Program {
 
     public static void main(String[] args) {
+
         OverdrawAnalyzer canvas = new OverdrawAnalyzer(30, 30);
 
         {
-            var fv = new FillVerticalLineCommand(21, '8');
-            var fh = new FillHorizontalLineCommand(21, '7');
-            fv.execute(canvas);
-            System.out.println(canvas.getDrawing());
-            fh.execute(canvas);
-            System.out.println(canvas.getDrawing());
-            fv.undo();
-            System.out.println(canvas.getDrawing());
+            var manager = new CommandHistoryManager(canvas);
+            var fillHo = new FillHorizontalLineCommand(4, 'X');
+            manager.execute(fillHo);
+            var fillv = new FillHorizontalLineCommand(4, 'V');
+            manager.execute(fillv);
+
+            var tlow = new ToLowercaseCommand(0, 4);
+            manager.execute(tlow);
+            System.out.println(canvas.getPixelHistory(0, 4));
+
         }
+//        {
+//            var fv = new FillVerticalLineCommand(21, '8');
+//            var fh = new FillHorizontalLineCommand(21, '7');
+//            fv.execute(canvas);
+//            System.out.println(canvas.getDrawing());
+//            fh.execute(canvas);
+//            System.out.println(canvas.getDrawing());
+//            fv.undo();
+//            System.out.println(canvas.getDrawing());
+//            fh.undo();
+//            System.out.println(canvas.getDrawing());
+//        }
 //        {
 //            var manager = new CommandHistoryManager(canvas);
 //            var fv = new FillVerticalLineCommand(21, '8');

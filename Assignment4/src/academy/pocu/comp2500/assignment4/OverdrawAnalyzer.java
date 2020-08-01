@@ -3,9 +3,10 @@ package academy.pocu.comp2500.assignment4;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class OverdrawAnalyzer extends Canvas {
-    private final HashMap<Point, LinkedList<Character>> pixelHistories = new HashMap<>();
+    private final Map<Point, LinkedList<Character>> pixelHistories = new HashMap<>();
 
     public OverdrawAnalyzer(int width, int height) {
         super(width, height);
@@ -24,7 +25,7 @@ public class OverdrawAnalyzer extends Canvas {
         }
 
         super.drawPixel(x, y, c);
-        getPixelHistory(x, y).push(getPixel(x, y));
+        getPixelHistory(x, y).add(getPixel(x, y));
 
     }
 
@@ -36,7 +37,6 @@ public class OverdrawAnalyzer extends Canvas {
         }
 
         super.toUpper(x, y);
-        getPixelHistory(x, y).push(getPixel(x, y));
     }
 
     @Override
@@ -47,7 +47,6 @@ public class OverdrawAnalyzer extends Canvas {
         }
 
         super.toLower(x, y);
-        getPixelHistory(x, y).push(getPixel(x, y));
     }
 
     @Override

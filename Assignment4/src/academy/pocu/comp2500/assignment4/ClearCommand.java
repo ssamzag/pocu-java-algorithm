@@ -34,6 +34,7 @@ public class ClearCommand implements ICommand {
             return false;
         }
 
+
         for (var pixel : pixels.entrySet()) {
             int x = pixel.getKey().x;
             int y = pixel.getKey().y;
