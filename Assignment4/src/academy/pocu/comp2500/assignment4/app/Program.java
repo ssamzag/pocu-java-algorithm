@@ -30,16 +30,17 @@ public class Program {
 
             ICommand upperCommand = new ToUppercaseCommand(21, 8);
             manager.execute(upperCommand);
+            System.out.println(canvas.getDrawing());
             ICommand drawPixel = new DrawPixelCommand(14, 10, 'v');
 
             manager.execute(drawPixel);
+            System.out.println(canvas.getDrawing());
             manager.redo();
             manager.undo();
             manager.redo();
             ICommand decrease = new DecreasePixelCommand(23, 17);
             manager.execute(decrease);
 
-            assert manager.undo();
             assert manager.undo();
 
             System.out.println(canvas.getDrawing());

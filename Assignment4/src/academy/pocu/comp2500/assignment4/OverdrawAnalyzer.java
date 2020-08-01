@@ -23,7 +23,6 @@ public class OverdrawAnalyzer extends Canvas {
         if (bResult) {
             getPixelHistory(x, y).push(getPixel(x, y));
         }
-
         return bResult;
     }
 
@@ -33,7 +32,6 @@ public class OverdrawAnalyzer extends Canvas {
         if (bResult) {
             getPixelHistory(x, y).push(getPixel(x, y));
         }
-
         return bResult;
     }
 

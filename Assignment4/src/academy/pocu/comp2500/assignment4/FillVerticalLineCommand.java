@@ -7,6 +7,7 @@ public class FillVerticalLineCommand implements ICommand {
     private final char c;
     private boolean canExecute = true;
     private boolean canUndo = true;
+    private boolean isExecuted = true;
     private Canvas canvas;
     private final ArrayList<Character> pixels = new ArrayList<>();
 
@@ -20,9 +21,19 @@ public class FillVerticalLineCommand implements ICommand {
         if (!canExecute || x > canvas.getWidth() - 1) {
             return false;
         }
+        boolean bNotExists = true;
 
         for (int y = 0; y < canvas.getHeight(); ++y) {
-            pixels.add(canvas.getPixel(this.x, y));
+            char pixel = canvas.getPixel(x, y);
+            if (this.c != pixel) {
+                bNotExists = false;
+            }
+            pixels.add(pixel);
+        }
+
+        if (bNotExists) {
+            isExecuted = false;
+            return false;
         }
 
         this.canvas = canvas;
@@ -33,7 +44,7 @@ public class FillVerticalLineCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo) {
+        if (canExecute || !canUndo || !isExecuted) {
             return false;
         }
 
@@ -46,7 +57,7 @@ public class FillVerticalLineCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo) {
+        if (canExecute || canUndo || !isExecuted) {
             return false;
         }
 

@@ -4,7 +4,8 @@ public class ToLowercaseCommand implements ICommand {
 
     private Canvas canvas;
     private boolean canExecute = true;
-    private boolean canUndo;
+    private boolean canUndo = true;
+    private boolean isExecuted = true;
     private int x, y;
     private char pixel;
 
@@ -18,18 +19,24 @@ public class ToLowercaseCommand implements ICommand {
         if (!canExecute) {
             return false;
         }
+
+        char pixel = canvas.getPixel(x, y);
+        if (pixel < 'A' || pixel > 'Z') {
+            isExecuted = false;
+            return false;
+        }
+
         this.canvas = canvas;
         this.pixel = canvas.getPixel(x, y);
         canvas.toLower(x, y);
         canExecute = false;
-        canUndo = true;
         return true;
 
     }
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo) {
+        if (canExecute || !isExecuted || !canUndo) {
             return false;
         }
 
@@ -41,7 +48,7 @@ public class ToLowercaseCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo) {
+        if (canExecute || !isExecuted || canUndo) {
             return false;
         }
 
