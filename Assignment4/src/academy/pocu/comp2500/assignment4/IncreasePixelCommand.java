@@ -21,7 +21,7 @@ public class IncreasePixelCommand implements ICommand {
         }
         this.canvas = canvas;
         this.pixel = canvas.getPixel(x, y);
-        undoDraw = canvas.getDrawing();
+
         result = canvas.increasePixel(x, y);
         redoDraw = canvas.getDrawing();
         canExecute = false;
@@ -37,6 +37,7 @@ public class IncreasePixelCommand implements ICommand {
         }
 
         canvas.decreasePixel(x, y);
+        undoDraw = canvas.getDrawing();
         canUndo = false;
         return true;
     }

@@ -116,7 +116,8 @@ public class Canvas {
             for (int x = 0; x < width; ++x) {
                 drawing.append(getPixel(x, y));
             }
-            drawing.append("|" + System.lineSeparator());
+            drawing.append("|");
+            drawing.append(System.lineSeparator());
         }
 
         drawing.append(decoration);

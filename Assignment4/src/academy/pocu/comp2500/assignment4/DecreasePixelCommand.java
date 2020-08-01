@@ -22,7 +22,6 @@ public class DecreasePixelCommand implements ICommand {
 
         result = canvas.decreasePixel(x, y);
         redoDraw = canvas.getDrawing();
-
         canExecute = false;
         canUndo = true;
         return result;

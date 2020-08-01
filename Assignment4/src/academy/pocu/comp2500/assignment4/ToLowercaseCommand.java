@@ -20,19 +20,20 @@ public class ToLowercaseCommand implements ICommand {
         if (!canExecute) {
             return false;
         }
+        canExecute = false;
 
         this.canvas = canvas;
+        undoDraw = canvas.getDrawing();
         this.pixel = canvas.getPixel(x, y);
         canvas.toLower(x, y);
         redoDraw = canvas.getDrawing();
-        canExecute = false;
-        return true;
 
+        return true;
     }
 
     @Override
     public boolean undo() {
-        if (canExecute || !isExecuted || !canUndo || !redoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || !isExecuted || !canUndo || !redoDraw.equals(canvas.getDrawing()) || redoDraw.equals(undoDraw)) {
             return false;
         }
 
@@ -45,7 +46,7 @@ public class ToLowercaseCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || !isExecuted || canUndo || !undoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || !isExecuted || canUndo || !undoDraw.equals(canvas.getDrawing()) || redoDraw.equals(undoDraw)) {
             return false;
         }
 

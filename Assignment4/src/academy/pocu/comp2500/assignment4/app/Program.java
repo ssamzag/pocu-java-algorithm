@@ -24,7 +24,107 @@ public class Program {
     public static void main(String[] args) {
 
         Canvas canvas = new OverdrawAnalyzer(30, 30);
+        {
+            OverdrawAnalyzer canvas2 = new OverdrawAnalyzer(5, 5);
+            var manager = new CommandHistoryManager(canvas2);
 
+            var toUpper1 = new ToUppercaseCommand(2, 0);
+            var toUpper2 = new ToUppercaseCommand(0, 1);
+            var toLower1 = new ToLowercaseCommand(4, 3);
+
+            var fillH1 = new FillHorizontalLineCommand(0, 'e');//5
+            var dec1 = new DecreasePixelCommand(4, 4);//5
+            var dec2 = new DecreasePixelCommand(0, 1);
+            var toLower2 = new ToLowercaseCommand(0, 0);
+            var draw1 = new DrawPixelCommand(3, 2, 'Z');
+            var inc1 = new IncreasePixelCommand(3,4);
+            var toUpper3 = new ToUppercaseCommand(4, 4);
+            var draw2 = new DrawPixelCommand(4, 0, '+');
+            var fillV1 = new FillVerticalLineCommand(4, '^');
+            var toLower3 = new ToLowercaseCommand(0, 3);
+            var toLower4 = new ToLowercaseCommand(1, 0);
+            var toLower5 = new ToLowercaseCommand(1, 3);
+            var fillV2 = new FillVerticalLineCommand(3, 'I');
+            var inc2 = new IncreasePixelCommand(4,4);
+            int i = 1;
+
+            manager.execute(toUpper1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+            manager.execute(toUpper2);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+            manager.execute(toLower1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+            manager.execute(fillH1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+            manager.execute(dec1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());
+            System.out.println(canvas2.getDrawing());
+            manager.execute(dec2);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());
+            System.out.println(canvas2.getDrawing());
+            manager.execute(toLower2);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());
+            System.out.println(canvas2.getDrawing());
+            manager.execute(draw1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());
+            System.out.println(canvas2.getDrawing());
+            manager.execute(inc1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(toUpper3);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(draw2);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(fillV1);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(toLower3);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(toLower4);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.redo();
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.undo();
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(toLower5);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(fillV2);
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+            manager.execute(inc2);
+            System.out.print(i++ + ". ");System.out.println(canvas2.getOverdrawCount());System.out.println(canvas2.getDrawing());
+
+
+            manager.redo();
+            System.out.print(i++ + ". ");
+            System.out.println(canvas2.getOverdrawCount());
+            System.out.println(canvas2.getDrawing());
+        }
         {
             var manager = new CommandHistoryManager(canvas);
             var fillHo = new FillHorizontalLineCommand(4, 'X');
@@ -186,16 +286,16 @@ public class Program {
             assert !command1.execute(canvas);
             System.out.println(canvas.getDrawing());
 
-            assert command1.undo();
+            assert !command1.undo();
             System.out.println(canvas.getDrawing());
             assert !command1.undo();
 
-            assert command1.redo();
+            assert !command1.redo();
             System.out.println(canvas.getDrawing());
             assert !command1.redo();
             assert !command1.redo();
             assert !command1.redo();
-            assert command1.undo();
+            assert !command1.undo();
         }
 
         {

@@ -19,18 +19,21 @@ public class ToUppercaseCommand implements ICommand {
         if (!canExecute) {
             return false;
         }
+        canExecute = false;
+
 
         this.canvas = canvas;
+        undoDraw = canvas.getDrawing();
         canvas.toUpper(x, y);
         redoDraw = canvas.getDrawing();
-        canExecute = false;
+
         return true;
 
     }
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || !isExecuted || !redoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || !canUndo || !isExecuted || !redoDraw.equals(canvas.getDrawing()) || redoDraw.equals(undoDraw)) {
             return false;
         }
         canUndo = false;

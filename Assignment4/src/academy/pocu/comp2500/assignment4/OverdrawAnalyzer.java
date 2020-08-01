@@ -26,7 +26,6 @@ public class OverdrawAnalyzer extends Canvas {
 
         super.drawPixel(x, y, c);
         getPixelHistory(x, y).add(getPixel(x, y));
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class OverdrawAnalyzer extends Canvas {
 
         super.toUpper(x, y);
     }
-
+ 
     @Override
     public void toLower(int x, int y) {
         char pixel = getPixel(x, y);
@@ -79,7 +78,6 @@ public class OverdrawAnalyzer extends Canvas {
                 }
             }
         }
-
     }
 
     public LinkedList<Character> getPixelHistory(int x, int y) {
