@@ -6,6 +6,7 @@ public class IncreasePixelCommand implements ICommand {
     private boolean canUndo;
     private final int x, y;
     private char pixel;
+    private boolean result;
 
     public IncreasePixelCommand(int x, int y) {
         this.x = x;
@@ -19,7 +20,7 @@ public class IncreasePixelCommand implements ICommand {
         }
         this.canvas = canvas;
         this.pixel = canvas.getPixel(x, y);
-        canvas.increasePixel(x, y);
+        result = canvas.increasePixel(x, y);
         canExecute = false;
         canUndo = true;
 
@@ -32,7 +33,9 @@ public class IncreasePixelCommand implements ICommand {
             return false;
         }
 
-        canvas.decreasePixel(x, y);
+        if (result) {
+            canvas.decreasePixel(x, y);
+        }
 
         canUndo = false;
         return true;
@@ -44,7 +47,9 @@ public class IncreasePixelCommand implements ICommand {
             return false;
         }
 
-        canvas.increasePixel(x, y);
+        if (result) {
+            canvas.increasePixel(x, y);
+        }
 
         canUndo = true;
         return true;

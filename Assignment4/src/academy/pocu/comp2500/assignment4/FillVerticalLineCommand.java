@@ -6,9 +6,9 @@ public class FillVerticalLineCommand implements ICommand {
     private final int x;
     private final char c;
     private boolean canExecute = true;
-    private boolean canUndo;
+    private boolean canUndo = true;
     private Canvas canvas;
-    private ArrayList<Character> pixels = new ArrayList<>();
+    private final ArrayList<Character> pixels = new ArrayList<>();
 
     public FillVerticalLineCommand(int x, char c) {
         this.x = x;
@@ -28,7 +28,6 @@ public class FillVerticalLineCommand implements ICommand {
         this.canvas = canvas;
         canvas.fillVerticalLine(x, c);
         canExecute = false;
-        canUndo = true;
         return true;
     }
 

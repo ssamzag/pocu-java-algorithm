@@ -92,7 +92,7 @@ public class Canvas {
         }
 
         for (int x = 0; x < height; x++) {
-            pixels.put(new Point(x, y), c);
+            pixels.replace(new Point(x, y), c);
         }
     }
 
@@ -102,7 +102,7 @@ public class Canvas {
         }
 
         for (int y = 0; y < height; y++) {
-            pixels.put(new Point(x, y), c);
+            pixels.replace(new Point(x, y), c);
         }
     }
 

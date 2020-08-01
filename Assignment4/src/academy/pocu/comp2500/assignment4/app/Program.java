@@ -2,7 +2,9 @@ package academy.pocu.comp2500.assignment4.app;
 
 import academy.pocu.comp2500.assignment4.App;
 import academy.pocu.comp2500.assignment4.Canvas;
+import academy.pocu.comp2500.assignment4.ClearCommand;
 import academy.pocu.comp2500.assignment4.DecreasePixelCommand;
+import academy.pocu.comp2500.assignment4.DrawPixelCommand;
 import academy.pocu.comp2500.assignment4.FillHorizontalLineCommand;
 import academy.pocu.comp2500.assignment4.FillVerticalLineCommand;
 import academy.pocu.comp2500.assignment4.ICommand;
@@ -17,7 +19,31 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Canvas canvas = new Canvas(10, 10);
+        Canvas canvas = new Canvas(30, 30);
+        System.out.println((byte)'~');
+
+        {
+            System.out.println(canvas.getDrawing());
+            ICommand command = new DrawPixelCommand(0, 0, (char)126);
+
+            command.execute(canvas);
+            System.out.println(canvas.getDrawing());
+            ICommand command1 = new IncreasePixelCommand(0, 0);
+            assert !command1.undo();
+            assert !command1.undo();
+            assert !command1.redo();
+            command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+        }
+
         {
             ICommand command1 = new FillHorizontalLineCommand(1, 'k');
             assert !command1.undo();
@@ -34,7 +60,8 @@ public class Program {
             assert !command1.redo();
         }
         {
-            ICommand command1 = new FillVerticalLineCommand(1, 'C');
+            System.out.println("----vertical");
+            ICommand command1 = new FillVerticalLineCommand(3, 'm');
             assert !command1.undo();
             assert !command1.undo();
             assert command1.execute(canvas);
@@ -133,6 +160,29 @@ public class Program {
             assert !command1.redo();
             assert !command1.redo();
             assert !command1.redo();
+        }
+
+        {
+
+            System.out.println("--- Decrease");
+            ICommand command1 = new ClearCommand();
+            assert !command1.undo();
+            assert !command1.undo();
+            assert command1.execute(canvas);
+            assert !command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+            assert !command1.redo();
+            assert !command1.redo();
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
         }
 
     }

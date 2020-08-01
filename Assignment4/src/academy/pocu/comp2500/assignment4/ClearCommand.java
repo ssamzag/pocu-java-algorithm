@@ -24,6 +24,7 @@ public class ClearCommand implements ICommand {
 
         canvas.clear();
         canExecute = false;
+        canUndo = true;
         return true;
     }
 

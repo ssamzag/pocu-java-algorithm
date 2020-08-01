@@ -4,7 +4,7 @@ public class ToUppercaseCommand implements ICommand {
 
     private Canvas canvas;
     private boolean canExecute = true;
-    private boolean canUndo;
+    private boolean canUndo = true;
     private int x, y;
 
 
@@ -21,7 +21,6 @@ public class ToUppercaseCommand implements ICommand {
         this.canvas = canvas;
         canvas.toUpper(x, y);
         canExecute = false;
-        canUndo = true;
         return true;
 
     }
@@ -31,9 +30,9 @@ public class ToUppercaseCommand implements ICommand {
         if (canExecute || !canUndo) {
             return false;
         }
-
-        canvas.toLower(x, y);
         canUndo = false;
+        canvas.toLower(x, y);
+
         return true;
     }
 
@@ -42,9 +41,9 @@ public class ToUppercaseCommand implements ICommand {
         if (canExecute || canUndo) {
             return false;
         }
-
-        canvas.toUpper(x, y);
         canUndo = true;
+        canvas.toUpper(x, y);
+
         return true;
     }
 }
