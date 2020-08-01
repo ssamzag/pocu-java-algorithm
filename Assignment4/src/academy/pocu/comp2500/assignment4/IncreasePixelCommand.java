@@ -32,7 +32,7 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || redoDraw.equals(undoDraw)) {
+        if (canExecute || !canUndo || redoDraw.equals(undoDraw) || !canvas.getDrawing().equals(redoDraw)) {
             return false;
         }
 
