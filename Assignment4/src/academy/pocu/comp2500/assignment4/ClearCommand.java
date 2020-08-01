@@ -8,6 +8,7 @@ public class ClearCommand implements ICommand {
     private boolean canUndo;
     private Canvas canvas;
     private final HashMap<Point, Character> pixels = new HashMap<>();
+    private String undoDraw, redoDraw;
 
     @Override
     public boolean execute(Canvas canvas) {
@@ -21,8 +22,9 @@ public class ClearCommand implements ICommand {
                 this.pixels.put(new Point(x, y), canvas.getPixel(x, y));
             }
         }
-
+        undoDraw = canvas.getDrawing();
         canvas.clear();
+        redoDraw = canvas.getDrawing();
         canExecute = false;
         canUndo = true;
         return true;
@@ -30,7 +32,7 @@ public class ClearCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo) {
+        if (canExecute || !canUndo || !redoDraw.equals(canvas.getDrawing())) {
             return false;
         }
 
@@ -48,7 +50,7 @@ public class ClearCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo) {
+        if (canExecute || canUndo || !undoDraw.equals(canvas.getDrawing())) {
             return false;
         }
 

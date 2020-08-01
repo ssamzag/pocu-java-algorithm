@@ -4,6 +4,7 @@ public class IncreasePixelCommand implements ICommand {
     private Canvas canvas;
     private boolean canExecute = true;
     private boolean canUndo;
+    private String undoDraw, redoDraw;
     private final int x, y;
     private char pixel;
     private boolean result;
@@ -20,7 +21,9 @@ public class IncreasePixelCommand implements ICommand {
         }
         this.canvas = canvas;
         this.pixel = canvas.getPixel(x, y);
+        undoDraw = canvas.getDrawing();
         result = canvas.increasePixel(x, y);
+        redoDraw = canvas.getDrawing();
         canExecute = false;
         canUndo = true;
 
@@ -29,7 +32,7 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || !result) {
+        if (canExecute || !canUndo || !result || !redoDraw.equals(canvas.getDrawing())) {
             return false;
         }
 
@@ -40,7 +43,7 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo || !result) {
+        if (canExecute || canUndo || !result || !undoDraw.equals(canvas.getDrawing())) {
             return false;
         }
 

@@ -48,7 +48,7 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || !isExecuted) {
+        if (canExecute || !canUndo || !isExecuted || !redoDraw.equals(canvas.getDrawing())) {
             return false;
         }
 
@@ -64,7 +64,7 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo || !isExecuted) {
+        if (canExecute || canUndo || !isExecuted || !undoDraw.equals(canvas.getDrawing())) {
             return false;
         }
         if (!undoDraw.equals(canvas.toString())) {

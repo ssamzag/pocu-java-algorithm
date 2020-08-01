@@ -1,16 +1,12 @@
 package academy.pocu.comp2500.assignment4;
 
-import java.awt.Point;
-import java.util.HashMap;
-
 public class DecreasePixelCommand implements ICommand {
     private Canvas canvas;
     private boolean canExecute = true;
     private boolean canUndo;
     private final int x, y;
     private boolean result;
-    private String backupDraw;
-    private String backupDraw2;
+    private String undoDraw, redoDraw;
 
     public DecreasePixelCommand(int x, int y) {
         this.x = x;
@@ -23,9 +19,9 @@ public class DecreasePixelCommand implements ICommand {
             return false;
         }
         this.canvas = canvas;
-        backupDraw = canvas.getDrawing();
+        undoDraw = canvas.getDrawing();
         result = canvas.decreasePixel(x, y);
-        backupDraw2 = canvas.getDrawing();
+        redoDraw = canvas.getDrawing();
 
         canExecute = false;
         canUndo = true;
@@ -34,11 +30,7 @@ public class DecreasePixelCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || !result) {
-            return false;
-        }
-
-        if (!backupDraw2.equals(canvas.getDrawing())) {
+        if (canExecute || !canUndo || !result || !redoDraw.equals(canvas.getDrawing())) {
             return false;
         }
 
@@ -49,12 +41,10 @@ public class DecreasePixelCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo || !result) {
+        if (canExecute || canUndo || !result || !undoDraw.equals(canvas.getDrawing())) {
             return false;
         }
-        if (!backupDraw.equals(canvas.getDrawing())) {
-            return false;
-        }
+
         canvas.decreasePixel(x, y);
         canUndo = true;
         return true;
