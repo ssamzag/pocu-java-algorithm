@@ -22,22 +22,29 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Canvas canvas = new Canvas(30, 30);
-
+        OverdrawAnalyzer canvas = new OverdrawAnalyzer(30, 30);
         {
             var manager = new CommandHistoryManager(canvas);
+            System.out.println(canvas.getOverdrawCount());
             var fv = new FillVerticalLineCommand(21, '8');
-            var fh = new FillHorizontalLineCommand(10, '#');
-            var tlower = new ToLowercaseCommand(5, 1);
+            System.out.println(canvas.getOverdrawCount());
             manager.execute(fv);
-            manager.execute(fh);
-            manager.execute(tlower);
-            manager.redo();
-            manager.undo();
-            System.out.println(canvas.getDrawing());
-
+            System.out.println(canvas.getOverdrawCount());
         }
 //        {
+//            var manager = new CommandHistoryManager(canvas);
+//            var fv = new FillVerticalLineCommand(21, '8');
+//            var fh = new FillHorizontalLineCommand(10, '#');
+//            var tlower = new ToLowercaseCommand(5, 1);
+//            manager.execute(fv);
+//            manager.execute(fh);
+//            manager.execute(tlower);
+//            manager.redo();
+//            manager.undo();
+//            System.out.println(canvas.getDrawing());
+//
+//        }
+////        {
 //            var manager = new CommandHistoryManager(canvas);
 //            manager.redo();
 //            manager.redo();

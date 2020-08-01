@@ -54,7 +54,6 @@ public class OverdrawAnalyzer extends Canvas {
         }
 
         super.toUpper(x, y);
-
         getPixelHistory(x, y).push(getPixel(x, y));
     }
 
@@ -74,7 +73,6 @@ public class OverdrawAnalyzer extends Canvas {
         for (int x = 0; x < getWidth(); ++x) {
             char pixel = getPixel(x, y);
             if (pixel != c) {
-                getPixelHistory(x, y).push(getPixel(x, y));
                 drawPixel(x, y, c);
             }
         }
@@ -82,10 +80,9 @@ public class OverdrawAnalyzer extends Canvas {
 
     @Override
     public void fillVerticalLine(int x, char c) {
-        for (int y = 0; y < getWidth(); ++y) {
+        for (int y = 0; y < getHeight(); ++y) {
             char pixel = getPixel(x, y);
             if (pixel != c) {
-                getPixelHistory(x, y).push(getPixel(x, y));
                 drawPixel(x, y, c);
             }
         }
@@ -98,7 +95,6 @@ public class OverdrawAnalyzer extends Canvas {
                 char c = getPixel(x, y);
                 if (c != ' ') {
                     drawPixel(x, y, ' ');
-                    getPixelHistory(x, y).push(c);
                 }
             }
         }
