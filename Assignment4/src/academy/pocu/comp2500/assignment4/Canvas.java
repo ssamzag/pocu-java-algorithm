@@ -44,7 +44,6 @@ public class Canvas {
 
         drawPixel(x, y, c);
         return true;
-
     }
 
     public boolean decreasePixel(final int x, final int y) {

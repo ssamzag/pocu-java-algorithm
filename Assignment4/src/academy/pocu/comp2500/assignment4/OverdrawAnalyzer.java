@@ -51,7 +51,7 @@ public class OverdrawAnalyzer extends Canvas {
     @Override
     public void toUpper(int x, int y) {
         char pixel = getPixel(x, y);
-        if (pixel == Character.toUpperCase(pixel)) {
+        if (pixel < 'a' || pixel > 'z') {
             return;
         }
 
@@ -63,7 +63,7 @@ public class OverdrawAnalyzer extends Canvas {
     @Override
     public void toLower(int x, int y) {
         char pixel = getPixel(x, y);
-        if (pixel == Character.toLowerCase(pixel)) {
+        if (pixel < 'A' || pixel > 'Z') {
             return;
         }
 
@@ -97,8 +97,8 @@ public class OverdrawAnalyzer extends Canvas {
     public void clear() {
         for (int x = 0; x < getWidth(); ++x) {
             for (int y = 0; y < getHeight(); ++y) {
-                Character c = getPixel(x, y);
-                if (c != null && c != ' ') {
+                char c = getPixel(x, y);
+                if (c != ' ') {
                     drawPixel(x, y, ' ');
                     getPixelHistory(x, y).push(c);
                 }
