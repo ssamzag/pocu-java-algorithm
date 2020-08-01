@@ -21,16 +21,40 @@ import java.util.HashMap;
 public class Program {
 
     public static void main(String[] args) {
-
         OverdrawAnalyzer canvas = new OverdrawAnalyzer(30, 30);
+
         {
-            var manager = new CommandHistoryManager(canvas);
-            System.out.println(canvas.getOverdrawCount());
             var fv = new FillVerticalLineCommand(21, '8');
-            System.out.println(canvas.getOverdrawCount());
-            manager.execute(fv);
-            System.out.println(canvas.getOverdrawCount());
+            var fh = new FillHorizontalLineCommand(21, '7');
+            fv.execute(canvas);
+            System.out.println(canvas.getDrawing());
+            fh.execute(canvas);
+            System.out.println(canvas.getDrawing());
+            fv.undo();
+            System.out.println(canvas.getDrawing());
         }
+//        {
+//            var manager = new CommandHistoryManager(canvas);
+//            var fv = new FillVerticalLineCommand(21, '8');
+//            manager.execute(fv);
+//            System.out.println(canvas.getDrawing());
+//            manager.undo();
+//            System.out.println(canvas.getDrawing());
+//            fv.redo();
+//            System.out.println(canvas.getDrawing());
+//            manager.undo();
+//            System.out.println(canvas.getDrawing());
+//        }
+
+//        {
+//            var manager = new CommandHistoryManager(canvas);
+//            var fv = new FillVerticalLineCommand(21, '8');
+//            manager.execute(fv);
+//            var ip = new IncreasePixelCommand(21, 2);
+//            manager.execute(ip);
+//            System.out.println(canvas.getOverdrawCount());
+//            System.out.println(canvas.getOverdrawCount(21, 21));
+//        }
 //        {
 //            var manager = new CommandHistoryManager(canvas);
 //            var fv = new FillVerticalLineCommand(21, '8');

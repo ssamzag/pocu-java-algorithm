@@ -18,24 +18,6 @@ public class OverdrawAnalyzer extends Canvas {
     }
 
     @Override
-    public boolean increasePixel(int x, int y) {
-        boolean bResult = super.increasePixel(x, y);
-        if (bResult) {
-            getPixelHistory(x, y).push(getPixel(x, y));
-        }
-        return bResult;
-    }
-
-    @Override
-    public boolean decreasePixel(int x, int y) {
-        boolean bResult = super.decreasePixel(x, y);
-        if (bResult) {
-            getPixelHistory(x, y).push(getPixel(x, y));
-        }
-        return bResult;
-    }
-
-    @Override
     public void drawPixel(int x, int y, char c) {
         if (getPixel(x, y) == c) {
             return;

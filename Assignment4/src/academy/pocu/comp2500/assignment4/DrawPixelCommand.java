@@ -22,6 +22,7 @@ public class DrawPixelCommand implements ICommand {
         if (!canExecute) {
             return false;
         }
+
         if (canvas.getWidth() - 1 < x || canvas.getHeight() - 1 < y) {
             isExecuted = false;
             return false;
