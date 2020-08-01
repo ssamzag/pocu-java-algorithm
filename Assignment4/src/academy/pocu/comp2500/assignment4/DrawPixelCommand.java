@@ -7,7 +7,7 @@ public class DrawPixelCommand implements ICommand {
     private boolean isExecuted;
     private boolean canUndo;
     private Canvas canvas;
-    private char beforePixelWord;
+    private char pixel;
 
     public DrawPixelCommand(int x, int y, char c) {
         this.x = x;
@@ -17,16 +17,15 @@ public class DrawPixelCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isExecuted) {
-            this.canvas = canvas;
-            this.beforePixelWord = canvas.getPixel(this.x, this.y);
-            canvas.drawPixel(this.x, this.y, this.c);
-            isExecuted = true;
-            canUndo = true;
-            return true;
+        if (isExecuted) {
+           return false;
         }
-
-        return false;
+        this.canvas = canvas;
+        this.pixel = canvas.getPixel(this.x, this.y);
+        canvas.drawPixel(this.x, this.y, this.c);
+        isExecuted = true;
+        canUndo = true;
+        return true;
     }
 
     @Override
@@ -35,7 +34,7 @@ public class DrawPixelCommand implements ICommand {
             return false;
         }
 
-        canvas.drawPixel(this.x, this.y, beforePixelWord);
+        canvas.drawPixel(this.x, this.y, pixel);
         canUndo = false;
         return true;
     }

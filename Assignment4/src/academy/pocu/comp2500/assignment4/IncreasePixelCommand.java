@@ -14,15 +14,16 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isExecuted) {
-            this.canvas = canvas;
-            this.pixel = canvas.getPixel(x, y);
-            canvas.increasePixel(x, y);
-            isExecuted = true;
-            canUndo = true;
-            return true;
+        if (isExecuted) {
+            return false;
         }
-        return false;
+        this.canvas = canvas;
+        this.pixel = canvas.getPixel(x, y);
+        canvas.increasePixel(x, y);
+        isExecuted = true;
+        canUndo = true;
+
+        return true;
     }
 
     @Override
@@ -30,8 +31,10 @@ public class IncreasePixelCommand implements ICommand {
         if (!isExecuted || !canUndo) {
             return false;
         }
+        if (this.pixel != canvas.getPixel(x, y)) {
+            canvas.decreasePixel(x, y);
+        }
 
-        canvas.decreasePixel(x, y);
         isExecuted = false;
         canUndo = false;
         return true;
@@ -42,8 +45,9 @@ public class IncreasePixelCommand implements ICommand {
         if (!isExecuted || canUndo) {
             return false;
         }
-
-        canvas.increasePixel(x, y);
+        if (this.pixel != canvas.getPixel(x, y)) {
+            canvas.increasePixel(x, y);
+        }
         isExecuted = true;
         canUndo = true;
         return true;

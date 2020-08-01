@@ -95,28 +95,31 @@ public class Canvas {
         }
     }
 
-    public void getDrawing() {
+    public String getDrawing() {
+        var drawing = new StringBuilder();
         for (int y = 0; y < height; y++) {
             if (y == 0) {
-                System.out.format("%s%s%s%s", "+", "-".repeat(width), "+", System.lineSeparator());
+                drawing.append(String.format("%s%s%s%s", "+", "-".repeat(width), "+", System.lineSeparator()));
             }
             for (int x = 0; x < width; x++) {
                 if (x == 0) {
-                    System.out.print("|");
+                    drawing.append("|");
                 }
 
-                System.out.print(pixels.get(new Point(x, y)));
+                drawing.append(pixels.get(new Point(x, y)));
 
                 if (x == width - 1) {
-                    System.out.print("|" + System.lineSeparator());
+                    drawing.append("|" + System.lineSeparator());
                 }
             }
 
             if (y == height - 1) {
-                System.out.format("%s%s%s%s", "+", "-".repeat(width), "+", System.lineSeparator());
+                drawing.append(String.format("%s%s%s%s", "+", "-".repeat(width), "+", System.lineSeparator()));
             }
 
         }
+
+        return drawing.toString();
     }
 
     private boolean isAscii(final char c) {
