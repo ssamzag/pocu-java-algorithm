@@ -22,11 +22,11 @@ public class Canvas {
     }
 
     public void drawPixel(final int x, final int y, final char c) {
-        if (!isAscii(c)) {
+        if (x > width - 1 || y > height - 1 || !isAscii(c)) {
             return;
         }
 
-        pixels.replace(new Point(x, y), c);
+        pixels.put(new Point(x, y), c);
     }
 
     public char getPixel(final int x, final int y) {
@@ -35,7 +35,12 @@ public class Canvas {
 
     public boolean increasePixel(final int x, final int y) {
         var point = new Point(x, y);
-        char c = (char) (pixels.get(point) - 1);
+
+        if (pixels.get(point) == null) {
+            return false;
+        }
+
+        char c = (char) (pixels.get(point) + 1);
 
         if (isAscii(c)) {
             pixels.replace(point, c);
@@ -47,7 +52,12 @@ public class Canvas {
 
     public boolean decreasePixel(final int x, final int y) {
         var point = new Point(x, y);
-        char c = (char) (pixels.get(point) + 1);
+
+        if (pixels.get(point) == null) {
+            return false;
+        }
+
+        char c = (char) (pixels.get(point) - 1);
         if (isAscii(c)) {
             pixels.replace(point, c);
             return true;
@@ -58,33 +68,41 @@ public class Canvas {
 
     public void toUpper(final int x, final int y) {
         var point = new Point(x, y);
+
+        if (pixels.get(point) == null) {
+            return;
+        }
+
         char c = pixels.get(point);
         pixels.replace(point, Character.toUpperCase(c));
     }
 
     public void toLower(final int x, final int y) {
         var point = new Point(x, y);
+        if (pixels.get(point) == null) {
+            return;
+        }
         char c = pixels.get(point);
         pixels.replace(point, Character.toLowerCase(c));
     }
 
     public void fillHorizontalLine(final int y, final char c) {
-        if (!isAscii(c)) {
+        if (y > height - 1 || !isAscii(c)) {
             return;
         }
 
         for (int x = 0; x < height; x++) {
-            pixels.replace(new Point(x, y), c);
+            pixels.put(new Point(x, y), c);
         }
     }
 
     public void fillVerticalLine(final int x, final char c) {
-        if (!isAscii(c)) {
+        if (x > width - 1 || !isAscii(c)) {
             return;
         }
 
         for (int y = 0; y < height; y++) {
-            pixels.replace(new Point(x, y), c);
+            pixels.put(new Point(x, y), c);
         }
     }
 
@@ -119,6 +137,18 @@ public class Canvas {
         }
 
         return drawing.toString();
+    }
+
+    public HashMap<Point, Character> getPixels() {
+        return pixels;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     private boolean isAscii(final char c) {
