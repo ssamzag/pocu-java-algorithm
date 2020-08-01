@@ -10,7 +10,7 @@ public class FillHorizontalLineCommand implements ICommand {
     private boolean canExecute = true;
     private boolean canUndo = true;
     private boolean isExecuted = true;
-    private String redoDraw, undoDraw;
+    private String redoDraw = "", undoDraw = "";
     private Canvas canvas;
     private ArrayList<Character> pixels = new ArrayList<>();
 
@@ -39,9 +39,9 @@ public class FillHorizontalLineCommand implements ICommand {
         }
 
         this.canvas = canvas;
-        undoDraw = canvas.toString();
+
         canvas.fillHorizontalLine(y, c);
-        redoDraw = canvas.toString();
+        redoDraw = canvas.getDrawing();
         canExecute = false;
         return true;
     }
@@ -52,12 +52,10 @@ public class FillHorizontalLineCommand implements ICommand {
             return false;
         }
 
-        if (!redoDraw.equals(canvas.toString())) {
-            return false;
-        }
         for (int x = 0; x < canvas.getWidth(); ++x) {
             canvas.drawPixel(x, y, pixels.get(x));
         }
+        undoDraw = canvas.getDrawing();
         canUndo = false;
         return true;
     }
@@ -67,9 +65,7 @@ public class FillHorizontalLineCommand implements ICommand {
         if (canExecute || canUndo || !isExecuted || !undoDraw.equals(canvas.getDrawing())) {
             return false;
         }
-        if (!undoDraw.equals(canvas.toString())) {
-            return false;
-        }
+
         canvas.fillHorizontalLine(y, c);
         canUndo = true;
         return true;

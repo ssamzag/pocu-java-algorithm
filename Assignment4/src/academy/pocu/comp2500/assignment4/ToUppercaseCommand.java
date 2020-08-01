@@ -7,7 +7,7 @@ public class ToUppercaseCommand implements ICommand {
     private boolean canUndo = true;
     private boolean isExecuted = true;
     private int x, y;
-    private String undoDraw, redoDraw;
+    private String undoDraw = "", redoDraw = "";
 
     public ToUppercaseCommand(int x, int y) {
         this.x = x;
@@ -21,7 +21,6 @@ public class ToUppercaseCommand implements ICommand {
         }
 
         this.canvas = canvas;
-        undoDraw = canvas.getDrawing();
         canvas.toUpper(x, y);
         redoDraw = canvas.getDrawing();
         canExecute = false;
@@ -31,19 +30,19 @@ public class ToUppercaseCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (canExecute || !canUndo || !isExecuted || !undoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || !canUndo || !isExecuted || !redoDraw.equals(canvas.getDrawing())) {
             return false;
         }
         canUndo = false;
 
         canvas.toLower(x, y);
-
+        undoDraw = canvas.getDrawing();
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (canExecute || canUndo || !isExecuted || !redoDraw.equals(canvas.getDrawing())) {
+        if (canExecute || canUndo || !isExecuted || !undoDraw.equals(canvas.getDrawing())) {
             return false;
         }
         canUndo = true;

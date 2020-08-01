@@ -9,7 +9,7 @@ public class DrawPixelCommand implements ICommand {
     private boolean isExecuted = true;
     private Canvas canvas;
     private char pixel;
-    private String redoDraw, undoDraw;
+    private String redoDraw = "", undoDraw = "";
 
     public DrawPixelCommand(int x, int y, char c) {
         this.x = x;
@@ -29,9 +29,8 @@ public class DrawPixelCommand implements ICommand {
         }
         this.canvas = canvas;
         this.pixel = canvas.getPixel(this.x, this.y);
-        undoDraw = canvas.toString();
         canvas.drawPixel(this.x, this.y, this.c);
-        redoDraw = canvas.toString();
+        redoDraw = canvas.getDrawing();
         canExecute = false;
         canUndo = true;
         return true;
@@ -44,6 +43,7 @@ public class DrawPixelCommand implements ICommand {
         }
 
         canvas.drawPixel(this.x, this.y, pixel);
+        undoDraw = canvas.getDrawing();
         canUndo = false;
         return true;
     }

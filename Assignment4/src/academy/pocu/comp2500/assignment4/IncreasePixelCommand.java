@@ -4,7 +4,7 @@ public class IncreasePixelCommand implements ICommand {
     private Canvas canvas;
     private boolean canExecute = true;
     private boolean canUndo;
-    private String undoDraw, redoDraw;
+    private String undoDraw = "", redoDraw = "";
     private final int x, y;
     private char pixel;
     private boolean result;
