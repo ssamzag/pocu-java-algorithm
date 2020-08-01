@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment4;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.HashMap;
 
 public class Canvas {
@@ -15,11 +15,10 @@ public class Canvas {
         this.height = height;
 
         for (int w = 0; w < width; w++) {
-            for(int h = 0; h < height; h++) {
+            for (int h = 0; h < height; h++) {
                 pixels.put(new Point(w, h), DEFAULT_PIXEL);
             }
         }
-
     }
 
     public void drawPixel(final int x, final int y, final char c) {
@@ -36,7 +35,7 @@ public class Canvas {
 
     public boolean increasePixel(final int x, final int y) {
         var point = new Point(x, y);
-        char c = (char)(pixels.get(point) - 1);
+        char c = (char) (pixels.get(point) - 1);
 
         if (isAscii(c)) {
             pixels.replace(point, c);
@@ -48,7 +47,7 @@ public class Canvas {
 
     public boolean decreasePixel(final int x, final int y) {
         var point = new Point(x, y);
-        char c = (char)(pixels.get(point) + 1);
+        char c = (char) (pixels.get(point) + 1);
         if (isAscii(c)) {
             pixels.replace(point, c);
             return true;
