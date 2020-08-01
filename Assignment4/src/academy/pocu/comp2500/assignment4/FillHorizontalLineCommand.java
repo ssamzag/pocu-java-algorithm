@@ -23,7 +23,7 @@ public class FillHorizontalLineCommand implements ICommand {
             return false;
         }
 
-        for (int x = 0; x < canvas.getWidth(); x++) {
+        for (int x = 0; x < canvas.getWidth(); ++x) {
             pixels.add(canvas.getPixel(x, y));
         }
         this.canvas = canvas;
@@ -38,7 +38,7 @@ public class FillHorizontalLineCommand implements ICommand {
             return false;
         }
 
-        for (int x = 0; x < canvas.getWidth(); x++) {
+        for (int x = 0; x < canvas.getWidth(); ++x) {
             canvas.drawPixel(x, y, pixels.get(x));
         }
         canUndo = false;

@@ -13,19 +13,17 @@ public class Canvas {
     public Canvas(final int width, final int height) {
         this.width = width;
         this.height = height;
-
-        for (int w = 0; w < width; w++) {
-            for (int h = 0; h < height; h++) {
-                pixels.put(new Point(w, h), DEFAULT_PIXEL);
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                pixels.put(new Point(x, y), DEFAULT_PIXEL);
             }
         }
     }
 
     protected void drawPixel(final int x, final int y, final char c) {
-        if (x > width - 1 || y > height - 1 || !isAscii(c)) {
+        if (!isValidPoint(x, y) || !isValidPixelWord(c)) {
             return;
         }
-
         pixels.put(new Point(x, y), c);
     }
 
@@ -34,108 +32,95 @@ public class Canvas {
     }
 
     protected boolean increasePixel(final int x, final int y) {
-        var point = new Point(x, y);
-
-        if (pixels.get(point) == null) {
+        if (!isValidPoint(x, y)) {
             return false;
         }
 
-        char c = (char) (pixels.get(point) + 1);
+        char c = (char) (getPixel(x, y) + 1);
 
-        if (isAscii(c)) {
-            pixels.replace(point, c);
-            return true;
+        if (!isValidPixelWord(c)) {
+            return false;
         }
 
-        return false;
+        drawPixel(x, y, c);
+        return true;
+
     }
 
     protected boolean decreasePixel(final int x, final int y) {
-        var point = new Point(x, y);
-
-        if (pixels.get(point) == null) {
+        if (!isValidPoint(x, y)) {
             return false;
         }
 
-        char c = (char) (pixels.get(point) - 1);
-        if (isAscii(c)) {
-            pixels.replace(point, c);
-            return true;
+        char c = (char) (getPixel(x, y) - 1);
+
+        if (!isValidPixelWord(c)) {
+            return false;
         }
 
-        return false;
+        drawPixel(x, y, c);
+        return true;
+
     }
 
     protected void toUpper(final int x, final int y) {
-        var point = new Point(x, y);
-
-        if (pixels.get(point) == null) {
+        if (!isValidPoint(x, y)) {
             return;
         }
 
-        char c = pixels.get(point);
-        pixels.replace(point, Character.toUpperCase(c));
+        drawPixel(x, y, Character.toUpperCase(getPixel(x, y)));
     }
 
     protected void toLower(final int x, final int y) {
-        var point = new Point(x, y);
-        if (pixels.get(point) == null) {
+        if (!isValidPoint(x, y)) {
             return;
         }
-        char c = pixels.get(point);
-        pixels.replace(point, Character.toLowerCase(c));
+
+        drawPixel(x, y, Character.toLowerCase(getPixel(x, y)));
     }
 
     protected void fillHorizontalLine(final int y, final char c) {
-        if (y > height - 1 || !isAscii(c)) {
+        if (!isValidPointY(y) || !isValidPixelWord(c)) {
             return;
         }
 
-        for (int x = 0; x < width; x++) {
-            pixels.replace(new Point(x, y), c);
+        for (int x = 0; x < width; ++x) {
+            drawPixel(x, y, c);
         }
     }
 
     protected void fillVerticalLine(final int x, final char c) {
-        if (x > width - 1 || !isAscii(c)) {
+        if (!isValidPointX(x) || !isValidPixelWord(c)) {
             return;
         }
 
-        for (int y = 0; y < height; y++) {
-            pixels.replace(new Point(x, y), c);
+        for (int y = 0; y < height; ++y) {
+            drawPixel(x, y, c);
         }
     }
 
     protected void clear() {
-        for (var pixel : pixels.entrySet()) {
-            pixel.setValue(DEFAULT_PIXEL);
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                pixels.put(new Point(x, y), DEFAULT_PIXEL);
+            }
         }
     }
 
     public String getDrawing() {
         var drawing = new StringBuilder();
-        for (int y = 0; y < height; y++) {
-            if (y == 0) {
-                drawing.append(String.format("%s%s%s%s", "+", "-".repeat(width), "+", System.lineSeparator()));
+        var decoration = "+" + "-".repeat(width) + "+" + System.lineSeparator();
+
+        drawing.append(decoration);
+        for (int y = 0; y < height; ++y) {
+            drawing.append("|");
+            for (int x = 0; x < width; ++x) {
+                drawing.append(getPixel(x, y));
             }
-            for (int x = 0; x < width; x++) {
-                if (x == 0) {
-                    drawing.append("|");
-                }
-
-                drawing.append(pixels.get(new Point(x, y)));
-
-                if (x == width - 1) {
-                    drawing.append("|" + System.lineSeparator());
-                }
-            }
-
-            if (y == height - 1) {
-                drawing.append(String.format("%s%s%s%s", "+", "-".repeat(width), "+", System.lineSeparator()));
-            }
-
+            drawing.append("|" + System.lineSeparator());
         }
 
+        drawing.append(decoration);
         return drawing.toString();
     }
 
@@ -147,8 +132,19 @@ public class Canvas {
         return height;
     }
 
-    private boolean isAscii(final char c) {
+    private boolean isValidPixelWord(final char c) {
         return c >= 32 && c <= 126;
     }
 
+    private boolean isValidPointX(int x) {
+        return x < width;
+    }
+
+    private boolean isValidPointY(int y) {
+        return y < height;
+    }
+
+    private boolean isValidPoint(int x, int y) {
+        return isValidPointX(x) && isValidPointY(y);
+    }
 }

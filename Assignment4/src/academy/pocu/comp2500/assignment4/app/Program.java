@@ -10,9 +10,11 @@ import academy.pocu.comp2500.assignment4.FillHorizontalLineCommand;
 import academy.pocu.comp2500.assignment4.FillVerticalLineCommand;
 import academy.pocu.comp2500.assignment4.ICommand;
 import academy.pocu.comp2500.assignment4.IncreasePixelCommand;
+import academy.pocu.comp2500.assignment4.OverdrawAnalyzer;
 import academy.pocu.comp2500.assignment4.ToLowercaseCommand;
 import academy.pocu.comp2500.assignment4.ToUppercaseCommand;
 
+import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -20,9 +22,10 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Canvas canvas = new Canvas(30, 30);
+        Canvas canvas = new OverdrawAnalyzer(30, 30);
 
         {
+
             System.out.println(canvas.getDrawing());
             var manager = new CommandHistoryManager(canvas);
             assert !manager.canRedo();
