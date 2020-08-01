@@ -34,7 +34,7 @@ public class FillVerticalLineCommand implements ICommand {
 
         if (bNotExists) {
             isExecuted = false;
-            return false;
+            //return false;
         }
 
         this.canvas = canvas;
