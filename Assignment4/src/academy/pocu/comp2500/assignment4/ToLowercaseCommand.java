@@ -33,9 +33,7 @@ public class ToLowercaseCommand implements ICommand {
             return false;
         }
 
-            canvas.toUpper(x, y);
-
-
+        canvas.toUpper(x, y);
         canExecute = false;
         canUndo = false;
         return true;

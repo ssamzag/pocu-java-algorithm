@@ -91,7 +91,7 @@ public class Canvas {
             return;
         }
 
-        for (int x = 0; x < height; x++) {
+        for (int x = 0; x < width; x++) {
             pixels.replace(new Point(x, y), c);
         }
     }
