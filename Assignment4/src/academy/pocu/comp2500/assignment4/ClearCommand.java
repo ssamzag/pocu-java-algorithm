@@ -7,7 +7,7 @@ public class ClearCommand implements ICommand {
     private boolean canExecute = true;
     private boolean canUndo;
     private Canvas canvas;
-    private HashMap<Point, Character> pixels = new HashMap<>();
+    private final HashMap<Point, Character> pixels = new HashMap<>();
 
     @Override
     public boolean execute(Canvas canvas) {

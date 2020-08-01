@@ -24,7 +24,7 @@ public class IncreasePixelCommand implements ICommand {
         canExecute = false;
         canUndo = true;
 
-        return true;
+        return result;
     }
 
     @Override

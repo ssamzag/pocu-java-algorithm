@@ -36,7 +36,6 @@ public class DecreasePixelCommand implements ICommand {
             canvas.increasePixel(x, y);
         }
 
-
         canUndo = false;
         return true;
     }

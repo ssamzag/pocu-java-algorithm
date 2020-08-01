@@ -4,8 +4,8 @@ import java.util.Stack;
 
 public class CommandHistoryManager {
     private final Canvas canvas;
-    private final Stack<ICommand> commandHistory = new Stack<>();
-    private final Stack<ICommand> redoHistory = new Stack<>();
+    private final Stack<ICommand> undoStack = new Stack<>();
+    private final Stack<ICommand> redoStack = new Stack<>();
 
     public CommandHistoryManager(Canvas canvas) {
         this.canvas = canvas;
@@ -15,26 +15,26 @@ public class CommandHistoryManager {
         boolean result = command.execute(canvas);
 
         if (result) {
-            commandHistory.push(command);
-            redoHistory.clear();
+            undoStack.push(command);
+            redoStack.clear();
         }
 
         return result;
     }
 
     public boolean canUndo() {
-        return commandHistory.size() > 0;
+        return undoStack.size() > 0;
     }
 
     public boolean canRedo() {
-        return redoHistory.size() > 0;
+        return redoStack.size() > 0;
     }
 
     public boolean undo() {
         boolean result = false;
         if (canUndo()) {
-            ICommand command = commandHistory.pop();
-            redoHistory.push(command);
+            ICommand command = undoStack.pop();
+            redoStack.push(command);
             result = command.undo();
         }
 
@@ -44,8 +44,8 @@ public class CommandHistoryManager {
     public boolean redo() {
         boolean result = false;
         if (canRedo()) {
-            ICommand command = redoHistory.pop();
-            commandHistory.push(command);
+            ICommand command = redoStack.pop();
+            undoStack.push(command);
             result = command.redo();
         }
 

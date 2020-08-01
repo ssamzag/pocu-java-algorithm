@@ -21,7 +21,7 @@ public class Canvas {
         }
     }
 
-    public void drawPixel(final int x, final int y, final char c) {
+    protected void drawPixel(final int x, final int y, final char c) {
         if (x > width - 1 || y > height - 1 || !isAscii(c)) {
             return;
         }
@@ -29,11 +29,11 @@ public class Canvas {
         pixels.put(new Point(x, y), c);
     }
 
-    public char getPixel(final int x, final int y) {
+    protected char getPixel(final int x, final int y) {
         return pixels.get(new Point(x, y));
     }
 
-    public boolean increasePixel(final int x, final int y) {
+    protected boolean increasePixel(final int x, final int y) {
         var point = new Point(x, y);
 
         if (pixels.get(point) == null) {
@@ -50,7 +50,7 @@ public class Canvas {
         return false;
     }
 
-    public boolean decreasePixel(final int x, final int y) {
+    protected boolean decreasePixel(final int x, final int y) {
         var point = new Point(x, y);
 
         if (pixels.get(point) == null) {
@@ -66,7 +66,7 @@ public class Canvas {
         return false;
     }
 
-    public void toUpper(final int x, final int y) {
+    protected void toUpper(final int x, final int y) {
         var point = new Point(x, y);
 
         if (pixels.get(point) == null) {
@@ -77,7 +77,7 @@ public class Canvas {
         pixels.replace(point, Character.toUpperCase(c));
     }
 
-    public void toLower(final int x, final int y) {
+    protected void toLower(final int x, final int y) {
         var point = new Point(x, y);
         if (pixels.get(point) == null) {
             return;
@@ -86,7 +86,7 @@ public class Canvas {
         pixels.replace(point, Character.toLowerCase(c));
     }
 
-    public void fillHorizontalLine(final int y, final char c) {
+    protected void fillHorizontalLine(final int y, final char c) {
         if (y > height - 1 || !isAscii(c)) {
             return;
         }
@@ -96,7 +96,7 @@ public class Canvas {
         }
     }
 
-    public void fillVerticalLine(final int x, final char c) {
+    protected void fillVerticalLine(final int x, final char c) {
         if (x > width - 1 || !isAscii(c)) {
             return;
         }
@@ -106,7 +106,7 @@ public class Canvas {
         }
     }
 
-    public void clear() {
+    protected void clear() {
         for (var pixel : pixels.entrySet()) {
             pixel.setValue(DEFAULT_PIXEL);
         }
@@ -139,11 +139,11 @@ public class Canvas {
         return drawing.toString();
     }
 
-    public int getWidth() {
+    protected int getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    protected int getHeight() {
         return height;
     }
 

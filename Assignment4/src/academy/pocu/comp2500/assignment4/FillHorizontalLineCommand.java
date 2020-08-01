@@ -37,6 +37,7 @@ public class FillHorizontalLineCommand implements ICommand {
         if (canExecute || !canUndo) {
             return false;
         }
+
         for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, y, pixels.get(x));
         }

@@ -21,7 +21,7 @@ public class FillVerticalLineCommand implements ICommand {
             return false;
         }
 
-        for (int y = 0; y < canvas.getWidth(); y++) {
+        for (int y = 0; y < canvas.getHeight(); y++) {
             pixels.add(canvas.getPixel(this.x, y));
         }
 
