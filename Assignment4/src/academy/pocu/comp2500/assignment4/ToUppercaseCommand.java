@@ -3,7 +3,7 @@ package academy.pocu.comp2500.assignment4;
 public class ToUppercaseCommand implements ICommand {
 
     private Canvas canvas;
-    private boolean isExecuted;
+    private boolean canExecute = true;
     private boolean canUndo;
     private int x, y;
 
@@ -15,36 +15,35 @@ public class ToUppercaseCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isExecuted) {
-            this.canvas = canvas;
-            canvas.toUpper(x, y);
-            isExecuted = true;
-            canUndo = true;
-            return true;
+        if (!canExecute) {
+            return false;
         }
-        return false;
+        this.canvas = canvas;
+        canvas.toUpper(x, y);
+        canExecute = false;
+        canUndo = true;
+        return true;
+
     }
 
     @Override
     public boolean undo() {
-        if (!isExecuted || !canUndo) {
+        if (canExecute || !canUndo) {
             return false;
         }
 
         canvas.toLower(x, y);
-        isExecuted = false;
         canUndo = false;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (!isExecuted || canUndo) {
+        if (canExecute || canUndo) {
             return false;
         }
 
         canvas.toUpper(x, y);
-        isExecuted = true;
         canUndo = true;
         return true;
     }

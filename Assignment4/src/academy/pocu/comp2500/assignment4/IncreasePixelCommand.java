@@ -2,9 +2,9 @@ package academy.pocu.comp2500.assignment4;
 
 public class IncreasePixelCommand implements ICommand {
     private Canvas canvas;
-    private boolean isExecuted;
+    private boolean canExecute = true;
     private boolean canUndo;
-    private int x, y;
+    private final int x, y;
     private char pixel;
 
     public IncreasePixelCommand(int x, int y) {
@@ -14,13 +14,13 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (isExecuted) {
+        if (!canExecute) {
             return false;
         }
         this.canvas = canvas;
         this.pixel = canvas.getPixel(x, y);
         canvas.increasePixel(x, y);
-        isExecuted = true;
+        canExecute = false;
         canUndo = true;
 
         return true;
@@ -28,27 +28,24 @@ public class IncreasePixelCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (!isExecuted || !canUndo) {
+        if (canExecute || !canUndo) {
             return false;
         }
-        if (this.pixel != canvas.getPixel(x, y)) {
-            canvas.decreasePixel(x, y);
-        }
 
-        isExecuted = false;
+        canvas.decreasePixel(x, y);
+
         canUndo = false;
         return true;
     }
 
     @Override
     public boolean redo() {
-        if (!isExecuted || canUndo) {
+        if (canExecute || canUndo) {
             return false;
         }
-        if (this.pixel != canvas.getPixel(x, y)) {
-            canvas.increasePixel(x, y);
-        }
-        isExecuted = true;
+
+        canvas.increasePixel(x, y);
+
         canUndo = true;
         return true;
     }

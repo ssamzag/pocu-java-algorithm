@@ -139,10 +139,6 @@ public class Canvas {
         return drawing.toString();
     }
 
-    public HashMap<Point, Character> getPixels() {
-        return pixels;
-    }
-
     public int getWidth() {
         return width;
     }

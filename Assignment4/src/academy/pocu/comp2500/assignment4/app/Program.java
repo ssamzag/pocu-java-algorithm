@@ -2,6 +2,13 @@ package academy.pocu.comp2500.assignment4.app;
 
 import academy.pocu.comp2500.assignment4.App;
 import academy.pocu.comp2500.assignment4.Canvas;
+import academy.pocu.comp2500.assignment4.DecreasePixelCommand;
+import academy.pocu.comp2500.assignment4.FillHorizontalLineCommand;
+import academy.pocu.comp2500.assignment4.FillVerticalLineCommand;
+import academy.pocu.comp2500.assignment4.ICommand;
+import academy.pocu.comp2500.assignment4.IncreasePixelCommand;
+import academy.pocu.comp2500.assignment4.ToLowercaseCommand;
+import academy.pocu.comp2500.assignment4.ToUppercaseCommand;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -9,18 +16,124 @@ import java.util.HashMap;
 public class Program {
 
     public static void main(String[] args) {
-        Canvas canvas = new Canvas(10, 10);
 
-//        canvas.drawPixel(0, 0, '*');
-//        canvas.drawPixel(1, 2, '$');
-//        canvas.drawPixel(0, 1, '&');
-//        canvas.decreasePixel(1,2);
-//        canvas.fillHorizontalLine(4, 'K');
-//        canvas.fillVerticalLine(9, 'Y');
-//        canvas.decreasePixel(0, 0);
-//        canvas.decreasePixel(0, 4);
-        canvas.decreasePixel(9, 0);
-        System.out.println(canvas.getDrawing());
+        Canvas canvas = new Canvas(10, 10);
+        {
+            ICommand command1 = new FillHorizontalLineCommand(1, 'k');
+            assert !command1.undo();
+            assert !command1.undo();
+            command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+        }
+        {
+            ICommand command1 = new FillVerticalLineCommand(1, 'C');
+            assert !command1.undo();
+            assert !command1.undo();
+            assert command1.execute(canvas);
+            assert !command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+            assert !command1.redo();
+            assert !command1.redo();
+        }
+
+        {
+            System.out.println("--- toLower");
+            ICommand command1 = new ToLowercaseCommand(1, 1);
+            assert !command1.undo();
+            assert !command1.undo();
+            assert command1.execute(canvas);
+            assert !command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+            assert !command1.redo();
+            assert !command1.redo();
+            assert command1.undo();
+        }
+
+        {
+
+            System.out.println("--- toUpper");
+            ICommand command1 = new ToUppercaseCommand(1, 1);
+            assert !command1.undo();
+            assert !command1.undo();
+            assert command1.execute(canvas);
+            assert !command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+            assert !command1.redo();
+            assert !command1.redo();
+        }
+        {
+
+            System.out.println("--- Increase");
+            ICommand command1 = new IncreasePixelCommand(1, 1);
+            assert !command1.undo();
+            assert !command1.undo();
+            assert command1.execute(canvas);
+            assert !command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+            assert !command1.redo();
+            assert !command1.redo();
+        }
+
+        {
+
+            System.out.println("--- Decrease");
+            ICommand command1 = new DecreasePixelCommand(1, 1);
+            assert !command1.undo();
+            assert !command1.undo();
+            assert command1.execute(canvas);
+            assert !command1.execute(canvas);
+            System.out.println(canvas.getDrawing());
+
+            assert command1.undo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.undo();
+
+            assert command1.redo();
+            System.out.println(canvas.getDrawing());
+            assert !command1.redo();
+            assert !command1.redo();
+            assert !command1.redo();
+        }
 
     }
 }
