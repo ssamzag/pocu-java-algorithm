@@ -1,31 +1,27 @@
 package academy.pocu.comp2500.assignment4;
 
-public class DrawPixelCommand implements ICommand {
-    private final int x;
-    private final int y;
-    private final char c;
+public class IncreasePixelCommand implements ICommand {
+    private Canvas canvas;
     private boolean isExecuted;
     private boolean canUndo;
-    private Canvas canvas;
-    private char beforePixelWord;
+    private int x, y;
+    private char pixel;
 
-    public DrawPixelCommand(int x, int y, char c) {
+    public IncreasePixelCommand(int x, int y) {
         this.x = x;
         this.y = y;
-        this.c = c;
     }
 
     @Override
     public boolean execute(Canvas canvas) {
         if (!isExecuted) {
             this.canvas = canvas;
-            this.beforePixelWord = canvas.getPixel(this.x, this.y);
-            canvas.drawPixel(this.x, this.y, this.c);
+            this.pixel = canvas.getPixel(x, y);
+            canvas.increasePixel(x, y);
             isExecuted = true;
             canUndo = true;
             return true;
         }
-
         return false;
     }
 
@@ -35,7 +31,8 @@ public class DrawPixelCommand implements ICommand {
             return false;
         }
 
-        canvas.drawPixel(this.x, this.y, beforePixelWord);
+        canvas.decreasePixel(x, y);
+        isExecuted = false;
         canUndo = false;
         return true;
     }
@@ -46,7 +43,8 @@ public class DrawPixelCommand implements ICommand {
             return false;
         }
 
-        canvas.drawPixel(this.x, this.y, c);
+        canvas.increasePixel(x, y);
+        isExecuted = true;
         canUndo = true;
         return true;
     }
