@@ -20,18 +20,18 @@ public class Canvas {
         }
     }
 
-    protected void drawPixel(final int x, final int y, final char c) {
+    public void drawPixel(final int x, final int y, final char c) {
         if (!isValidPoint(x, y) || !isValidPixelWord(c)) {
             return;
         }
         pixels.put(new Point(x, y), c);
     }
 
-    protected char getPixel(final int x, final int y) {
+    public char getPixel(final int x, final int y) {
         return pixels.get(new Point(x, y));
     }
 
-    protected boolean increasePixel(final int x, final int y) {
+    public boolean increasePixel(final int x, final int y) {
         if (!isValidPoint(x, y)) {
             return false;
         }
@@ -47,7 +47,7 @@ public class Canvas {
 
     }
 
-    protected boolean decreasePixel(final int x, final int y) {
+    public boolean decreasePixel(final int x, final int y) {
         if (!isValidPoint(x, y)) {
             return false;
         }
@@ -63,7 +63,7 @@ public class Canvas {
 
     }
 
-    protected void toUpper(final int x, final int y) {
+    public void toUpper(final int x, final int y) {
         if (!isValidPoint(x, y)) {
             return;
         }
@@ -71,7 +71,7 @@ public class Canvas {
         drawPixel(x, y, Character.toUpperCase(getPixel(x, y)));
     }
 
-    protected void toLower(final int x, final int y) {
+    public void toLower(final int x, final int y) {
         if (!isValidPoint(x, y)) {
             return;
         }
@@ -79,7 +79,7 @@ public class Canvas {
         drawPixel(x, y, Character.toLowerCase(getPixel(x, y)));
     }
 
-    protected void fillHorizontalLine(final int y, final char c) {
+    public void fillHorizontalLine(final int y, final char c) {
         if (!isValidPointY(y) || !isValidPixelWord(c)) {
             return;
         }
@@ -89,7 +89,7 @@ public class Canvas {
         }
     }
 
-    protected void fillVerticalLine(final int x, final char c) {
+    public void fillVerticalLine(final int x, final char c) {
         if (!isValidPointX(x) || !isValidPixelWord(c)) {
             return;
         }
@@ -99,7 +99,7 @@ public class Canvas {
         }
     }
 
-    protected void clear() {
+    public void clear() {
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
                 pixels.put(new Point(x, y), DEFAULT_PIXEL);
@@ -124,11 +124,11 @@ public class Canvas {
         return drawing.toString();
     }
 
-    protected int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    protected int getHeight() {
+    public int getHeight() {
         return height;
     }
 
