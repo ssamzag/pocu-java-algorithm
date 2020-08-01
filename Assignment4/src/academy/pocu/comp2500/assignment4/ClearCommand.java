@@ -29,7 +29,7 @@ public class ClearCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (!canExecute || !canUndo) {
+        if (canExecute || !canUndo) {
             return false;
         }
 
@@ -46,7 +46,7 @@ public class ClearCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (!canExecute || canUndo) {
+        if (canExecute || canUndo) {
             return false;
         }
 
