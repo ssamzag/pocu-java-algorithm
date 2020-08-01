@@ -23,28 +23,53 @@ public class Program {
     public static void main(String[] args) {
 
         Canvas canvas = new Canvas(30, 30);
+
         {
             var manager = new CommandHistoryManager(canvas);
-            manager.redo();
-            manager.redo();
-
-            ICommand upperCommand = new ToUppercaseCommand(21, 8);
-            manager.execute(upperCommand);
-            System.out.println(canvas.getDrawing());
-            ICommand drawPixel = new DrawPixelCommand(14, 10, 'v');
-
-            manager.execute(drawPixel);
-            System.out.println(canvas.getDrawing());
+            var fv = new FillVerticalLineCommand(21, '8');
+            var fh = new FillHorizontalLineCommand(10, '#');
+            var tlower = new ToLowercaseCommand(5, 1);
+            manager.execute(fv);
+            manager.execute(fh);
+            manager.execute(tlower);
             manager.redo();
             manager.undo();
-            manager.redo();
-            ICommand decrease = new DecreasePixelCommand(23, 17);
-            manager.execute(decrease);
-
-            assert manager.undo();
-
             System.out.println(canvas.getDrawing());
+
         }
+//        {
+//            var manager = new CommandHistoryManager(canvas);
+//            manager.redo();
+//            manager.redo();
+//
+//            ICommand upperCommand = new ToUppercaseCommand(21, 8);
+//            manager.execute(upperCommand);
+//            System.out.println(canvas.getDrawing());
+//            ICommand drawPixel = new DrawPixelCommand(14, 10, 'v');
+//
+//            manager.execute(drawPixel);
+//            System.out.println(canvas.getDrawing());
+//            manager.redo();
+//            manager.undo();
+//            manager.redo();
+//
+//            assert manager.undo();
+//
+//            System.out.println(canvas.getDrawing());
+//            ICommand fillh = new FillHorizontalLineCommand(2, 'a');
+//            manager.execute(fillh);
+//            ICommand decrease = new DecreasePixelCommand(23, 17);
+//            manager.execute(decrease);
+//
+//            System.out.println(canvas.getDrawing());
+//            manager.undo();
+//            System.out.println(canvas.getDrawing());
+//            assert manager.redo();
+//            System.out.println(canvas.getDrawing());
+//            assert !manager.redo();
+//            manager.redo();
+//            manager.redo();
+//        }
 //        {
 //
 //            System.out.println(canvas.getDrawing());

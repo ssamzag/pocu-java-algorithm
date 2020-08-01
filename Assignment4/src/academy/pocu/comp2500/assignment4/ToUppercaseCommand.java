@@ -19,12 +19,6 @@ public class ToUppercaseCommand implements ICommand {
         if (!canExecute) {
             return false;
         }
-        
-        char pixel = canvas.getPixel(x, y);
-        if (pixel < 'a' || pixel > 'z') {
-            isExecuted = false;
-            return false;
-        }
 
         this.canvas = canvas;
         canvas.toUpper(x, y);

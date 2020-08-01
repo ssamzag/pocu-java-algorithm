@@ -20,12 +20,6 @@ public class ToLowercaseCommand implements ICommand {
             return false;
         }
 
-        char pixel = canvas.getPixel(x, y);
-        if (pixel < 'A' || pixel > 'Z') {
-            isExecuted = false;
-            return false;
-        }
-
         this.canvas = canvas;
         this.pixel = canvas.getPixel(x, y);
         canvas.toLower(x, y);
